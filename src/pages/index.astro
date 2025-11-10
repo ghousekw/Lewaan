@@ -2,8 +2,21 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { portfolioItems } from '../data/portfolio';
+import { getTranslations, type Language } from '../i18n';
+
+// Get language from URL params or default to 'en'
+const urlLang = Astro.url.searchParams.get('lang') as Language | null;
+const language: Language = (urlLang === 'ar' || urlLang === 'en') ? urlLang : 'en';
+const t = getTranslations(language);
 
 const featuredProjects = portfolioItems.slice(0, 3);
+
+// Helper function to add lang param to URLs
+function addLangToUrl(url: string, lang: Language): string {
+  const urlObj = new URL(url, Astro.url.origin);
+  urlObj.searchParams.set('lang', lang);
+  return urlObj.pathname + urlObj.search;
+}
 ---
 
 <MainLayout>
@@ -26,30 +39,30 @@ const featuredProjects = portfolioItems.slice(0, 3);
     <div class="relative z-10 container mx-auto px-6 text-center max-w-5xl">
       <div class="animate-fade-in-up">
         <p class="text-brand-secondary text-sm md:text-base uppercase tracking-widest mb-4 font-semibold opacity-90">
-          Interior Design Excellence Since 2015
+          {t.home.hero.tagline}
         </p>
         <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6 text-brand-text-secondary">
-          <span class="block font-serif" style="font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;">Timeless &</span>
-          <span class="block text-brand-secondary font-serif" style="font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;">Elegant Interiors</span>
+          <span class="block font-serif" style="font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;">{t.home.hero.title1}</span>
+          <span class="block text-brand-secondary font-serif" style="font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;">{t.home.hero.title2}</span>
         </h1>
         <p class="text-lg md:text-xl lg:text-2xl mb-10 text-brand-text-primary max-w-2xl mx-auto leading-relaxed">
-          Creating beautiful, functional spaces that inspire and transform your living experience.
+          {t.home.hero.description}
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <a 
-            href="/portfolio" 
+            href={addLangToUrl('/portfolio', language)} 
             class="group bg-brand-primary text-white font-semibold py-4 px-10 rounded-full hover:bg-brand-secondary hover:text-brand-background transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl inline-flex items-center gap-2"
           >
-            <span>Explore Our Work</span>
+            <span>{t.home.hero.exploreWork}</span>
             <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
             </svg>
           </a>
           <a 
-            href="/contact" 
+            href={addLangToUrl('/contact', language)} 
             class="group border-2 border-brand-text-secondary text-brand-text-secondary font-semibold py-4 px-10 rounded-full hover:bg-brand-text-secondary hover:text-brand-background transition-all duration-300 transform hover:scale-105"
           >
-            Get In Touch
+            {t.home.hero.getInTouch}
           </a>
         </div>
       </div>
@@ -72,9 +85,9 @@ const featuredProjects = portfolioItems.slice(0, 3);
     <div class="container mx-auto px-6 relative z-10">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16">
-          <p class="text-brand-secondary text-sm uppercase tracking-widest mb-4 font-semibold">About Us</p>
+          <p class="text-brand-secondary text-sm uppercase tracking-widest mb-4 font-semibold">{t.home.about.label}</p>
           <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-brand-text-secondary">
-            Crafting Spaces That Tell Your Story
+            {t.home.about.title}
           </h2>
           <div class="w-24 h-1 bg-brand-secondary mx-auto"></div>
         </div>
@@ -82,27 +95,27 @@ const featuredProjects = portfolioItems.slice(0, 3);
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div class="space-y-6">
             <p class="text-lg md:text-xl leading-relaxed text-brand-text-primary">
-              Leewan Interior Design is a top architecture, 3D visualization, illustration and 3D animation firm in Kuwait with a computational approach to architecture and spatial experience. We create interactive solutions for our clients.
+              {t.home.about.description1}
             </p>
             <p class="text-lg leading-relaxed text-brand-text-primary">
-              Founded in 2015 by Engr. Ebtehal Al Ameer, we specialize in Engineering, Architecture and Interior Designing. We provide extraordinary and unique solutions with designs consisting of Modern, Minimalist, Industrial, Mid-century, Scandinavian, Traditional, Coastal, Islamic, Moroccan & Contemporary Styles.
+              {t.home.about.description2}
             </p>
             <div class="grid grid-cols-2 gap-6 pt-6">
-              <div class="border-l-2 border-brand-secondary pl-4">
+              <div class="border-l-2 border-brand-secondary pl-4 rtl:border-l-0 rtl:border-r-2 rtl:pl-0 rtl:pr-4">
                 <p class="text-3xl font-bold text-brand-secondary mb-1">1,238</p>
-                <p class="text-brand-text-primary">Projects Done</p>
+                <p class="text-brand-text-primary">{t.home.about.stats.projects}</p>
               </div>
-              <div class="border-l-2 border-brand-secondary pl-4">
+              <div class="border-l-2 border-brand-secondary pl-4 rtl:border-l-0 rtl:border-r-2 rtl:pl-0 rtl:pr-4">
                 <p class="text-3xl font-bold text-brand-secondary mb-1">760</p>
-                <p class="text-brand-text-primary">Happy Clients</p>
+                <p class="text-brand-text-primary">{t.home.about.stats.clients}</p>
               </div>
-              <div class="border-l-2 border-brand-secondary pl-4">
+              <div class="border-l-2 border-brand-secondary pl-4 rtl:border-l-0 rtl:border-r-2 rtl:pl-0 rtl:pr-4">
                 <p class="text-3xl font-bold text-brand-secondary mb-1">24</p>
-                <p class="text-brand-text-primary">Years Experience</p>
+                <p class="text-brand-text-primary">{t.home.about.stats.experience}</p>
               </div>
-              <div class="border-l-2 border-brand-secondary pl-4">
+              <div class="border-l-2 border-brand-secondary pl-4 rtl:border-l-0 rtl:border-r-2 rtl:pl-0 rtl:pr-4">
                 <p class="text-3xl font-bold text-brand-secondary mb-1">460</p>
-                <p class="text-brand-text-primary">Award Winnings</p>
+                <p class="text-brand-text-primary">{t.home.about.stats.awards}</p>
               </div>
             </div>
           </div>
@@ -125,12 +138,12 @@ const featuredProjects = portfolioItems.slice(0, 3);
   <section class="py-24 md:py-32 relative">
     <div class="container mx-auto px-6">
       <div class="text-center mb-16">
-        <p class="text-brand-secondary text-sm uppercase tracking-widest mb-4 font-semibold">Portfolio</p>
+        <p class="text-brand-secondary text-sm uppercase tracking-widest mb-4 font-semibold">{t.home.portfolio.label}</p>
         <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-brand-text-secondary">
-          Featured Projects
+          {t.home.portfolio.title}
         </h2>
         <p class="text-lg md:text-xl mt-4 text-brand-text-primary max-w-2xl mx-auto">
-          A glimpse into our portfolio of transformative interior design projects.
+          {t.home.portfolio.description}
         </p>
         <div class="w-24 h-1 bg-brand-secondary mx-auto mt-6"></div>
       </div>
@@ -141,17 +154,17 @@ const featuredProjects = portfolioItems.slice(0, 3);
             imageUrl={project.thumbnail}
             title={project.title}
             description={project.description}
-            link={`/portfolio/${project.slug}`}
+            link={`${addLangToUrl(`/portfolio/${project.slug}`, language)}`}
           />
         ))}
       </div>
       
       <div class="text-center mt-12">
         <a 
-          href="/portfolio" 
+          href={addLangToUrl('/portfolio', language)} 
           class="inline-flex items-center gap-2 text-brand-secondary hover:text-brand-primary font-semibold transition-colors duration-300 group"
         >
-          <span>View All Projects</span>
+          <span>{t.home.portfolio.viewAll}</span>
           <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
           </svg>
@@ -168,12 +181,12 @@ const featuredProjects = portfolioItems.slice(0, 3);
     <div class="container mx-auto px-6 relative z-10">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16">
-          <p class="text-brand-secondary text-sm uppercase tracking-widest mb-4 font-semibold">Why Choose Us</p>
+          <p class="text-brand-secondary text-sm uppercase tracking-widest mb-4 font-semibold">{t.home.whyChooseUs.label}</p>
           <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-brand-text-secondary">
-            5 Reasons Why Choose Us
+            {t.home.whyChooseUs.title}
           </h2>
           <p class="text-lg md:text-xl text-brand-text-primary max-w-3xl mx-auto mb-4">
-            Know why You need Leewan Interior Design, Because we design space rather than just making lines.
+            {t.home.whyChooseUs.description}
           </p>
           <div class="w-24 h-1 bg-brand-secondary mx-auto"></div>
         </div>
@@ -185,8 +198,8 @@ const featuredProjects = portfolioItems.slice(0, 3);
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-brand-text-secondary mb-3">Creative Solutions</h3>
-            <p class="text-brand-text-primary">We strongly believe in creativity and provide extraordinary unique solutions with innovative designs.</p>
+            <h3 class="text-xl font-bold text-brand-text-secondary mb-3">{t.home.whyChooseUs.reasons.creative.title}</h3>
+            <p class="text-brand-text-primary">{t.home.whyChooseUs.reasons.creative.description}</p>
           </div>
           
           <div class="bg-brand-background/50 p-8 rounded-2xl border border-brand-secondary/20 hover:border-brand-secondary/50 transition-all duration-300">
@@ -195,8 +208,8 @@ const featuredProjects = portfolioItems.slice(0, 3);
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-brand-text-secondary mb-3">24/7 Availability</h3>
-            <p class="text-brand-text-primary">We are anywhere you are. An accessible creative design service available seven days a week, 24 hours all the time.</p>
+            <h3 class="text-xl font-bold text-brand-text-secondary mb-3">{t.home.whyChooseUs.reasons.availability.title}</h3>
+            <p class="text-brand-text-primary">{t.home.whyChooseUs.reasons.availability.description}</p>
           </div>
           
           <div class="bg-brand-background/50 p-8 rounded-2xl border border-brand-secondary/20 hover:border-brand-secondary/50 transition-all duration-300">
@@ -205,8 +218,8 @@ const featuredProjects = portfolioItems.slice(0, 3);
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-brand-text-secondary mb-3">Expert Team</h3>
-            <p class="text-brand-text-primary">Our team of experienced engineers and designers understand customer requirements and translate them into reality.</p>
+            <h3 class="text-xl font-bold text-brand-text-secondary mb-3">{t.home.whyChooseUs.reasons.expert.title}</h3>
+            <p class="text-brand-text-primary">{t.home.whyChooseUs.reasons.expert.description}</p>
           </div>
           
           <div class="bg-brand-background/50 p-8 rounded-2xl border border-brand-secondary/20 hover:border-brand-secondary/50 transition-all duration-300">
@@ -215,8 +228,8 @@ const featuredProjects = portfolioItems.slice(0, 3);
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-brand-text-secondary mb-3">Quality & Excellence</h3>
-            <p class="text-brand-text-primary">Our commitment to quality and excellence is second to none, consistently exceeding customer expectations.</p>
+            <h3 class="text-xl font-bold text-brand-text-secondary mb-3">{t.home.whyChooseUs.reasons.quality.title}</h3>
+            <p class="text-brand-text-primary">{t.home.whyChooseUs.reasons.quality.description}</p>
           </div>
           
           <div class="bg-brand-background/50 p-8 rounded-2xl border border-brand-secondary/20 hover:border-brand-secondary/50 transition-all duration-300">
@@ -225,8 +238,8 @@ const featuredProjects = portfolioItems.slice(0, 3);
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-brand-text-secondary mb-3">Complete Services</h3>
-            <p class="text-brand-text-primary">From 2D planning to 3D visualization and complete turnkey execution, we handle everything.</p>
+            <h3 class="text-xl font-bold text-brand-text-secondary mb-3">{t.home.whyChooseUs.reasons.complete.title}</h3>
+            <p class="text-brand-text-primary">{t.home.whyChooseUs.reasons.complete.description}</p>
           </div>
           
           <div class="bg-brand-background/50 p-8 rounded-2xl border border-brand-secondary/20 hover:border-brand-secondary/50 transition-all duration-300">
@@ -235,8 +248,8 @@ const featuredProjects = portfolioItems.slice(0, 3);
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-brand-text-secondary mb-3">Client Satisfaction</h3>
-            <p class="text-brand-text-primary">Achieving outstanding results and client satisfaction in every step with integrity, honesty, fairness and sustainability.</p>
+            <h3 class="text-xl font-bold text-brand-text-secondary mb-3">{t.home.whyChooseUs.reasons.satisfaction.title}</h3>
+            <p class="text-brand-text-primary">{t.home.whyChooseUs.reasons.satisfaction.description}</p>
           </div>
         </div>
       </div>
@@ -253,28 +266,28 @@ const featuredProjects = portfolioItems.slice(0, 3);
     
     <div class="container mx-auto px-6 text-center relative z-10">
       <div class="max-w-3xl mx-auto">
-        <p class="text-white/90 text-sm uppercase tracking-widest mb-4 font-semibold">Let's Work Together</p>
+        <p class="text-white/90 text-sm uppercase tracking-widest mb-4 font-semibold">{t.home.cta.label}</p>
         <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
-          Ready to Start Your Project?
+          {t.home.cta.title}
         </h2>
         <p class="text-xl md:text-2xl mb-10 text-white/90 leading-relaxed">
-          Let's create a space that is uniquely yours and reflects your personal style.
+          {t.home.cta.description}
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <a 
-            href="/contact" 
+            href={addLangToUrl('/contact', language)} 
             class="group bg-brand-secondary text-brand-background font-semibold py-4 px-10 rounded-full hover:bg-white hover:shadow-2xl transition-all duration-300 transform hover:scale-105 shadow-xl inline-flex items-center gap-2"
           >
-            <span>Get In Touch</span>
+            <span>{t.home.cta.getInTouch}</span>
             <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
             </svg>
           </a>
           <a 
-            href="/about" 
+            href={addLangToUrl('/about', language)} 
             class="group border-2 border-white text-white font-semibold py-4 px-10 rounded-full hover:bg-white hover:text-brand-primary transition-all duration-300 transform hover:scale-105"
           >
-            Learn More About Us
+            {t.home.cta.learnMore}
           </a>
         </div>
       </div>

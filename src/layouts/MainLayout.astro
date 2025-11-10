@@ -1,10 +1,16 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import type { Language } from '../i18n';
+
+// Get language from URL params or default to 'en'
+const urlLang = Astro.url.searchParams.get('lang') as Language | null;
+const language: Language = (urlLang === 'ar' || urlLang === 'en') ? urlLang : 'en';
+const isRTL = language === 'ar';
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={language} dir={isRTL ? 'rtl' : 'ltr'}>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,10 +18,13 @@ import Footer from '../components/Footer.astro';
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    {isRTL && (
+      <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Amiri:wght@700&display=swap" rel="stylesheet">
+    )}
     <link rel="stylesheet" href="/src/styles/global.css">
 </head>
-<body>
-    <Header />
+<body class={isRTL ? 'rtl' : 'ltr'}>
+    <Header currentLang={language} />
     <main>
         <slot />
     </main>

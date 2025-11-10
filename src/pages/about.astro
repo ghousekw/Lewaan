@@ -1,14 +1,27 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import { getTranslations, type Language } from '../i18n';
+
+// Get language from URL params or default to 'en'
+const urlLang = Astro.url.searchParams.get('lang') as Language | null;
+const language: Language = (urlLang === 'ar' || urlLang === 'en') ? urlLang : 'en';
+const t = getTranslations(language);
+
+// Helper function to add lang param to URLs
+function addLangToUrl(url: string, lang: Language): string {
+  const urlObj = new URL(url, Astro.url.origin);
+  urlObj.searchParams.set('lang', lang);
+  return urlObj.pathname + urlObj.search;
+}
 ---
 
 <MainLayout>
   <!-- Hero Section -->
   <section class="relative py-24 md:py-32 bg-brand-background">
     <div class="container mx-auto px-6 text-center">
-      <p class="text-brand-secondary text-sm uppercase tracking-widest mb-4 font-semibold">About Leewan</p>
+      <p class="text-brand-secondary text-sm uppercase tracking-widest mb-4 font-semibold">{t.about.hero.label}</p>
       <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-brand-text-secondary">
-        All About Leewan, What Sets Us Apart
+        {t.about.hero.title}
       </h1>
       <div class="w-24 h-1 bg-brand-secondary mx-auto"></div>
     </div>
@@ -20,13 +33,13 @@ import MainLayout from '../layouts/MainLayout.astro';
       <div class="max-w-4xl mx-auto">
         <div class="prose prose-invert max-w-none">
           <p class="text-lg md:text-xl leading-relaxed text-brand-text-primary mb-6">
-            Lewan is a brand of Interior Design and trust expertise in Architecture, Engineering, Landscape and Public Spaces. It offers exceptional 3D Realistic views, 2D Planning, Detailed shop drawings, Architectural rendering plans, Interior-Exterior decoration works and complete Turnkey execution services for both residential and elegant commercial projects.
+            {t.about.overview.description1}
           </p>
           <p class="text-lg leading-relaxed text-brand-text-primary mb-6">
-            We create environments that positively impact lives through meaningful design and present ourselves as expanding into new markets whilst handling the entire process from design to the final finish with professionalism, accurate and time fitting. We also offer cost effective solutions related to installations.
+            {t.about.overview.description2}
           </p>
           <p class="text-lg leading-relaxed text-brand-text-primary">
-            Lewan Interior design is a leader in providing interior fitout and design services to its clients by partnering and construction process; while going the extra mile to genuinely understand their unique needs and requirements. Our commitment to quality and excellence is second to none, and this is why we have consistently managed to exceed our customers' expectations everytime.
+            {t.about.overview.description3}
           </p>
         </div>
       </div>
@@ -38,20 +51,18 @@ import MainLayout from '../layouts/MainLayout.astro';
     <div class="container mx-auto px-6">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-12">
-          <h2 class="text-4xl md:text-5xl font-bold mb-6 text-brand-text-secondary">Our Story</h2>
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 text-brand-text-secondary">{t.about.story.title}</h2>
           <div class="w-24 h-1 bg-brand-secondary mx-auto"></div>
         </div>
         
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div>
+            <p class="text-lg leading-relaxed text-brand-text-primary mb-6" set:html={t.about.story.description1.replace('2015', '<strong class="text-brand-secondary">2015</strong>').replace('Engr. Ebtehal Al Ameer', '<strong class="text-brand-secondary">Engr. Ebtehal Al Ameer</strong>')} />
             <p class="text-lg leading-relaxed text-brand-text-primary mb-6">
-              Lewan Interior Designs strongly believe in creativity, we are one of the expert interior design company in Kuwait city. Lewan origins go back to <strong class="text-brand-secondary">2015</strong> when <strong class="text-brand-secondary">Engr. Ebtehal Al Ameer</strong> with her creative ideas and thoughts organised this design firm who is an experienced professional in engineering, architecture and interior designing.
-            </p>
-            <p class="text-lg leading-relaxed text-brand-text-primary mb-6">
-              Engr's expertise and traits in this field made her stand out in a crowd of competitors. We continued to practice the same creativeness incorporated at its founding.
+              {t.about.story.description2}
             </p>
             <p class="text-lg leading-relaxed text-brand-text-primary">
-              Lewan had embraced innovative ideas in planning to provide beautiful designs to their clients, consultants, communities and end users. With in short span of time we have accumulated an impressive track in the region of creativity. Our smooth collaboration had made us to become a trusted partner for large number of Kuwaiti clients.
+              {t.about.story.description3}
             </p>
           </div>
           <div class="relative">
@@ -82,12 +93,12 @@ import MainLayout from '../layouts/MainLayout.astro';
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
               </svg>
             </div>
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-brand-text-secondary">Vision</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-brand-text-secondary">{t.about.vision.title}</h2>
             <p class="text-lg leading-relaxed text-brand-text-primary mb-4">
-              A vision of better interior. Specialising in commercial Fitout & Interior Designing.
+              {t.about.vision.description1}
             </p>
             <p class="text-lg leading-relaxed text-brand-text-primary">
-              We aim to be a leader in both the local and global market through our ability to deliver intricately designed commercial and hospitality spaces that don't compromise functionality and bring our clients imagination to life.
+              {t.about.vision.description2}
             </p>
           </div>
 
@@ -98,19 +109,17 @@ import MainLayout from '../layouts/MainLayout.astro';
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
             </div>
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-brand-text-secondary">Mission</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-brand-text-secondary">{t.about.mission.title}</h2>
             <p class="text-lg leading-relaxed text-brand-text-primary mb-4">
-              Our mission is to provide a measurable improvement in a Client's facility and combine functionality with high innovation. We want every partner and client experience to be the talk of a life time.
+              {t.about.mission.description1}
             </p>
             <p class="text-lg leading-relaxed text-brand-text-primary mb-4">
-              Also, to define the most sophisticated and superior standard of quality within the following pre-determined criteria:
+              {t.about.mission.description2}
             </p>
-            <ul class="list-disc list-inside space-y-2 text-brand-text-primary ml-4">
-              <li>Creative design</li>
-              <li>Attention to detail with quality materials</li>
-              <li>Application of sustainable design principles</li>
-              <li>Long term value investment</li>
-              <li>Efficient and effective planning</li>
+            <ul class="list-disc list-inside space-y-2 text-brand-text-primary ml-4 rtl:mr-4 rtl:ml-0">
+              {t.about.mission.criteria.map((item) => (
+                <li>{item}</li>
+              ))}
             </ul>
           </div>
         </div>
@@ -122,13 +131,13 @@ import MainLayout from '../layouts/MainLayout.astro';
   <section class="py-20 bg-[#112240]">
     <div class="container mx-auto px-6">
       <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-brand-text-secondary">What We Do?</h2>
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-brand-text-secondary">{t.about.whatWeDo.title}</h2>
         <div class="w-24 h-1 bg-brand-secondary mx-auto mb-8"></div>
         <p class="text-lg md:text-xl leading-relaxed text-brand-text-primary mb-6">
-          We strongly believe in creativity, we are one of the effective interior design companies in Kuwait. Lewan Interior Design is specialized in providing stunning and excellent interior design services that include creative space planning, designing, and project management for both residential and elegant commercial projects in the entire region.
+          {t.about.whatWeDo.description1}
         </p>
         <p class="text-lg leading-relaxed text-brand-text-primary">
-          We also aim to build strong relationships with our clients. We have impressed the country with our astonishing and innovative designs and ideas. Creating a perfect combination of customer's style and our expert designers was a huge task and we are successful in it.
+          {t.about.whatWeDo.description2}
         </p>
       </div>
     </div>
@@ -139,18 +148,18 @@ import MainLayout from '../layouts/MainLayout.astro';
     <div class="container mx-auto px-6">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-12">
-          <h2 class="text-4xl md:text-5xl font-bold mb-6 text-brand-text-secondary">Why Choose Us?</h2>
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 text-brand-text-secondary">{t.about.whyChooseUs.title}</h2>
           <div class="w-24 h-1 bg-brand-secondary mx-auto"></div>
         </div>
         <div class="prose prose-invert max-w-none">
           <p class="text-lg leading-relaxed text-brand-text-primary mb-6">
-            We believe that every client has unique requirements and taste and in order to support that, Lewan comprises of a team who can understand your ideas and add up the best and most creative designs in order to make your dreams become a reality.
+            {t.about.whyChooseUs.description1}
           </p>
           <p class="text-lg leading-relaxed text-brand-text-primary mb-6">
-            Having endless ideas in mind that can impress you at every step, Lewan also strives for the satisfaction of each and every client. From conceptualization to the last stage, we work on each project efficiently to bring out high-quality results.
+            {t.about.whyChooseUs.description2}
           </p>
           <p class="text-lg leading-relaxed text-brand-text-primary">
-            You're always welcomed to discuss the ideas and grab the best over a cup of your favorite coffee and get to know why we are known as best interior design company in entire Kuwait.
+            {t.about.whyChooseUs.description3}
           </p>
         </div>
       </div>
@@ -162,28 +171,28 @@ import MainLayout from '../layouts/MainLayout.astro';
     <div class="container mx-auto px-6">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-12">
-          <p class="text-brand-secondary text-sm uppercase tracking-widest mb-4 font-semibold">Our Team</p>
+          <p class="text-brand-secondary text-sm uppercase tracking-widest mb-4 font-semibold">{t.about.team.label}</p>
           <h2 class="text-4xl md:text-5xl font-bold mb-6 text-brand-text-secondary">
-            Meet Our Team, We Are The Best!
+            {t.about.team.title}
           </h2>
           <p class="text-lg text-brand-text-primary max-w-3xl mx-auto mb-4">
-            Teamwork is the ability to work together towards a common vision. The ability to direct individual accomplishment toward organisational objectives. It is the fuel that allows common people to attain uncommon results.
+            {t.about.team.description}
           </p>
           <div class="w-24 h-1 bg-brand-secondary mx-auto"></div>
         </div>
         
         <div class="grid md:grid-cols-2 gap-8 mt-12">
           <div class="bg-brand-background/50 p-8 rounded-2xl">
-            <h3 class="text-2xl font-bold text-brand-text-secondary mb-4">Operating Excellence</h3>
+            <h3 class="text-2xl font-bold text-brand-text-secondary mb-4">{t.about.team.operating.title}</h3>
             <p class="text-brand-text-primary leading-relaxed">
-              Operating with a qualified team in close contact with clients, advisers and suppliers, we work with enthusiasm and passion and encourage a creative and professional environment. A high level of personal service, coupled with respect for the precious resources of cost and time, therefore distinguishes our unique relationship with client.
+              {t.about.team.operating.description}
             </p>
           </div>
           
           <div class="bg-brand-background/50 p-8 rounded-2xl">
-            <h3 class="text-2xl font-bold text-brand-text-secondary mb-4">Expert Designers</h3>
+            <h3 class="text-2xl font-bold text-brand-text-secondary mb-4">{t.about.team.expert.title}</h3>
             <p class="text-brand-text-primary leading-relaxed">
-              Our team of experienced engineers and designers have the experience to understand customers requirements and translate them into reality with utmost comfort, details and beauty. We are a professional team working together to provide all kind of styles and decoration in Kuwait.
+              {t.about.team.expert.description}
             </p>
           </div>
         </div>
@@ -195,16 +204,16 @@ import MainLayout from '../layouts/MainLayout.astro';
   <section class="py-20 bg-brand-background">
     <div class="container mx-auto px-6">
       <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-brand-text-secondary">Achievements</h2>
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-brand-text-secondary">{t.about.achievements.title}</h2>
         <div class="w-24 h-1 bg-brand-secondary mx-auto mb-8"></div>
         <p class="text-lg md:text-xl leading-relaxed text-brand-text-primary mb-6">
-          Our work emerges from the colors of a land and a city to become the best Décor Company in Kuwait. We are proud that in completing this work, our client was more than satisfied.
+          {t.about.achievements.description1}
         </p>
         <p class="text-lg leading-relaxed text-brand-text-primary mb-6">
-          The final result is an exclusive interior design of the villa that impress with the elegance and splendor of the timeless classic style decor. Lewan has delivered many residential projects with dedication and attention to details for the highest homeowners' satisfaction.
+          {t.about.achievements.description2}
         </p>
         <p class="text-lg leading-relaxed text-brand-text-primary">
-          Lewan continues to achieve its high standards for interior and exterior designs for villas in the most successful way.
+          {t.about.achievements.description3}
         </p>
       </div>
     </div>
@@ -213,15 +222,15 @@ import MainLayout from '../layouts/MainLayout.astro';
   <!-- CTA Section -->
   <section class="py-20 bg-[#112240]">
     <div class="container mx-auto px-6 text-center">
-      <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Ready to Work With Us?</h2>
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">{t.about.cta.title}</h2>
       <p class="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
-        You have a project in mind? Let's talk. Book your consultation today with the best decor company in Kuwait.
+        {t.about.cta.description}
       </p>
       <a 
-        href="/contact" 
+        href={addLangToUrl('/contact', language)} 
         class="inline-flex items-center gap-2 bg-brand-secondary text-brand-background font-semibold py-4 px-10 rounded-full hover:bg-white hover:shadow-2xl transition-all duration-300 transform hover:scale-105 shadow-xl"
       >
-        <span>Get In Touch</span>
+        <span>{t.about.cta.getInTouch}</span>
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
         </svg>
