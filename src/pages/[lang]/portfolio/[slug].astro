@@ -31,8 +31,9 @@ function langUrl(path: string, lang: Language): string {
 ---
 
 <MainLayout language={language}>
-  <!-- Breadcrumb Navigation -->
-  <div class="container mx-auto px-6 pt-32 pb-6">
+  <div class="bg-brand-background min-h-screen">
+    <!-- Breadcrumb Navigation -->
+    <div class="container mx-auto px-6 pt-32 pb-6">
     <nav class="flex items-center gap-2 text-sm">
       <a href={langUrl('/', language)} class="text-brand-text-primary hover:text-brand-secondary transition-colors">Home</a>
       <svg class="w-4 h-4 text-brand-text-primary opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -158,5 +159,6 @@ function langUrl(path: string, lang: Language): string {
       </svg>
       <span>Back to Portfolio</span>
     </a>
+  </div>
   </div>
 </MainLayout>

@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import type { Language } from '../i18n';
+import '../styles/global.css';
 
 interface Props {
   language?: Language;
@@ -23,7 +24,6 @@ const isRTL = language === 'ar';
     {isRTL && (
       <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Amiri:wght@700&display=swap" rel="stylesheet">
     )}
-    <link rel="stylesheet" href="/src/styles/global.css">
 </head>
 <body class={isRTL ? 'rtl' : 'ltr'}>
     <Header currentLang={language} />
