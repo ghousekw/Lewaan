@@ -10,6 +10,10 @@ module.exports = {
         'brand-primary': '#007BFF',
         'brand-secondary': '#64FFDA',
       },
+      fontFamily: {
+        'sans': ['Montserrat', 'sans-serif'],
+        'serif': ['Playfair Display', 'serif'],
+      },
     },
   },
   plugins: [],

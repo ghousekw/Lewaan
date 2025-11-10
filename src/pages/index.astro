@@ -7,14 +7,16 @@ import ProjectCard from '../components/ProjectCard.astro';
   <!-- Hero Section - Enhanced with modern design -->
   <section class="relative h-screen flex items-center justify-center overflow-hidden">
     <!-- Background Image with Parallax Effect -->
-    <div class="absolute inset-0">
+    <div class="absolute inset-0 z-0">
       <img 
-        src="/hero-background.jpg" 
+        src="/heroimage.webp" 
         alt="A beautiful modern living room" 
         class="w-full h-full object-cover scale-110 transition-transform duration-[20s] ease-out hero-image"
+        loading="eager"
+        style="min-height: 100%; min-width: 100%;"
       />
-      <div class="absolute inset-0 bg-gradient-to-b from-brand-background/80 via-brand-background/60 to-brand-background/90"></div>
-      <div class="absolute inset-0 bg-black/30"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-brand-background/60 via-brand-background/30 to-brand-background/70 z-10"></div>
+      <div class="absolute inset-0 bg-black/15 z-10"></div>
     </div>
     
     <!-- Hero Content -->
@@ -102,11 +104,11 @@ import ProjectCard from '../components/ProjectCard.astro';
             </div>
           </div>
           <div class="relative">
-            <div class="aspect-square rounded-2xl overflow-hidden shadow-2xl">
+            <div class="rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center bg-brand-background/20">
               <img 
-                src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2058&auto=format&fit=crop&ixlib=rb-4.0.3" 
+                src="/About.webp" 
                 alt="Interior design workspace" 
-                class="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+                class="max-w-full max-h-[500px] w-auto h-auto object-contain hover:scale-105 transition-transform duration-700"
               />
             </div>
             <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-brand-secondary/20 rounded-full blur-xl"></div>
