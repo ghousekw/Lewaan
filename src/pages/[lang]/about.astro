@@ -1,0 +1,231 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { getTranslations, type Language } from '../../i18n';
+
+// Get language from route params
+const { lang } = Astro.params;
+const language: Language = (lang === 'ar' || lang === 'en') ? lang : 'en';
+const t = getTranslations(language);
+
+// Helper function to add lang to URLs
+function langUrl(path: string, lang: Language): string {
+  return `/${lang}${path}`;
+}
+
+// Generate static paths for both languages
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'ar' } },
+  ];
+}
+---
+
+<MainLayout language={language}>
+  <!-- Hero Section -->
+  <section class="relative py-24 md:py-32 bg-brand-background">
+    <div class="container mx-auto px-6 text-center">
+      <p class="text-brand-secondary text-sm uppercase tracking-widest mb-4 font-semibold">{t.about.hero.label}</p>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-brand-text-secondary">
+        {t.about.hero.title}
+      </h1>
+      <div class="w-24 h-1 bg-brand-secondary mx-auto"></div>
+    </div>
+  </section>
+
+  <!-- Company Overview -->
+  <section class="py-20 bg-brand-background">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="prose prose-invert max-w-none">
+          <p class="text-lg md:text-xl leading-relaxed text-brand-text-primary mb-6">
+            {t.about.overview.description1}
+          </p>
+          <p class="text-lg leading-relaxed text-brand-text-primary mb-6">
+            {t.about.overview.description2}
+          </p>
+          <p class="text-lg leading-relaxed text-brand-text-primary">
+            {t.about.overview.description3}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- History Section -->
+  <section class="py-20 bg-[#112240]">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 text-brand-text-secondary">{t.about.story.title}</h2>
+          <div class="w-24 h-1 bg-brand-secondary mx-auto"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <p class="text-lg leading-relaxed text-brand-text-primary mb-6" set:html={t.about.story.description1.replace('2015', '<strong class="text-brand-secondary">2015</strong>').replace('Engr. Ebtehal Al Ameer', '<strong class="text-brand-secondary">Engr. Ebtehal Al Ameer</strong>')} />
+            <p class="text-lg leading-relaxed text-brand-text-primary mb-6">
+              {t.about.story.description2}
+            </p>
+            <p class="text-lg leading-relaxed text-brand-text-primary">
+              {t.about.story.description3}
+            </p>
+          </div>
+          <div class="relative">
+            <div class="rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center bg-brand-background/20">
+              <img 
+                src="/About.webp" 
+                alt="Leewan Interior Design Team" 
+                class="max-w-full max-h-[500px] w-auto h-auto object-contain"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision & Mission -->
+  <section class="py-20 bg-brand-background">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-12">
+          <!-- Vision -->
+          <div class="bg-[#112240] p-8 md:p-12 rounded-2xl">
+            <div class="w-16 h-16 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-brand-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+              </svg>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-brand-text-secondary">{t.about.vision.title}</h2>
+            <p class="text-lg leading-relaxed text-brand-text-primary mb-4">
+              {t.about.vision.description1}
+            </p>
+            <p class="text-lg leading-relaxed text-brand-text-primary">
+              {t.about.vision.description2}
+            </p>
+          </div>
+
+          <!-- Mission -->
+          <div class="bg-[#112240] p-8 md:p-12 rounded-2xl">
+            <div class="w-16 h-16 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-brand-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-brand-text-secondary">{t.about.mission.title}</h2>
+            <p class="text-lg leading-relaxed text-brand-text-primary mb-4">
+              {t.about.mission.description1}
+            </p>
+            <p class="text-lg leading-relaxed text-brand-text-primary mb-4">
+              {t.about.mission.description2}
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-brand-text-primary ml-4 rtl:mr-4 rtl:ml-0">
+              {t.about.mission.criteria.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Do -->
+  <section class="py-20 bg-[#112240]">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-brand-text-secondary">{t.about.whatWeDo.title}</h2>
+        <div class="w-24 h-1 bg-brand-secondary mx-auto mb-8"></div>
+        <p class="text-lg md:text-xl leading-relaxed text-brand-text-primary mb-6">
+          {t.about.whatWeDo.description1}
+        </p>
+        <p class="text-lg leading-relaxed text-brand-text-primary">
+          {t.about.whatWeDo.description2}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="py-20 bg-brand-background">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 text-brand-text-secondary">{t.about.whyChooseUs.title}</h2>
+          <div class="w-24 h-1 bg-brand-secondary mx-auto"></div>
+        </div>
+        <div class="prose prose-invert max-w-none">
+          <p class="text-lg leading-relaxed text-brand-text-primary mb-6">
+            {t.about.whyChooseUs.description1}
+          </p>
+          <p class="text-lg leading-relaxed text-brand-text-primary mb-6">
+            {t.about.whyChooseUs.description2}
+          </p>
+          <p class="text-lg leading-relaxed text-brand-text-primary">
+            {t.about.whyChooseUs.description3}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="py-20 bg-[#112240]">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <p class="text-brand-secondary text-sm uppercase tracking-widest mb-4 font-semibold">{t.about.team.label}</p>
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 text-brand-text-secondary">
+            {t.about.team.title}
+          </h2>
+          <p class="text-lg text-brand-text-primary max-w-3xl mx-auto mb-4">
+            {t.about.team.description}
+          </p>
+          <div class="w-24 h-1 bg-brand-secondary mx-auto"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8 mt-12">
+          <div class="bg-brand-background/50 p-8 rounded-2xl">
+            <h3 class="text-2xl font-bold text-brand-text-secondary mb-4">{t.about.team.operating.title}</h3>
+            <p class="text-brand-text-primary leading-relaxed">
+              {t.about.team.operating.description}
+            </p>
+          </div>
+          
+          <div class="bg-brand-background/50 p-8 rounded-2xl">
+            <h3 class="text-2xl font-bold text-brand-text-secondary mb-4">{t.about.team.expert.title}</h3>
+            <p class="text-brand-text-primary leading-relaxed">
+              {t.about.team.expert.description}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements -->
+  <section class="py-20 bg-brand-background">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 text-brand-text-secondary">{t.about.achievements.title}</h2>
+          <div class="w-24 h-1 bg-brand-secondary mx-auto"></div>
+        </div>
+        <div class="space-y-6">
+          <p class="text-lg leading-relaxed text-brand-text-primary">
+            {t.about.achievements.description1}
+          </p>
+          <p class="text-lg leading-relaxed text-brand-text-primary">
+            {t.about.achievements.description2}
+          </p>
+          <p class="text-lg leading-relaxed text-brand-text-primary">
+            {t.about.achievements.description3}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

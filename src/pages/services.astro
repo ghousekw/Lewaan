@@ -1,5 +1,18 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import { getTranslations, type Language } from '../i18n';
+
+// Get language from URL params or default to 'en'
+const urlLang = Astro.url.searchParams.get('lang') as Language | null;
+const language: Language = (urlLang === 'ar' || urlLang === 'en') ? urlLang : 'en';
+const t = getTranslations(language);
+
+// Helper function to add lang param to URLs
+function addLangToUrl(url: string, lang: Language): string {
+  const urlObj = new URL(url, Astro.url.origin);
+  urlObj.searchParams.set('lang', lang);
+  return urlObj.pathname + urlObj.search;
+}
 ---
 
 <MainLayout>

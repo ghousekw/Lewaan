@@ -21,23 +21,25 @@ const otherLangLabel = otherLang === 'en' ? 'English' : 'العربية';
 </button>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const toggle = document.getElementById('language-toggle');
-    if (toggle) {
-      toggle.addEventListener('click', () => {
-        const currentLang = toggle.getAttribute('data-current-lang');
-        const newLang = currentLang === 'en' ? 'ar' : 'en';
-        
-        // Store preference
-        localStorage.setItem('language', newLang);
-        
-        // Reload page with new language
-        const url = new URL(window.location.href);
-        url.searchParams.set('lang', newLang);
-        window.location.href = url.toString();
-      });
-    }
-  });
+  // Attach event listener immediately
+  const toggle = document.getElementById('language-toggle');
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      const currentLang = toggle.getAttribute('data-current-lang');
+      const newLang = currentLang === 'en' ? 'ar' : 'en';
+      
+      // Store preference
+      localStorage.setItem('language', newLang);
+      
+      // Navigate to new language route
+      const path = window.location.pathname;
+      // Remove current language prefix if it exists
+      const pathWithoutLang = path.replace(/^\/(en|ar)(?:\/|$)/, '/');
+      // Add new language prefix
+      const newPath = `/${newLang}${pathWithoutLang}`;
+      window.location.href = newPath;
+    });
+  }
 </script>
 
 <style>

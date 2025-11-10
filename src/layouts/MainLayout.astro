@@ -3,9 +3,11 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import type { Language } from '../i18n';
 
-// Get language from URL params or default to 'en'
-const urlLang = Astro.url.searchParams.get('lang') as Language | null;
-const language: Language = (urlLang === 'ar' || urlLang === 'en') ? urlLang : 'en';
+interface Props {
+  language?: Language;
+}
+
+const { language = 'en' } = Astro.props;
 const isRTL = language === 'ar';
 ---
 
