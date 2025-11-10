@@ -1,11 +1,63 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import MainLayout from '../layouts/MainLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<MainLayout>
+  <!-- Hero Section -->
+  <section class="relative h-screen flex items-center justify-center text-center">
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+    <img src="/hero-background.jpg" alt="A beautiful modern living room" class="absolute inset-0 w-full h-full object-cover">
+    <div class="relative z-10 p-8 text-brand-text-secondary">
+      <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-4" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">Timeless & Elegant Interiors</h1>
+      <p class="text-xl md:text-2xl mb-8 text-brand-text-primary">Creating beautiful, functional spaces that inspire.</p>
+      <a href="/portfolio" class="bg-brand-primary text-white font-bold py-3 px-8 rounded-full hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 shadow-lg">Explore Our Work</a>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section class="py-20 bg-brand-background">
+    <div class="container mx-auto px-6 text-center max-w-4xl">
+      <h2 class="text-4xl font-bold mb-4">About Lewaan Interior Design</h2>
+      <p class="text-lg leading-relaxed text-brand-text-primary">
+        We are a full-service interior design studio dedicated to creating bespoke environments that reflect our clients' personalities and lifestyles. Our design philosophy is centered on a commitment to quality, craftsmanship, and timeless style. From concept to completion, we handle every detail.
+      </p>
+    </div>
+  </section>
+
+  <!-- Featured Projects Section -->
+  <section class="py-20">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold">Featured Projects</h2>
+        <p class="text-lg mt-2 text-brand-text-primary">A glimpse into our portfolio.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <ProjectCard 
+          imageUrl="https://images.unsplash.com/photo-1556702571-3e11dd2b1a22?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          title="Modern City Apartment"
+          description="A chic and sophisticated transformation in the heart of the city."
+        />
+        <ProjectCard 
+          imageUrl="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          title="Cozy Suburban Retreat"
+          description="Warm, inviting, and filled with rustic charm."
+        />
+        <ProjectCard 
+          imageUrl="https://images.unsplash.com/photo-1617104679290-b1d796a3b1ff?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          title="Luxury Coastal Villa"
+          description="Opulence and breathtaking views define this lavish interior."
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-brand-primary py-20">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold mb-4 text-white">Ready to Start Your Project?</h2>
+      <p class="text-xl mb-8 text-blue-100">Let's create a space that is uniquely yours.</p>
+      <a href="/contact" class="bg-brand-secondary text-brand-background font-bold py-3 px-8 rounded-full hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 shadow-lg">Get In Touch</a>
+    </div>
+  </section>
+</MainLayout>
