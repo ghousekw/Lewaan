@@ -1,6 +1,9 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import { portfolioItems } from '../data/portfolio';
+
+const featuredProjects = portfolioItems.slice(0, 3);
 ---
 
 <MainLayout>
@@ -133,21 +136,14 @@ import ProjectCard from '../components/ProjectCard.astro';
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-        <ProjectCard 
-          imageUrl="https://images.unsplash.com/photo-1556702571-3e11dd2b1a22?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          title="Modern City Apartment"
-          description="A chic and sophisticated transformation in the heart of the city."
-        />
-        <ProjectCard 
-          imageUrl="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          title="Cozy Suburban Retreat"
-          description="Warm, inviting, and filled with rustic charm."
-        />
-        <ProjectCard 
-          imageUrl="https://images.unsplash.com/photo-1617104679290-b1d796a3b1ff?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          title="Luxury Coastal Villa"
-          description="Opulence and breathtaking views define this lavish interior."
-        />
+        {featuredProjects.map((project) => (
+          <ProjectCard 
+            imageUrl={project.thumbnail}
+            title={project.title}
+            description={project.description}
+            link={`/portfolio/${project.slug}`}
+          />
+        ))}
       </div>
       
       <div class="text-center mt-12">
