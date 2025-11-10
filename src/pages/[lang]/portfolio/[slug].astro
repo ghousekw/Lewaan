@@ -31,29 +31,132 @@ function langUrl(path: string, lang: Language): string {
 ---
 
 <MainLayout language={language}>
-  <div class="container mx-auto px-6 py-12">
-    <!-- Back Button -->
-    <a 
+  <!-- Breadcrumb Navigation -->
+  <div class="container mx-auto px-6 pt-32 pb-6">
+    <nav class="flex items-center gap-2 text-sm">
+      <a href={langUrl('/', language)} class="text-brand-text-primary hover:text-brand-secondary transition-colors">Home</a>
+      <svg class="w-4 h-4 text-brand-text-primary opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+      <a href={langUrl('/portfolio', language)} class="text-brand-text-primary hover:text-brand-secondary transition-colors">Portfolio</a>
+      <svg class="w-4 h-4 text-brand-text-primary opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+      <span class="text-brand-secondary font-semibold">{item.title}</span>
+    </nav>
+  </div>
+
+  <!-- Portfolio Header Section -->
+  <section class="relative py-12 md:py-20 overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-brand-primary/5 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 bg-brand-secondary/5 rounded-full blur-3xl"></div>
+    </div>
+    
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-5xl md:text-7xl font-bold text-brand-text-secondary mb-6" style="font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;">
+          {item.title}
+        </h1>
+        <div class="w-24 h-1 bg-gradient-to-r from-brand-primary to-brand-secondary mx-auto mb-6"></div>
+        <p class="text-lg md:text-xl text-brand-text-primary leading-relaxed max-w-2xl mx-auto">
+          {item.description}
+        </p>
+        <div class="mt-8 flex items-center justify-center gap-4 text-sm text-brand-text-primary">
+          <span class="flex items-center gap-1">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/>
+            </svg>
+            {item.gallery.length} Images
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="py-16 md:py-24">
+    <div class="container mx-auto px-6">
+      <Gallery items={item.gallery} />
+    </div>
+  </section>
+
+  <!-- Related Projects Section -->
+  <section class="py-24 md:py-32 bg-[#112240] relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-brand-secondary rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 bg-brand-primary rounded-full blur-3xl"></div>
+    </div>
+    
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="text-center mb-16">
+        <p class="text-brand-secondary text-sm uppercase tracking-widest mb-4 font-semibold">Explore More</p>
+        <h2 class="text-4xl md:text-5xl font-bold text-brand-text-secondary mb-4" style="font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;">
+          Related Projects
+        </h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-brand-primary to-brand-secondary mx-auto"></div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+        {portfolioItems
+          .filter(p => p.slug !== item.slug)
+          .slice(0, 3)
+          .map((relatedItem) => {
+            const projectTranslations = {
+              'reception': { en: 'Reception', ar: 'الاستقبال' },
+              'deewaniya-mughallath': { en: 'Deewaniya & Mughallath', ar: 'الديوانية والمقلث' },
+              'living-hall': { en: 'Living Hall', ar: 'صالة المعيشة' },
+              'dining-hall': { en: 'Dining Hall', ar: 'قاعة الطعام' },
+              'master-bedrooms': { en: 'Master Bedrooms', ar: 'غرف النوم الرئيسية' },
+              'child-room': { en: 'Child Room', ar: 'غرفة الطفل' },
+              'wash-bathroom': { en: 'Wash Bathroom', ar: 'دورة المياه' },
+              'dressing-room': { en: 'Dressing Room', ar: 'غرفة الملابس' },
+              'cinema-hall': { en: 'Cinema Hall', ar: 'قاعة السينما' },
+              'corridors': { en: 'Corridors', ar: 'الممرات' },
+              'kitchen': { en: 'Kitchen', ar: 'المطبخ' },
+              'office': { en: 'Office', ar: 'المكتب' },
+              'playroom': { en: 'Playroom', ar: 'غرفة اللعب' },
+              'staircase': { en: 'Staircase', ar: 'السلالم' }
+            };
+            
+            const title = projectTranslations[relatedItem.slug]?.[language] || relatedItem.title;
+            
+            return (
+              <a
+                href={langUrl(`/portfolio/${relatedItem.slug}`, language)}
+                class="group relative overflow-hidden rounded-2xl shadow-2xl transition-all duration-500 ease-out transform hover:-translate-y-2 bg-[#112240] border border-transparent hover:border-brand-secondary/50"
+              >
+                <div class="relative overflow-hidden h-64">
+                  <img
+                    src={relatedItem.thumbnail}
+                    alt={title}
+                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                    loading="lazy"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-brand-background/90 via-brand-background/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl md:text-2xl font-bold text-brand-text-secondary group-hover:text-brand-secondary transition-colors duration-300">
+                    {title}
+                  </h3>
+                </div>
+              </a>
+            );
+          })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Back Button -->
+  <div class="container mx-auto px-6 py-8">
+    <a
       href={langUrl('/portfolio', language)}
-      class="inline-flex items-center gap-2 text-brand-text-primary hover:text-brand-secondary transition-colors mb-8"
+      class="inline-flex items-center gap-2 text-brand-secondary hover:text-white transition-colors font-semibold group"
     >
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
       </svg>
       <span>Back to Portfolio</span>
     </a>
-
-    <!-- Portfolio Header -->
-    <div class="text-center mb-12">
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-text-secondary mb-4">
-        {item.title}
-      </h1>
-      <p class="text-lg md:text-xl text-brand-text-primary max-w-3xl mx-auto">
-        {item.description}
-      </p>
-    </div>
-
-    <!-- Gallery -->
-    <Gallery items={item.gallery} />
   </div>
 </MainLayout>
