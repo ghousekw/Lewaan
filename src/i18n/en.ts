@@ -278,10 +278,17 @@ export const en = {
     title: "Our Portfolio",
     description: "Explore our collection of stunning interior design projects.",
     viewProject: "View Project",
+    itemsInGallery: {
+      singular: "item in gallery",
+      plural: "items in gallery",
+    },
+    cta: {
+      title: "Ready to start your project?",
+      getInTouch: "Get in Touch",
+    },
   },
   footer: {
-    copyright: "© 2024 Leewan Interior Design. All rights reserved.",
-    designed: "Designed & Developed with ❤️",
+    copyright: "© 2025 Leewan Interior Design. All rights reserved.",
   },
 };
 

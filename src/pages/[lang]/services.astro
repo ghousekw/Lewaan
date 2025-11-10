@@ -1,0 +1,180 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { getTranslations, type Language } from '../../i18n';
+
+// Get language from route params
+const { lang } = Astro.params;
+const language: Language = (lang === 'ar' || lang === 'en') ? lang : 'en';
+const t = getTranslations(language);
+
+// Helper function to add lang to URLs
+function langUrl(path: string, lang: Language): string {
+  return `/${lang}${path}`;
+}
+
+// Generate static paths for both languages
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'ar' } },
+  ];
+}
+---
+
+<MainLayout language={language}>
+  <!-- Hero Section -->
+  <section class="relative py-24 md:py-32 bg-brand-background">
+    <div class="container mx-auto px-6 text-center">
+      <p class="text-brand-secondary text-sm uppercase tracking-widest mb-4 font-semibold">{t.services.hero.label}</p>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-brand-text-secondary">
+        {t.services.hero.title}
+      </h1>
+      <p class="text-lg md:text-xl text-brand-text-primary max-w-3xl mx-auto mb-4">
+        {t.services.hero.description}
+      </p>
+      <div class="w-24 h-1 bg-brand-secondary mx-auto"></div>
+    </div>
+  </section>
+
+  <!-- Services Overview -->
+  <section class="py-20 bg-[#112240]">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <p class="text-lg leading-relaxed text-brand-text-primary mb-6">
+          {t.services.overview.description1}
+        </p>
+        <p class="text-lg leading-relaxed text-brand-text-primary">
+          {t.services.overview.description2}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2D Services -->
+  <section class="py-20 bg-brand-background">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 text-brand-text-secondary">{t.services.twoD.title}</h2>
+          <div class="w-24 h-1 bg-brand-secondary mx-auto"></div>
+        </div>
+
+        <div class="mb-8 bg-[#112240] p-8 rounded-2xl">
+          <p class="text-lg leading-relaxed text-brand-text-primary mb-6">
+            {t.services.twoD.masterPlan.title}
+          </p>
+          <ul class="list-disc list-inside space-y-3 text-brand-text-primary ml-4">
+            {t.services.twoD.masterPlan.items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+          <p class="text-lg leading-relaxed text-brand-text-primary mt-6">
+            {t.services.twoD.masterPlan.description}
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-[#112240] p-6 rounded-2xl border border-brand-secondary/20 hover:border-brand-secondary/50 transition-all duration-300">
+            <div class="w-12 h-12 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-brand-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-brand-text-secondary mb-3">{t.services.twoD.services.dimensional.title}</h3>
+            <p class="text-brand-text-primary">{t.services.twoD.services.dimensional.description}</p>
+          </div>
+
+          <div class="bg-[#112240] p-6 rounded-2xl border border-brand-secondary/20 hover:border-brand-secondary/50 transition-all duration-300">
+            <div class="w-12 h-12 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-brand-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-brand-text-secondary mb-3">{t.services.twoD.services.furniture.title}</h3>
+            <p class="text-brand-text-primary">{t.services.twoD.services.furniture.description}</p>
+          </div>
+
+          <div class="bg-[#112240] p-6 rounded-2xl border border-brand-secondary/20 hover:border-brand-secondary/50 transition-all duration-300">
+            <div class="w-12 h-12 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-brand-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4 4 0 003 15z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-brand-text-secondary mb-3">{t.services.twoD.services.ceiling.title}</h3>
+            <p class="text-brand-text-primary">{t.services.twoD.services.ceiling.description}</p>
+          </div>
+
+          <div class="bg-[#112240] p-6 rounded-2xl border border-brand-secondary/20 hover:border-brand-secondary/50 transition-all duration-300">
+            <div class="w-12 h-12 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-brand-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-brand-text-secondary mb-3">{t.services.twoD.services.lighting.title}</h3>
+            <p class="text-brand-text-primary">{t.services.twoD.services.lighting.description}</p>
+          </div>
+
+          <div class="bg-[#112240] p-6 rounded-2xl border border-brand-secondary/20 hover:border-brand-secondary/50 transition-all duration-300">
+            <div class="w-12 h-12 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-brand-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-brand-text-secondary mb-3">{t.services.twoD.services.electrical.title}</h3>
+            <p class="text-brand-text-primary">{t.services.twoD.services.electrical.description}</p>
+          </div>
+
+          <div class="bg-[#112240] p-6 rounded-2xl border border-brand-secondary/20 hover:border-brand-secondary/50 transition-all duration-300">
+            <div class="w-12 h-12 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-brand-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-brand-text-secondary mb-3">{t.services.twoD.services.wiring.title}</h3>
+            <p class="text-brand-text-primary">{t.services.twoD.services.wiring.description}</p>
+          </div>
+
+          <div class="bg-[#112240] p-6 rounded-2xl border border-brand-secondary/20 hover:border-brand-secondary/50 transition-all duration-300">
+            <div class="w-12 h-12 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-brand-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-brand-text-secondary mb-3">{t.services.twoD.services.wallElevation.title}</h3>
+            <p class="text-brand-text-primary">{t.services.twoD.services.wallElevation.description}</p>
+          </div>
+
+          <div class="bg-[#112240] p-6 rounded-2xl border border-brand-secondary/20 hover:border-brand-secondary/50 transition-all duration-300">
+            <div class="w-12 h-12 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-brand-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-brand-text-secondary mb-3">{t.services.twoD.services.modular.title}</h3>
+            <p class="text-brand-text-primary">{t.services.twoD.services.modular.description}</p>
+          </div>
+
+          <div class="bg-[#112240] p-6 rounded-2xl border border-brand-secondary/20 hover:border-brand-secondary/50 transition-all duration-300">
+            <div class="w-12 h-12 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-brand-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-brand-text-secondary mb-3">{t.services.twoD.services.realistic.title}</h3>
+            <p class="text-brand-text-primary">{t.services.twoD.services.realistic.description}</p>
+          </div>
+
+          <div class="bg-[#112240] p-6 rounded-2xl border border-brand-secondary/20 hover:border-brand-secondary/50 transition-all duration-300">
+            <div class="w-12 h-12 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-brand-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-brand-text-secondary mb-3">{t.services.twoD.services.bathroom.title}</h3>
+            <p class="text-brand-text-primary">{t.services.twoD.services.bathroom.description}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

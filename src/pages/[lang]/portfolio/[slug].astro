@@ -1,0 +1,59 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import Gallery from '../../../components/Gallery.astro';
+import { portfolioItems } from '../../../data/portfolio';
+import type { Language } from '../../../i18n';
+
+export function getStaticPaths() {
+  const languages: Language[] = ['en', 'ar'];
+  
+  const paths = [];
+  for (const lang of languages) {
+    for (const item of portfolioItems) {
+      paths.push({
+        params: { lang, slug: item.slug },
+        props: { item },
+      });
+    }
+  }
+  
+  return paths;
+}
+
+const { lang } = Astro.params;
+const { item } = Astro.props;
+const language: Language = (lang === 'ar' || lang === 'en') ? lang : 'en';
+
+// Helper function to add lang to URLs
+function langUrl(path: string, lang: Language): string {
+  return `/${lang}${path}`;
+}
+---
+
+<MainLayout language={language}>
+  <div class="container mx-auto px-6 py-12">
+    <!-- Back Button -->
+    <a 
+      href={langUrl('/portfolio', language)}
+      class="inline-flex items-center gap-2 text-brand-text-primary hover:text-brand-secondary transition-colors mb-8"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
+      <span>Back to Portfolio</span>
+    </a>
+
+    <!-- Portfolio Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-text-secondary mb-4">
+        {item.title}
+      </h1>
+      <p class="text-lg md:text-xl text-brand-text-primary max-w-3xl mx-auto">
+        {item.description}
+      </p>
+    </div>
+
+    <!-- Gallery -->
+    <Gallery items={item.gallery} />
+  </div>
+</MainLayout>
