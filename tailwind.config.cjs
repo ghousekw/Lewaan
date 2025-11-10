@@ -11,8 +11,8 @@ module.exports = {
         'brand-secondary': '#64FFDA',
       },
       fontFamily: {
-        'sans': ['Montserrat', 'sans-serif'],
-        'serif': ['Playfair Display', 'serif'],
+        'sans': ['Montserrat', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        'serif': ['Playfair Display', 'Georgia', 'Times New Roman', 'serif'],
       },
     },
   },

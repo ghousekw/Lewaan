@@ -1,62 +1,47 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import { portfolioItems } from '../data/portfolio';
 ---
 
 <MainLayout>
     <div class="container mx-auto px-6 py-12">
         <div class="text-center">
-            <h1 class="text-4xl font-bold text-gray-800">Our Portfolio</h1>
-            <p class="mt-4 text-gray-600 max-w-2xl mx-auto">We take pride in our work. Here are some of our favorite projects that showcase our passion for design and commitment to quality.</p>
+            <h1 class="text-4xl font-bold text-brand-text-secondary">Our Portfolio</h1>
+            <p class="mt-4 text-brand-text-primary max-w-2xl mx-auto">We take pride in our work. Here are some of our favorite projects that showcase our passion for design and commitment to quality.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-16">
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://via.placeholder.com/400x300.png?text=Serene+Sanctuary" alt="Serene Sanctuary" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <h3 class="text-2xl font-bold text-gray-800">Serene Sanctuary</h3>
-                    <p class="mt-2 text-gray-600">A master bedroom designed for rest and relaxation.</p>
-                </div>
-            </div>
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://via.placeholder.com/400x300.png?text=Urban+Oasis" alt="Urban Oasis" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <h3 class="text-2xl font-bold text-gray-800">Urban Oasis</h3>
-                    <p class="mt-2 text-gray-600">A rooftop garden that brings nature to the city.</p>
-                </div>
-            </div>
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://via.placeholder.com/400x300.png?text=Gourmet+Kitchen" alt="Gourmet Kitchen" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <h3 class="text-2xl font-bold text-gray-800">Gourmet Kitchen</h3>
-                    <p class="mt-2 text-gray-600">A chef's dream kitchen with state-of-the-art appliances.</p>
-                </div>
-            </div>
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://via.placeholder.com/400x300.png?text=Modern+Living" alt="Modern Living" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <h3 class="text-2xl font-bold text-gray-800">Modern Living</h3>
-                    <p class="mt-2 text-gray-600">A living room that is both stylish and comfortable.</p>
-                </div>
-            </div>
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://via.placeholder.com/400x300.png?text=Spa-like+Bathroom" alt="Spa-like Bathroom" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <h3 class="text-2xl font-bold text-gray-800">Spa-like Bathroom</h3>
-                    <p class="mt-2 text-gray-600">A bathroom that feels like a personal spa.</p>
-                </div>
-            </div>
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://via.placeholder.com/400x300.png?text=Kid's+Corner" alt="Kid's Corner" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <h3 class="text-2xl font-bold text-gray-800">Kid's Corner</h3>
-                    <p class="mt-2 text-gray-600">A playful and imaginative space for children.</p>
-                </div>
-            </div>
+            {portfolioItems.map((item) => (
+                <a 
+                    href={`/portfolio/${item.slug}`}
+                    class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group"
+                >
+                    <div class="relative overflow-hidden">
+                        <img 
+                            src={item.thumbnail} 
+                            alt={item.title} 
+                            class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                            <p class="text-white text-sm font-semibold">View Gallery →</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-800 group-hover:text-brand-primary transition-colors">
+                            {item.title}
+                        </h3>
+                        <p class="mt-2 text-gray-700">{item.description}</p>
+                        <p class="mt-3 text-sm text-brand-primary font-semibold">
+                            {item.gallery.length} {item.gallery.length === 1 ? 'item' : 'items'} in gallery
+                        </p>
+                    </div>
+                </a>
+            ))}
         </div>
 
         <div class="text-center py-16">
-            <h2 class="text-3xl font-bold text-gray-800">Ready to start your project?</h2>
-            <a href="/contact" class="mt-8 inline-block bg-gray-800 text-white font-bold py-3 px-6 rounded-full hover:bg-gray-700">Get in Touch</a>
+            <h2 class="text-3xl font-bold text-brand-text-secondary">Ready to start your project?</h2>
+            <a href="/contact" class="mt-8 inline-block bg-brand-primary text-white font-bold py-3 px-6 rounded-full hover:bg-brand-secondary hover:text-brand-background transition-all">Get in Touch</a>
         </div>
     </div>
 </MainLayout>
