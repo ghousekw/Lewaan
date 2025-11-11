@@ -19,14 +19,14 @@ function langUrl(path: string, lang: Language): string {
     <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
         <a href={langUrl('/', currentLang)} class="flex items-center gap-3 transition-opacity duration-300 hover:opacity-80" id="brand-logo">
             <img src="/logo.webp" alt="Leewan Interior Design" class="h-10 md:h-12 w-auto">
-            <span class="text-2xl font-bold text-white">Leewan</span>
+            <span class="text-2xl font-bold text-[#D4AF37]">Leewan</span>
         </a>
         <div class="hidden md:flex items-center space-x-8 rtl:space-x-reverse">
-            <a href={langUrl('/', currentLang)} class="text-brand-text-secondary hover:text-brand-secondary transition-colors duration-300">{t.nav.home}</a>
-            <a href={langUrl('/about', currentLang)} class="text-brand-text-secondary hover:text-brand-secondary transition-colors duration-300">{t.nav.about}</a>
-            <a href={langUrl('/services', currentLang)} class="text-brand-text-secondary hover:text-brand-secondary transition-colors duration-300">{t.nav.services}</a>
-            <a href={langUrl('/portfolio', currentLang)} class="text-brand-text-secondary hover:text-brand-secondary transition-colors duration-300">{t.nav.portfolio}</a>
-            <a href={langUrl('/contact', currentLang)} class="text-brand-text-secondary hover:text-brand-secondary transition-colors duration-300">{t.nav.contact}</a>
+            <a href={langUrl('/', currentLang)} class="text-[#D4AF37] hover:text-white transition-colors duration-300">{t.nav.home}</a>
+            <a href={langUrl('/about', currentLang)} class="text-[#D4AF37] hover:text-white transition-colors duration-300">{t.nav.about}</a>
+            <a href={langUrl('/services', currentLang)} class="text-[#D4AF37] hover:text-white transition-colors duration-300">{t.nav.services}</a>
+            <a href={langUrl('/portfolio', currentLang)} class="text-[#D4AF37] hover:text-white transition-colors duration-300">{t.nav.portfolio}</a>
+            <a href={langUrl('/contact', currentLang)} class="text-[#D4AF37] hover:text-white transition-colors duration-300">{t.nav.contact}</a>
             <LanguageToggle currentLang={currentLang} />
         </div>
         <div class="md:hidden flex items-center gap-4">
@@ -39,11 +39,11 @@ function langUrl(path: string, lang: Language): string {
     </nav>
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden md:hidden bg-[#112240] py-4">
-        <a href={langUrl('/', currentLang)} class="block text-brand-text-secondary text-center py-2">{t.nav.home}</a>
-        <a href={langUrl('/about', currentLang)} class="block text-brand-text-secondary text-center py-2">{t.nav.about}</a>
-        <a href={langUrl('/services', currentLang)} class="block text-brand-text-secondary text-center py-2">{t.nav.services}</a>
-        <a href={langUrl('/portfolio', currentLang)} class="block text-brand-text-secondary text-center py-2">{t.nav.portfolio}</a>
-        <a href={langUrl('/contact', currentLang)} class="block text-brand-text-secondary text-center py-2">{t.nav.contact}</a>
+        <a href={langUrl('/', currentLang)} class="block text-[#D4AF37] text-center py-2">{t.nav.home}</a>
+        <a href={langUrl('/about', currentLang)} class="block text-[#D4AF37] text-center py-2">{t.nav.about}</a>
+        <a href={langUrl('/services', currentLang)} class="block text-[#D4AF37] text-center py-2">{t.nav.services}</a>
+        <a href={langUrl('/portfolio', currentLang)} class="block text-[#D4AF37] text-center py-2">{t.nav.portfolio}</a>
+        <a href={langUrl('/contact', currentLang)} class="block text-[#D4AF37] text-center py-2">{t.nav.contact}</a>
     </div>
 </header>
 
