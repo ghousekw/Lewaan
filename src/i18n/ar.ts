@@ -275,6 +275,7 @@ export const ar = {
     },
   },
   portfolio: {
+    label: "المشاريع",
     title: "مشاريعنا",
     description: "استكشف مجموعتنا من مشاريع التصميم الداخلي المذهلة.",
     viewProject: "عرض المشروع",

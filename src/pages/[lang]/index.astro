@@ -97,14 +97,34 @@ export function getStaticPaths() {
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-        {featuredProjects.map((project) => (
-          <ProjectCard 
-            imageUrl={project.thumbnail}
-            title={project.title}
-            description={project.description}
-            link={langUrl(`/portfolio/${project.slug}`, language)}
-          />
-        ))}
+        {featuredProjects.map((project) => {
+          // Translation mapping for project titles and descriptions
+          const projectTranslations = {
+            'reception': {
+              en: { title: 'Reception', description: 'A welcoming and elegant reception area designed to make a lasting first impression.' },
+              ar: { title: 'الاستقبال', description: 'منطقة استقبال ترحيبية وأنيقة مصممة لترك انطباع أول دائم.' }
+            },
+            'deewaniya-mughallath': {
+              en: { title: 'Deewaniya & Mughallath', description: 'Traditional Arabic gathering spaces with modern elegance and cultural authenticity.' },
+              ar: { title: 'الديوانية والمقلث', description: 'مساحات تجمع عربية تقليدية بأناقة عصرية وأصالة ثقافية.' }
+            },
+            'living-hall': {
+              en: { title: 'Living Hall', description: 'A spacious and comfortable living area designed for family gatherings and relaxation.' },
+              ar: { title: 'صالة المعيشة', description: 'منطقة معيشة واسعة ومريحة مصممة لتجمعات الأسرة والاسترخاء.' }
+            },
+          };
+          
+          const translation = projectTranslations[project.slug]?.[language] || { title: project.title, description: project.description };
+          
+          return (
+            <ProjectCard 
+              imageUrl={project.thumbnail}
+              title={translation.title}
+              description={translation.description}
+              link={langUrl(`/portfolio/${project.slug}`, language)}
+            />
+          );
+        })}
       </div>
       
       <div class="text-center mt-12">

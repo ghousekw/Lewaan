@@ -27,7 +27,7 @@ html[dir="rtl"] {
 }
 
 html[dir="rtl"] body {
-    font-family: 'Cairo', 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Tajawal', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 html[dir="rtl"] h1,
@@ -36,7 +36,8 @@ html[dir="rtl"] h3,
 html[dir="rtl"] h4,
 html[dir="rtl"] h5,
 html[dir="rtl"] h6 {
-    font-family: 'Amiri', 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-family: 'Tajawal', 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-weight: 600;
 }
 
 /* RTL spacing utilities */
