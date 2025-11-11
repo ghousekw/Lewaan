@@ -9,7 +9,6 @@ const otherLangLabel = otherLang === 'en' ? 'English' : 'العربية';
 ---
 
 <button
-  id="language-toggle"
   class="language-toggle flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-background/50 border border-brand-secondary/20 hover:border-brand-secondary/50 transition-all duration-300 text-brand-text-secondary hover:text-brand-secondary"
   data-current-lang={currentLang}
   aria-label={`Switch to ${otherLangLabel}`}
@@ -21,24 +20,33 @@ const otherLangLabel = otherLang === 'en' ? 'English' : 'العربية';
 </button>
 
 <script>
-  // Attach event listener immediately
-  const toggle = document.getElementById('language-toggle');
-  if (toggle) {
-    toggle.addEventListener('click', () => {
-      const currentLang = toggle.getAttribute('data-current-lang');
-      const newLang = currentLang === 'en' ? 'ar' : 'en';
-      
-      // Store preference
-      localStorage.setItem('language', newLang);
-      
-      // Navigate to new language route
-      const path = window.location.pathname;
-      // Remove current language prefix if it exists
-      const pathWithoutLang = path.replace(/^\/(en|ar)(?:\/|$)/, '/');
-      // Add new language prefix
-      const newPath = `/${newLang}${pathWithoutLang}`;
-      window.location.href = newPath;
+  // Handle all language toggle buttons
+  function setupLanguageToggle() {
+    const toggles = document.querySelectorAll('.language-toggle');
+    toggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const currentLang = toggle.getAttribute('data-current-lang');
+        const newLang = currentLang === 'en' ? 'ar' : 'en';
+        
+        // Store preference
+        localStorage.setItem('language', newLang);
+        
+        // Navigate to new language route
+        const path = window.location.pathname;
+        // Remove current language prefix if it exists
+        const pathWithoutLang = path.replace(/^\/(en|ar)(?:\/|$)/, '/');
+        // Add new language prefix
+        const newPath = `/${newLang}${pathWithoutLang}`;
+        window.location.href = newPath;
+      });
     });
+  }
+  
+  // Run when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupLanguageToggle);
+  } else {
+    setupLanguageToggle();
   }
 </script>
 
