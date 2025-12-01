@@ -1,8 +1,8 @@
-# SEO Implementation Guide - Leewan Interior Design
+# SEO Implementation Guide - Lewan Interior Design
 
 ## Overview
 
-This document outlines the complete SEO (Search Engine Optimization) implementation for the Leewan Interior Design website. The site is built with Astro and supports both English and Arabic languages.
+This document outlines the complete SEO (Search Engine Optimization) implementation for the Lewan Interior Design website. The site is built with Astro and supports both English and Arabic languages.
 
 ## Table of Contents
 
@@ -66,7 +66,7 @@ import SEO from '../components/SEO.astro';
 ---
 <head>
   <SEO 
-    title="Page Title | Leewan"
+    title="Page Title | Lewan"
     description="Page description here"
     language={language}
     canonicalPath="/about"
@@ -168,8 +168,8 @@ Replace `/public/og-image.jpg` with your custom social share image.
 ### Homepage (`/en/` and `/ar/`)
 
 **English:**
-- Title: "Leewan Interior Design | Premium Interior Design Services in Kuwait"
-- Description: "Transform your space with Leewan - Kuwait's leading interior design firm since 2015. Specializing in luxury residential and commercial interiors."
+- Title: "Lewan Interior Design | Premium Interior Design Services in Kuwait"
+- Description: "Transform your space with Lewan - Kuwait's leading interior design firm since 2015. Specializing in luxury residential and commercial interiors."
 
 **Arabic:**
 - Title: "ليوان للتصميم الداخلي | خدمات التصميم الداخلي الفاخرة في الكويت"
@@ -178,26 +178,26 @@ Replace `/public/og-image.jpg` with your custom social share image.
 ### About Page (`/en/about` and `/ar/about`)
 
 **English:**
-- Title: "About Leewan | Award-Winning Interior Designers in Kuwait"
-- Description: "Founded in 2015 by Engr. Ebtehal Al Ameer. 1,238+ projects completed. Discover why Leewan is Kuwait's most trusted interior design company."
+- Title: "About Lewan | Award-Winning Interior Designers in Kuwait"
+- Description: "Founded in 2015 by Engr. Ebtehal Al Ameer. 1,238+ projects completed. Discover why Lewan is Kuwait's most trusted interior design company."
 
 ### Services Page (`/en/services` and `/ar/services`)
 
 **English:**
-- Title: "Interior Design Services | 2D Planning, 3D Visualization | Leewan Kuwait"
+- Title: "Interior Design Services | 2D Planning, 3D Visualization | Lewan Kuwait"
 - Description: "Complete interior design services: 2D master plans, 3D visualization, turnkey execution. Modern, minimalist, Islamic, and contemporary styles."
 
 ### Portfolio Page (`/en/portfolio` and `/ar/portfolio`)
 
 **English:**
-- Title: "Portfolio | Luxury Interior Design Projects | Leewan Kuwait"
+- Title: "Portfolio | Luxury Interior Design Projects | Lewan Kuwait"
 - Description: "Browse our stunning portfolio of residential and commercial interior projects. Reception halls, living rooms, bedrooms, and more."
 
 ### Contact Page (`/en/contact` and `/ar/contact`)
 
 **English:**
-- Title: "Contact Leewan | Book Your Interior Design Consultation in Kuwait"
-- Description: "Ready to transform your space? Contact Leewan Interior Design for a consultation. Available 24/7 for all your interior design needs in Kuwait."
+- Title: "Contact Lewan | Book Your Interior Design Consultation in Kuwait"
+- Description: "Ready to transform your space? Contact Lewan Interior Design for a consultation. Available 24/7 for all your interior design needs in Kuwait."
 
 ---
 
@@ -255,7 +255,7 @@ When creating a new page, always include SEO:
 import MainLayout from '../../layouts/MainLayout.astro';
 
 const seo = {
-  title: "Page Title | Leewan",
+  title: "Page Title | Lewan",
   description: "Description under 160 characters",
   canonicalPath: "/new-page"
 };
@@ -326,3 +326,4 @@ const seo = {
 
 *Document created: December 2025*
 *Last updated: December 2025*
+

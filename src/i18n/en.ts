@@ -18,7 +18,7 @@ export const en = {
     about: {
       label: "About Us",
       title: "Crafting Spaces That Tell Your Story",
-      description1: "Leewan Interior Design is a top architecture, 3D visualization, illustration and 3D animation firm in Kuwait with a computational approach to architecture and spatial experience. We create interactive solutions for our clients.",
+      description1: "Lewan Interior Design is a top architecture, 3D visualization, illustration and 3D animation firm in Kuwait with a computational approach to architecture and spatial experience. We create interactive solutions for our clients.",
       description2: "Founded in 2015 by Engr. Ebtehal Al Ameer, we specialize in Engineering, Architecture and Interior Designing. We provide extraordinary and unique solutions with designs consisting of Modern, Minimalist, Industrial, Mid-century, Scandinavian, Traditional, Coastal, Islamic, Moroccan & Contemporary Styles.",
       stats: {
         projects: "Projects Done",
@@ -36,7 +36,7 @@ export const en = {
     whyChooseUs: {
       label: "Why Choose Us",
       title: "5 Reasons Why Choose Us",
-      description: "Know why You need Leewan Interior Design, Because we design space rather than just making lines.",
+      description: "Know why You need Lewan Interior Design, Because we design space rather than just making lines.",
       reasons: {
         creative: {
           title: "Creative Solutions",
@@ -74,8 +74,8 @@ export const en = {
   },
   about: {
     hero: {
-      label: "About Leewan",
-      title: "All About Leewan, What Sets Us Apart",
+      label: "About Lewan",
+      title: "All About Lewan, What Sets Us Apart",
     },
     overview: {
       description1: "Lewan is a brand of Interior Design and trust expertise in Architecture, Engineering, Landscape and Public Spaces. It offers exceptional 3D Realistic views, 2D Planning, Detailed shop drawings, Architectural rendering plans, Interior-Exterior decoration works and complete Turnkey execution services for both residential and elegant commercial projects.",
@@ -288,7 +288,7 @@ export const en = {
     },
   },
   footer: {
-    copyright: "© 2025 Leewan Interior Design. All rights reserved.",
+    copyright: "© 2025 Lewan Interior Design. All rights reserved.",
   },
 };
 
