@@ -13,6 +13,17 @@ function langUrl(path: string, lang: Language): string {
   return `/${lang}${path}`;
 }
 
+// SEO metadata
+const seo = {
+  title: language === 'ar'
+    ? 'معرض الأعمال | مشاريع التصميم الداخلي الفاخرة | ليوان الكويت'
+    : 'Portfolio | Luxury Interior Design Projects | Leewan Kuwait',
+  description: language === 'ar'
+    ? 'تصفح معرض أعمالنا المذهل من المشاريع السكنية والتجارية. صالات استقبال، غرف معيشة، غرف نوم والمزيد.'
+    : 'Browse our stunning portfolio of residential and commercial interior projects. Reception halls, living rooms, bedrooms, and more.',
+  canonicalPath: '/portfolio',
+};
+
 // Generate static paths for both languages
 export function getStaticPaths() {
   return [
@@ -22,7 +33,7 @@ export function getStaticPaths() {
 }
 ---
 
-<MainLayout language={language}>
+<MainLayout language={language} seo={seo}>
     <div class="bg-brand-background min-h-screen">
         <!-- Portfolio Hero Section -->
         <section class="relative pt-32 pb-16 md:py-40 overflow-hidden">

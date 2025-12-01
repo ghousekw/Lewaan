@@ -28,9 +28,81 @@ const language: Language = (lang === 'ar' || lang === 'en') ? lang : 'en';
 function langUrl(path: string, lang: Language): string {
   return `/${lang}${path}`;
 }
+
+// Translation mapping for project titles and descriptions
+const projectTranslations: Record<string, Record<Language, { title: string; description: string }>> = {
+  'reception': {
+    en: { title: 'Reception', description: 'A welcoming and elegant reception area designed to make a lasting first impression.' },
+    ar: { title: 'الاستقبال', description: 'منطقة استقبال ترحيبية وأنيقة مصممة لترك انطباع أول دائم.' }
+  },
+  'deewaniya-mughallath': {
+    en: { title: 'Deewaniya & Mughallath', description: 'Traditional Arabic gathering spaces with modern elegance and cultural authenticity.' },
+    ar: { title: 'الديوانية والمقلث', description: 'مساحات تجمع عربية تقليدية بأناقة عصرية وأصالة ثقافية.' }
+  },
+  'living-hall': {
+    en: { title: 'Living Hall', description: 'A spacious and comfortable living area designed for family gatherings and relaxation.' },
+    ar: { title: 'صالة المعيشة', description: 'منطقة معيشة واسعة ومريحة مصممة لتجمعات الأسرة والاسترخاء.' }
+  },
+  'dining-hall': {
+    en: { title: 'Dining Hall', description: 'An elegant dining space perfect for hosting family meals and special occasions.' },
+    ar: { title: 'قاعة الطعام', description: 'مساحة طعام أنيقة مثالية لاستضافة وجبات الأسرة والمناسبات الخاصة.' }
+  },
+  'master-bedrooms': {
+    en: { title: 'Master Bedrooms', description: 'Luxurious master bedrooms designed for ultimate comfort and relaxation.' },
+    ar: { title: 'غرف النوم الرئيسية', description: 'غرف نوم رئيسية فاخرة مصممة للراحة والاسترخاء القصوى.' }
+  },
+  'child-room': {
+    en: { title: 'Child Room', description: 'Playful and imaginative spaces designed to inspire creativity and fun.' },
+    ar: { title: 'غرفة الطفل', description: 'مساحات مرحة وخيالية مصممة لإلهام الإبداع والمرح.' }
+  },
+  'wash-bathroom': {
+    en: { title: 'Wash Bathroom', description: 'Modern and sophisticated bathroom spaces for daily comfort.' },
+    ar: { title: 'دورة المياه', description: 'مساحات حمام حديثة وأنيقة للراحة اليومية.' }
+  },
+  'dressing-room': {
+    en: { title: 'Dressing Room', description: 'Elegant dressing spaces designed for style and functionality.' },
+    ar: { title: 'غرفة الملابس', description: 'مساحات ملابس أنيقة مصممة للأسلوب والوظائف.' }
+  },
+  'cinema-hall': {
+    en: { title: 'Cinema Hall', description: 'Entertainment spaces designed for premium viewing experience.' },
+    ar: { title: 'قاعة السينما', description: 'مساحات ترفيهية مصممة لتجربة مشاهدة فاخرة.' }
+  },
+  'corridors': {
+    en: { title: 'Corridors', description: 'Thoughtfully designed circulation spaces with elegant aesthetics.' },
+    ar: { title: 'الممرات', description: 'مساحات تدوير مصممة بعناية بجماليات أنيقة.' }
+  },
+  'kitchen': {
+    en: { title: 'Kitchen', description: 'Modern culinary spaces designed for functionality and style.' },
+    ar: { title: 'المطبخ', description: 'مساحات طهي حديثة مصممة للوظائف والأسلوب.' }
+  },
+  'office': {
+    en: { title: 'Office', description: 'Professional workspaces designed for productivity and comfort.' },
+    ar: { title: 'المكتب', description: 'مساحات عمل احترافية مصممة للإنتاجية والراحة.' }
+  },
+  'playroom': {
+    en: { title: 'Playroom', description: 'Creative and fun spaces designed for play and imagination.' },
+    ar: { title: 'غرفة اللعب', description: 'مساحات إبداعية وممتعة مصممة للعب والخيال.' }
+  },
+  'staircase': {
+    en: { title: 'Staircase', description: 'Architecturally stunning staircases as design focal points.' },
+    ar: { title: 'السلالم', description: 'سلالم معمارية مذهلة كنقاط محورية للتصميم.' }
+  }
+};
+
+const translation = projectTranslations[item.slug]?.[language] || { title: item.title, description: item.description };
+
+// SEO metadata
+const seo = {
+  title: language === 'ar'
+    ? `${translation.title} | معرض أعمال ليوان للتصميم الداخلي`
+    : `${translation.title} | Leewan Interior Design Portfolio`,
+  description: translation.description,
+  image: item.thumbnail,
+  canonicalPath: `/portfolio/${item.slug}`,
+};
 ---
 
-<MainLayout language={language}>
+<MainLayout language={language} seo={seo}>
   <div class="bg-brand-background min-h-screen">
     <!-- Breadcrumb Navigation -->
     <div class="container mx-auto px-6 pt-32 pb-6">

@@ -12,6 +12,17 @@ function langUrl(path: string, lang: Language): string {
   return `/${lang}${path}`;
 }
 
+// SEO metadata
+const seo = {
+  title: language === 'ar'
+    ? 'خدمات التصميم الداخلي | تخطيط 2D و تصور 3D | ليوان الكويت'
+    : 'Interior Design Services | 2D Planning, 3D Visualization | Leewan Kuwait',
+  description: language === 'ar'
+    ? 'خدمات تصميم داخلي كاملة: مخططات 2D، تصور 3D، تنفيذ شامل. أساليب حديثة وبسيطة وإسلامية ومعاصرة.'
+    : 'Complete interior design services: 2D master plans, 3D visualization, turnkey execution. Modern, minimalist, Islamic, and contemporary styles.',
+  canonicalPath: '/services',
+};
+
 // Generate static paths for both languages
 export function getStaticPaths() {
   return [
@@ -21,7 +32,7 @@ export function getStaticPaths() {
 }
 ---
 
-<MainLayout language={language}>
+<MainLayout language={language} seo={seo}>
   <!-- Hero Section -->
   <section class="relative py-24 md:py-32 bg-brand-background">
     <div class="container mx-auto px-6 text-center">

@@ -1,0 +1,155 @@
+---
+import type { Language } from '../i18n';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: 'website' | 'article';
+  language: Language;
+  canonicalPath?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  image = '/heroimage.webp',
+  type = 'website',
+  language,
+  canonicalPath = '',
+  noindex = false,
+} = Astro.props;
+
+const siteUrl = 'https://lewaninterior.com';
+
+// Construct URLs
+const currentPath = canonicalPath || Astro.url.pathname.replace(`/${language}`, '');
+const canonicalUrl = `${siteUrl}/${language}${currentPath}`;
+const alternateEnUrl = `${siteUrl}/en${currentPath}`;
+const alternateArUrl = `${siteUrl}/ar${currentPath}`;
+const imageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
+
+// Locale for OG
+const ogLocale = language === 'ar' ? 'ar_KW' : 'en_US';
+const alternateLocale = language === 'ar' ? 'en_US' : 'ar_KW';
+
+// Organization structured data (JSON-LD)
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Leewan Interior Design",
+  "alternateName": "ليوان للتصميم الداخلي",
+  "url": siteUrl,
+  "logo": `${siteUrl}/logo.webp`,
+  "description": "Leading interior design company in Kuwait specializing in luxury residential and commercial interiors since 2015.",
+  "foundingDate": "2015",
+  "founder": {
+    "@type": "Person",
+    "name": "Engr. Ebtehal Al Ameer"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kuwait City",
+    "addressCountry": "KW"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Kuwait"
+  },
+  "sameAs": [
+    // Add your social media URLs here
+    // "https://www.facebook.com/leewandesign",
+    // "https://www.instagram.com/leewandesign",
+  ]
+};
+
+// LocalBusiness structured data
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "InteriorDesignService",
+  "name": "Leewan Interior Design",
+  "image": imageUrl,
+  "url": siteUrl,
+  "priceRange": "$$$",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kuwait City",
+    "addressCountry": "KW"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 29.3759,
+    "longitude": 47.9774
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+    ],
+    "opens": "00:00",
+    "closes": "23:59"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "760"
+  }
+};
+
+// WebSite structured data
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Leewan Interior Design",
+  "alternateName": "ليوان للتصميم الداخلي",
+  "url": siteUrl,
+  "inLanguage": [language === 'ar' ? 'ar-KW' : 'en-US']
+};
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="author" content="Leewan Interior Design" />
+<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+<meta name="googlebot" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+
+<!-- Canonical & Hreflang -->
+<link rel="canonical" href={canonicalUrl} />
+<link rel="alternate" hreflang="en" href={alternateEnUrl} />
+<link rel="alternate" hreflang="ar" href={alternateArUrl} />
+<link rel="alternate" hreflang="x-default" href={alternateEnUrl} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content={ogLocale} />
+<meta property="og:locale:alternate" content={alternateLocale} />
+<meta property="og:site_name" content="Leewan Interior Design" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalUrl} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+<!-- Additional SEO Meta Tags -->
+<meta name="theme-color" content="#0a192f" />
+<meta name="msapplication-TileColor" content="#0a192f" />
+
+<!-- Geo Tags for Local SEO -->
+<meta name="geo.region" content="KW" />
+<meta name="geo.placename" content="Kuwait City" />
+
+<!-- Structured Data (JSON-LD) -->
+<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />

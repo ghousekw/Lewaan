@@ -16,6 +16,17 @@ function langUrl(path: string, lang: Language): string {
   return `/${lang}${path}`;
 }
 
+// SEO metadata
+const seo = {
+  title: language === 'ar' 
+    ? 'ليوان للتصميم الداخلي | خدمات التصميم الداخلي الفاخرة في الكويت'
+    : 'Leewan Interior Design | Premium Interior Design Services in Kuwait',
+  description: language === 'ar'
+    ? 'حوّل مساحتك مع ليوان - شركة التصميم الداخلي الرائدة في الكويت منذ 2015. متخصصون في التصميم الداخلي الفاخر للمنازل والمشاريع التجارية.'
+    : "Transform your space with Leewan - Kuwait's leading interior design firm since 2015. Specializing in luxury residential and commercial interiors.",
+  canonicalPath: '/',
+};
+
 // Generate static paths for both languages
 export function getStaticPaths() {
   return [
@@ -25,7 +36,7 @@ export function getStaticPaths() {
 }
 ---
 
-<MainLayout language={language}>
+<MainLayout language={language} seo={seo}>
   <!-- Hero Section - Enhanced with modern design -->
   <section class="relative h-screen flex items-center justify-center overflow-hidden">
     <!-- Background Image with Parallax Effect -->

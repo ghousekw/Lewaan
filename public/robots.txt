@@ -1,0 +1,11 @@
+# Robots.txt for Leewan Interior Design
+# https://lewaninterior.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://lewaninterior.com/sitemap-index.xml
+
+# Crawl-delay (optional, for polite crawling)
+Crawl-delay: 1

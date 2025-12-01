@@ -12,6 +12,17 @@ function langUrl(path: string, lang: Language): string {
   return `/${lang}${path}`;
 }
 
+// SEO metadata
+const seo = {
+  title: language === 'ar'
+    ? 'تواصل مع ليوان | احجز استشارة التصميم الداخلي في الكويت'
+    : 'Contact Leewan | Book Your Interior Design Consultation in Kuwait',
+  description: language === 'ar'
+    ? 'هل أنت مستعد لتحويل مساحتك؟ تواصل مع ليوان للتصميم الداخلي للحصول على استشارة. متوفرون 24/7 لجميع احتياجاتك.'
+    : 'Ready to transform your space? Contact Leewan Interior Design for a consultation. Available 24/7 for all your interior design needs in Kuwait.',
+  canonicalPath: '/contact',
+};
+
 // Generate static paths for both languages
 export function getStaticPaths() {
   return [
@@ -21,7 +32,7 @@ export function getStaticPaths() {
 }
 ---
 
-<MainLayout language={language}>
+<MainLayout language={language} seo={seo}>
   <!-- Hero Section -->
   <section class="relative py-24 md:py-32 bg-brand-background">
     <div class="container mx-auto px-6 text-center">
