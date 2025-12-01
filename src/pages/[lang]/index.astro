@@ -1,6 +1,7 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
+import FAQSchema from '../../components/FAQSchema.astro';
 import { portfolioItems } from '../../data/portfolio';
 import { getTranslations, type Language } from '../../i18n';
 
@@ -26,6 +27,51 @@ const seo = {
     : "Transform your space with Lewan - Kuwait's leading interior design firm since 2015. Specializing in luxury residential and commercial interiors.",
   canonicalPath: '/',
 };
+
+// FAQ data for rich search results
+const homeFAQs = language === 'ar' ? [
+  {
+    question: 'ما هي خدمات ليوان للتصميم الداخلي؟',
+    answer: 'نقدم خدمات تصميم داخلي شاملة تشمل التخطيط ثنائي الأبعاد، التصور ثلاثي الأبعاد، رسومات التنفيذ التفصيلية، وخدمات التنفيذ الكامل للمشاريع السكنية والتجارية في الكويت.'
+  },
+  {
+    question: 'كم سنة من الخبرة لديكم في التصميم الداخلي؟',
+    answer: 'تأسست ليوان عام 2015 على يد المهندسة ابتهال الأمير، ولدينا أكثر من 9 سنوات من الخبرة وأكثر من 1,238 مشروع مكتمل في الكويت.'
+  },
+  {
+    question: 'ما هي أنماط التصميم التي تقدمونها؟',
+    answer: 'نقدم مجموعة متنوعة من الأنماط تشمل الحديث، البسيط، الصناعي، منتصف القرن، الاسكندنافي، التقليدي، الساحلي، الإسلامي، المغربي والمعاصر.'
+  },
+  {
+    question: 'هل تقدمون استشارات مجانية؟',
+    answer: 'نعم، نقدم استشارات أولية لمناقشة مشروعك ومتطلباتك. تواصل معنا عبر الهاتف أو واتساب لحجز موعدك.'
+  },
+  {
+    question: 'ما هي مناطق خدمتكم؟',
+    answer: 'نخدم جميع مناطق الكويت بما في ذلك مدينة الكويت، السالمية، حولي، الفروانية، الجهراء وجميع المناطق الأخرى.'
+  }
+] : [
+  {
+    question: 'What services does Lewan Interior Design offer?',
+    answer: 'We offer comprehensive interior design services including 2D planning, 3D visualization, detailed shop drawings, architectural rendering, and complete turnkey execution for both residential and commercial projects in Kuwait.'
+  },
+  {
+    question: 'How many years of experience do you have?',
+    answer: 'Lewan was founded in 2015 by Engr. Ebtehal Al Ameer. We have over 9 years of experience with more than 1,238 completed projects across Kuwait.'
+  },
+  {
+    question: 'What design styles do you offer?',
+    answer: 'We offer a wide variety of styles including Modern, Minimalist, Industrial, Mid-century, Scandinavian, Traditional, Coastal, Islamic, Moroccan, and Contemporary designs.'
+  },
+  {
+    question: 'Do you offer free consultations?',
+    answer: 'Yes, we offer initial consultations to discuss your project requirements. Contact us via phone or WhatsApp to schedule your appointment.'
+  },
+  {
+    question: 'What areas in Kuwait do you serve?',
+    answer: 'We serve all areas of Kuwait including Kuwait City, Salmiya, Hawalli, Farwaniya, Jahra, and all other regions.'
+  }
+];
 
 // Generate static paths for both languages
 export function getStaticPaths() {
@@ -292,4 +338,7 @@ export function getStaticPaths() {
       </div>
     </div>
   </section>
+
+  <!-- FAQ Schema for SEO -->
+  <FAQSchema faqs={homeFAQs} />
 </MainLayout>

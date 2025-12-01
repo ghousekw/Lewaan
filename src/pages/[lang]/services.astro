@@ -1,5 +1,6 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
+import FAQSchema from '../../components/FAQSchema.astro';
 import { getTranslations, type Language } from '../../i18n';
 
 // Get language from route params
@@ -22,6 +23,43 @@ const seo = {
     : 'Complete interior design services: 2D master plans, 3D visualization, turnkey execution. Modern, minimalist, Islamic, and contemporary styles.',
   canonicalPath: '/services',
 };
+
+// FAQ data for services page
+const servicesFAQs = language === 'ar' ? [
+  {
+    question: 'ما هو الفرق بين خدمات 2D و3D؟',
+    answer: 'خدمات 2D تشمل المخططات الأرضية والتخطيط المساحي. خدمات 3D توفر تصور واقعي للتصميم قبل التنفيذ لترى كيف سيبدو مشروعك.'
+  },
+  {
+    question: 'كم يستغرق مشروع التصميم الداخلي؟',
+    answer: 'يعتمد على حجم المشروع. التصميم يستغرق عادة 2-4 أسابيع، والتنفيذ الكامل يمكن أن يستغرق 2-6 أشهر حسب نطاق العمل.'
+  },
+  {
+    question: 'هل تتعاملون مع المشاريع السكنية والتجارية؟',
+    answer: 'نعم، نتخصص في كلا النوعين. الفلل، الشقق، المكاتب، المطاعم، المحلات التجارية والمزيد.'
+  },
+  {
+    question: 'ما هي خدمة التنفيذ الكامل (Turnkey)؟',
+    answer: 'خدمة التنفيذ الكامل تعني أننا نتولى كل شيء من التصميم إلى التنفيذ والتأثيث والتسليم النهائي - مشروع جاهز للاستخدام.'
+  }
+] : [
+  {
+    question: 'What is the difference between 2D and 3D services?',
+    answer: '2D services include floor plans, layouts, and space planning drawings. 3D services provide realistic visualizations of the design before execution so you can see exactly how your project will look.'
+  },
+  {
+    question: 'How long does an interior design project take?',
+    answer: 'It depends on the project scope. Design phase typically takes 2-4 weeks. Complete turnkey execution can take 2-6 months depending on the scale of work.'
+  },
+  {
+    question: 'Do you handle both residential and commercial projects?',
+    answer: 'Yes, we specialize in both. Villas, apartments, offices, restaurants, retail stores, and more.'
+  },
+  {
+    question: 'What is turnkey execution service?',
+    answer: 'Turnkey means we handle everything from design to execution, furnishing, and final delivery - a ready-to-use project with no hassle for you.'
+  }
+];
 
 // Generate static paths for both languages
 export function getStaticPaths() {
@@ -188,4 +226,7 @@ export function getStaticPaths() {
       </div>
     </div>
   </section>
+
+  <!-- FAQ Schema for SEO -->
+  <FAQSchema faqs={servicesFAQs} />
 </MainLayout>
