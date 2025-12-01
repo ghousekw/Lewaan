@@ -47,7 +47,7 @@ export function getStaticPaths() {
             <p class="text-lg text-brand-text-primary mb-8">
               {t.contact.form.description}
             </p>
-            <form class="space-y-6">
+            <form id="contactForm" class="space-y-6">
               <div>
                 <label for="name" class="block text-brand-text-secondary font-semibold mb-2">{t.contact.form.name}</label>
                 <input 
@@ -98,6 +98,23 @@ export function getStaticPaths() {
                 {t.contact.form.submit}
               </button>
             </form>
+            
+            <script>
+              document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const message = document.getElementById('message').value;
+                
+                const text = `Name: ${name}%0AEmail: ${email}%0APhone: ${phone}%0AMessage: ${message}`;
+                const whatsappURL = `https://wa.me/96592245954?text=${text}`;
+                
+                window.open(whatsappURL, '_blank');
+                this.reset();
+              });
+            </script>
           </div>
 
           <!-- Contact Information -->
@@ -132,8 +149,8 @@ export function getStaticPaths() {
                 </div>
                 <div>
                   <h3 class="text-xl font-bold text-brand-text-secondary mb-1">{t.contact.info.email}</h3>
-                  <a href="mailto:lewan@lewandesign.com" class="text-brand-text-primary hover:text-brand-secondary transition-colors">
-                    lewan@lewandesign.com
+                  <a href="mailto:info@lewaninterior.com" class="text-brand-text-primary hover:text-brand-secondary transition-colors">
+                    info@lewaninterior.com
                   </a>
                 </div>
               </div>
