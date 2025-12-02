@@ -1,0 +1,23 @@
+{
+  "slug": "kitchen",
+  "order": 11,
+  "thumbnail": "/Kitchen,Pantry & Buffet/Kitchen,Pantry & Buffet (1).webp",
+  "en": {
+    "title": "Kitchen, Pantry & Buffet",
+    "description": "Modern kitchens designed for both functionality and aesthetic appeal."
+  },
+  "ar": {
+    "title": "المطبخ والمخزن والبوفيه",
+    "description": "مطابخ حديثة مصممة للوظائف والجاذبية الجمالية."
+  },
+  "gallery": [
+    { "type": "image", "src": "/Kitchen,Pantry & Buffet/Kitchen,Pantry & Buffet (1).webp", "alt": { "en": "Kitchen View 1", "ar": "منظر المطبخ 1" } },
+    { "type": "image", "src": "/Kitchen,Pantry & Buffet/Kitchen,Pantry & Buffet (2).webp", "alt": { "en": "Kitchen View 2", "ar": "منظر المطبخ 2" } },
+    { "type": "image", "src": "/Kitchen,Pantry & Buffet/Kitchen,Pantry & Buffet (3).webp", "alt": { "en": "Kitchen View 3", "ar": "منظر المطبخ 3" } },
+    { "type": "image", "src": "/Kitchen,Pantry & Buffet/Kitchen,Pantry & Buffet (4).webp", "alt": { "en": "Kitchen View 4", "ar": "منظر المطبخ 4" } },
+    { "type": "image", "src": "/Kitchen,Pantry & Buffet/Kitchen,Pantry & Buffet (5).webp", "alt": { "en": "Kitchen View 5", "ar": "منظر المطبخ 5" } },
+    { "type": "image", "src": "/Kitchen,Pantry & Buffet/Kitchen,Pantry & Buffet (6).webp", "alt": { "en": "Kitchen View 6", "ar": "منظر المطبخ 6" } },
+    { "type": "image", "src": "/Kitchen,Pantry & Buffet/Kitchen,Pantry & Buffet (7).webp", "alt": { "en": "Kitchen View 7", "ar": "منظر المطبخ 7" } },
+    { "type": "image", "src": "/Kitchen,Pantry & Buffet/Kitchen,Pantry & Buffet (8).webp", "alt": { "en": "Kitchen View 8", "ar": "منظر المطبخ 8" } }
+  ]
+}

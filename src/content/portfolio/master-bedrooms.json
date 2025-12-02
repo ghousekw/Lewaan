@@ -1,0 +1,25 @@
+{
+  "slug": "master-bedrooms",
+  "order": 5,
+  "thumbnail": "/Master Bedrooms/05.Master Bedrooms (1).webp",
+  "en": {
+    "title": "Master Bedrooms",
+    "description": "Luxurious master bedrooms designed for ultimate comfort and relaxation."
+  },
+  "ar": {
+    "title": "غرف النوم الرئيسية",
+    "description": "غرف نوم رئيسية فاخرة مصممة للراحة والاسترخاء المطلق."
+  },
+  "gallery": [
+    { "type": "image", "src": "/Master Bedrooms/bedroom (1).webp", "alt": { "en": "Master Bedroom View 1", "ar": "منظر غرفة النوم 1" } },
+    { "type": "image", "src": "/Master Bedrooms/05.Master Bedrooms (1).webp", "alt": { "en": "Master Bedroom View 2", "ar": "منظر غرفة النوم 2" } },
+    { "type": "image", "src": "/Master Bedrooms/bedroom (7).webp", "alt": { "en": "Master Bedroom View 3", "ar": "منظر غرفة النوم 3" } },
+    { "type": "image", "src": "/Master Bedrooms/bedroom (8).webp", "alt": { "en": "Master Bedroom View 4", "ar": "منظر غرفة النوم 4" } },
+    { "type": "image", "src": "/Master Bedrooms/bedroom (9).webp", "alt": { "en": "Master Bedroom View 5", "ar": "منظر غرفة النوم 5" } },
+    { "type": "image", "src": "/Master Bedrooms/bedroom (10).webp", "alt": { "en": "Master Bedroom View 6", "ar": "منظر غرفة النوم 6" } },
+    { "type": "image", "src": "/Master Bedrooms/bedroom (11).webp", "alt": { "en": "Master Bedroom View 7", "ar": "منظر غرفة النوم 7" } },
+    { "type": "image", "src": "/Master Bedrooms/bedroom (12).webp", "alt": { "en": "Master Bedroom View 8", "ar": "منظر غرفة النوم 8" } },
+    { "type": "image", "src": "/Master Bedrooms/bedroom (13).webp", "alt": { "en": "Master Bedroom View 9", "ar": "منظر غرفة النوم 9" } },
+    { "type": "image", "src": "/Master Bedrooms/bedroom (14).webp", "alt": { "en": "Master Bedroom View 10", "ar": "منظر غرفة النوم 10" } }
+  ]
+}

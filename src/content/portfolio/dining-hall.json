@@ -1,0 +1,25 @@
+{
+  "slug": "dining-hall",
+  "order": 4,
+  "thumbnail": "/Dining Hall/04.Dining Hall (2).webp",
+  "en": {
+    "title": "Dining Hall",
+    "description": "An elegant dining space perfect for hosting family meals and special occasions."
+  },
+  "ar": {
+    "title": "صالة الطعام",
+    "description": "مساحة طعام أنيقة مثالية لاستضافة وجبات العائلة والمناسبات الخاصة."
+  },
+  "gallery": [
+    { "type": "image", "src": "/Dining Hall/dining (1).webp", "alt": { "en": "Dining Hall View 1", "ar": "منظر صالة الطعام 1" } },
+    { "type": "image", "src": "/Dining Hall/04.Dining Hall (2).webp", "alt": { "en": "Dining Hall View 2", "ar": "منظر صالة الطعام 2" } },
+    { "type": "image", "src": "/Dining Hall/04.Dining Hall (3).webp", "alt": { "en": "Dining Hall View 3", "ar": "منظر صالة الطعام 3" } },
+    { "type": "image", "src": "/Dining Hall/04.Dining Hall (4).webp", "alt": { "en": "Dining Hall View 4", "ar": "منظر صالة الطعام 4" } },
+    { "type": "image", "src": "/Dining Hall/dining (5).webp", "alt": { "en": "Dining Hall View 5", "ar": "منظر صالة الطعام 5" } },
+    { "type": "image", "src": "/Dining Hall/dining (6).webp", "alt": { "en": "Dining Hall View 6", "ar": "منظر صالة الطعام 6" } },
+    { "type": "image", "src": "/Dining Hall/04.Dining Hall (7).webp", "alt": { "en": "Dining Hall View 7", "ar": "منظر صالة الطعام 7" } },
+    { "type": "image", "src": "/Dining Hall/dining (7).webp", "alt": { "en": "Dining Hall View 8", "ar": "منظر صالة الطعام 8" } },
+    { "type": "image", "src": "/Dining Hall/dining (8).webp", "alt": { "en": "Dining Hall View 9", "ar": "منظر صالة الطعام 9" } },
+    { "type": "image", "src": "/Dining Hall/04.Dining Hall (8).webp", "alt": { "en": "Dining Hall View 10", "ar": "منظر صالة الطعام 10" } }
+  ]
+}

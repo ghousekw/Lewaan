@@ -1,0 +1,19 @@
+{
+  "slug": "cinema-hall",
+  "order": 9,
+  "thumbnail": "/Cinema Hall/Cinema Hall (1).webp",
+  "en": {
+    "title": "Cinema Hall",
+    "description": "State-of-the-art home theaters for the ultimate entertainment experience."
+  },
+  "ar": {
+    "title": "قاعة السينما",
+    "description": "مسارح منزلية حديثة لتجربة ترفيهية مثالية."
+  },
+  "gallery": [
+    { "type": "image", "src": "/Cinema Hall/Cinema Hall (1).webp", "alt": { "en": "Cinema Hall View 1", "ar": "منظر قاعة السينما 1" } },
+    { "type": "image", "src": "/Cinema Hall/Cinema Hall (2).webp", "alt": { "en": "Cinema Hall View 2", "ar": "منظر قاعة السينما 2" } },
+    { "type": "image", "src": "/Cinema Hall/Cinema Hall (3).webp", "alt": { "en": "Cinema Hall View 3", "ar": "منظر قاعة السينما 3" } },
+    { "type": "image", "src": "/Cinema Hall/Cinema Hall (4).webp", "alt": { "en": "Cinema Hall View 4", "ar": "منظر قاعة السينما 4" } }
+  ]
+}

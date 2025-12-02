@@ -1,0 +1,26 @@
+{
+  "slug": "living-hall",
+  "order": 3,
+  "thumbnail": "/Living Hall/03.Living Hall (1).webp",
+  "en": {
+    "title": "Living Hall",
+    "description": "A spacious and comfortable living area designed for family gatherings and relaxation."
+  },
+  "ar": {
+    "title": "صالة المعيشة",
+    "description": "منطقة معيشة واسعة ومريحة مصممة للتجمعات العائلية والاسترخاء."
+  },
+  "gallery": [
+    { "type": "image", "src": "/Living Hall/03.Living Hall (1).webp", "alt": { "en": "Living Hall View 1", "ar": "منظر صالة المعيشة 1" } },
+    { "type": "image", "src": "/Living Hall/03.Living Hall (2).webp", "alt": { "en": "Living Hall View 2", "ar": "منظر صالة المعيشة 2" } },
+    { "type": "image", "src": "/Living Hall/03.Living Hall (3).webp", "alt": { "en": "Living Hall View 3", "ar": "منظر صالة المعيشة 3" } },
+    { "type": "image", "src": "/Living Hall/03.Living Hall (4).webp", "alt": { "en": "Living Hall View 4", "ar": "منظر صالة المعيشة 4" } },
+    { "type": "image", "src": "/Living Hall/03.Living Hall (5).webp", "alt": { "en": "Living Hall View 5", "ar": "منظر صالة المعيشة 5" } },
+    { "type": "image", "src": "/Living Hall/03.Living Hall (6).webp", "alt": { "en": "Living Hall View 6", "ar": "منظر صالة المعيشة 6" } },
+    { "type": "image", "src": "/Living Hall/03.Living Hall (7).webp", "alt": { "en": "Living Hall View 7", "ar": "منظر صالة المعيشة 7" } },
+    { "type": "image", "src": "/Living Hall/03.Living Hall (8).webp", "alt": { "en": "Living Hall View 8", "ar": "منظر صالة المعيشة 8" } },
+    { "type": "image", "src": "/Living Hall/03.Living Hall (9).webp", "alt": { "en": "Living Hall View 9", "ar": "منظر صالة المعيشة 9" } },
+    { "type": "image", "src": "/Living Hall/03.Living Hall (10).webp", "alt": { "en": "Living Hall View 10", "ar": "منظر صالة المعيشة 10" } },
+    { "type": "image", "src": "/Living Hall/03.Living Hall (11).webp", "alt": { "en": "Living Hall View 11", "ar": "منظر صالة المعيشة 11" } }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "slug": "child-room",
+  "order": 6,
+  "thumbnail": "/Child Room/06.Child Room (1).webp",
+  "en": {
+    "title": "Child Room",
+    "description": "Playful and imaginative spaces designed to inspire creativity and fun."
+  },
+  "ar": {
+    "title": "غرفة الأطفال",
+    "description": "مساحات مرحة وخيالية مصممة لإلهام الإبداع والمرح."
+  },
+  "gallery": [
+    { "type": "image", "src": "/Child Room/06.Child Room (1).webp", "alt": { "en": "Child Room View 1", "ar": "منظر غرفة الأطفال 1" } },
+    { "type": "image", "src": "/Child Room/06.Child Room (2).webp", "alt": { "en": "Child Room View 2", "ar": "منظر غرفة الأطفال 2" } },
+    { "type": "image", "src": "/Child Room/06.Child Room (3).webp", "alt": { "en": "Child Room View 3", "ar": "منظر غرفة الأطفال 3" } },
+    { "type": "image", "src": "/Child Room/06.Child Room (4).webp", "alt": { "en": "Child Room View 4", "ar": "منظر غرفة الأطفال 4" } },
+    { "type": "image", "src": "/Child Room/06.Child Room (5).webp", "alt": { "en": "Child Room View 5", "ar": "منظر غرفة الأطفال 5" } },
+    { "type": "image", "src": "/Child Room/06.Child Room (6).webp", "alt": { "en": "Child Room View 6", "ar": "منظر غرفة الأطفال 6" } },
+    { "type": "image", "src": "/Child Room/06.Child Room (7).webp", "alt": { "en": "Child Room View 7", "ar": "منظر غرفة الأطفال 7" } },
+    { "type": "image", "src": "/Child Room/06.Child Room (8).webp", "alt": { "en": "Child Room View 8", "ar": "منظر غرفة الأطفال 8" } },
+    { "type": "image", "src": "/Child Room/06.Child Room (9).webp", "alt": { "en": "Child Room View 9", "ar": "منظر غرفة الأطفال 9" } },
+    { "type": "image", "src": "/Child Room/06.Child Room (10).webp", "alt": { "en": "Child Room View 10", "ar": "منظر غرفة الأطفال 10" } }
+  ]
+}
