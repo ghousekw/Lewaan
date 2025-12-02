@@ -144,11 +144,21 @@ collections:
     slug: "{{slug}}"
     i18n: true
     fields:
-      - { label: "Title", name: "title", widget: "string", i18n: true }
       - { label: "Slug", name: "slug", widget: "string", i18n: duplicate }
-      - { label: "Description", name: "description", widget: "text", i18n: true }
-      - { label: "Thumbnail", name: "thumbnail", widget: "image" }
       - { label: "Order", name: "order", widget: "number", default: 0, hint: "Lower numbers appear first" }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image" }
+      - label: "English (EN)"
+        name: "en"
+        widget: "object"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+      - label: "Arabic (AR)"
+        name: "ar"
+        widget: "object"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
       - label: "Gallery"
         name: "gallery"
         widget: "list"
@@ -159,7 +169,12 @@ collections:
             options: ["image", "video"]
             default: "image"
           - { label: "Image/Video", name: "src", widget: "image" }
-          - { label: "Alt Text", name: "alt", widget: "string", i18n: true }
+          - label: "Alt Text"
+            name: "alt"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string" }
+              - { label: "Arabic", name: "ar", widget: "string" }
 
   # ============================================
   # ABOUT PAGE
