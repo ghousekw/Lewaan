@@ -11,50 +11,357 @@
     "description": "مساحات مرحة وخيالية مصممة لإلهام الإبداع والمرح."
   },
   "gallery": [
-    { "type": "image", "src": "/Child Room/06.Child Room (1).webp", "alt": { "en": "Child Room View 1", "ar": "منظر غرفة الأطفال 1" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (2).webp", "alt": { "en": "Child Room View 2", "ar": "منظر غرفة الأطفال 2" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (3).webp", "alt": { "en": "Child Room View 3", "ar": "منظر غرفة الأطفال 3" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (4).webp", "alt": { "en": "Child Room View 4", "ar": "منظر غرفة الأطفال 4" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (5).webp", "alt": { "en": "Child Room View 5", "ar": "منظر غرفة الأطفال 5" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (6).webp", "alt": { "en": "Child Room View 6", "ar": "منظر غرفة الأطفال 6" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (7).webp", "alt": { "en": "Child Room View 7", "ar": "منظر غرفة الأطفال 7" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (8).webp", "alt": { "en": "Child Room View 8", "ar": "منظر غرفة الأطفال 8" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (9).webp", "alt": { "en": "Child Room View 9", "ar": "منظر غرفة الأطفال 9" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (10).webp", "alt": { "en": "Child Room View 10", "ar": "منظر غرفة الأطفال 10" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (11).webp", "alt": { "en": "Child Room View 11", "ar": "منظر غرفة الأطفال 11" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (12).webp", "alt": { "en": "Child Room View 12", "ar": "منظر غرفة الأطفال 12" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (13).webp", "alt": { "en": "Child Room View 13", "ar": "منظر غرفة الأطفال 13" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (14).webp", "alt": { "en": "Child Room View 14", "ar": "منظر غرفة الأطفال 14" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (15).webp", "alt": { "en": "Child Room View 15", "ar": "منظر غرفة الأطفال 15" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (16).webp", "alt": { "en": "Child Room View 16", "ar": "منظر غرفة الأطفال 16" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (17).webp", "alt": { "en": "Child Room View 17", "ar": "منظر غرفة الأطفال 17" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (18).webp", "alt": { "en": "Child Room View 18", "ar": "منظر غرفة الأطفال 18" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (19).webp", "alt": { "en": "Child Room View 19", "ar": "منظر غرفة الأطفال 19" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (20).webp", "alt": { "en": "Child Room View 20", "ar": "منظر غرفة الأطفال 20" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (21).webp", "alt": { "en": "Child Room View 21", "ar": "منظر غرفة الأطفال 21" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (22).webp", "alt": { "en": "Child Room View 22", "ar": "منظر غرفة الأطفال 22" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (23).webp", "alt": { "en": "Child Room View 23", "ar": "منظر غرفة الأطفال 23" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (24).webp", "alt": { "en": "Child Room View 24", "ar": "منظر غرفة الأطفال 24" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (25).webp", "alt": { "en": "Child Room View 25", "ar": "منظر غرفة الأطفال 25" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (26).webp", "alt": { "en": "Child Room View 26", "ar": "منظر غرفة الأطفال 26" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (27).webp", "alt": { "en": "Child Room View 27", "ar": "منظر غرفة الأطفال 27" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (28).webp", "alt": { "en": "Child Room View 28", "ar": "منظر غرفة الأطفال 28" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (29).webp", "alt": { "en": "Child Room View 29", "ar": "منظر غرفة الأطفال 29" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (30).webp", "alt": { "en": "Child Room View 30", "ar": "منظر غرفة الأطفال 30" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (31).webp", "alt": { "en": "Child Room View 31", "ar": "منظر غرفة الأطفال 31" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (32).webp", "alt": { "en": "Child Room View 32", "ar": "منظر غرفة الأطفال 32" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (33).webp", "alt": { "en": "Child Room View 33", "ar": "منظر غرفة الأطفال 33" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (34).webp", "alt": { "en": "Child Room View 34", "ar": "منظر غرفة الأطفال 34" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (35).webp", "alt": { "en": "Child Room View 35", "ar": "منظر غرفة الأطفال 35" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (36).webp", "alt": { "en": "Child Room View 36", "ar": "منظر غرفة الأطفال 36" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (37).webp", "alt": { "en": "Child Room View 37", "ar": "منظر غرفة الأطفال 37" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (38).webp", "alt": { "en": "Child Room View 38", "ar": "منظر غرفة الأطفال 38" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (39).webp", "alt": { "en": "Child Room View 39", "ar": "منظر غرفة الأطفال 39" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (40).webp", "alt": { "en": "Child Room View 40", "ar": "منظر غرفة الأطفال 40" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (41).webp", "alt": { "en": "Child Room View 41", "ar": "منظر غرفة الأطفال 41" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (42).webp", "alt": { "en": "Child Room View 42", "ar": "منظر غرفة الأطفال 42" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (43).webp", "alt": { "en": "Child Room View 43", "ar": "منظر غرفة الأطفال 43" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (44).webp", "alt": { "en": "Child Room View 44", "ar": "منظر غرفة الأطفال 44" } },
-    { "type": "image", "src": "/Child Room/06.Child Room (45).webp", "alt": { "en": "Child Room View 45", "ar": "منظر غرفة الأطفال 45" } }
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (1).webp",
+      "alt": {
+        "en": "Child Room View 1",
+        "ar": "منظر غرفة الأطفال 1"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (2).webp",
+      "alt": {
+        "en": "Child Room View 2",
+        "ar": "منظر غرفة الأطفال 2"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (3).webp",
+      "alt": {
+        "en": "Child Room View 3",
+        "ar": "منظر غرفة الأطفال 3"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (4).webp",
+      "alt": {
+        "en": "Child Room View 4",
+        "ar": "منظر غرفة الأطفال 4"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (5).webp",
+      "alt": {
+        "en": "Child Room View 5",
+        "ar": "منظر غرفة الأطفال 5"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (6).webp",
+      "alt": {
+        "en": "Child Room View 6",
+        "ar": "منظر غرفة الأطفال 6"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (7).webp",
+      "alt": {
+        "en": "Child Room View 7",
+        "ar": "منظر غرفة الأطفال 7"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (8).webp",
+      "alt": {
+        "en": "Child Room View 8",
+        "ar": "منظر غرفة الأطفال 8"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (9).webp",
+      "alt": {
+        "en": "Child Room View 9",
+        "ar": "منظر غرفة الأطفال 9"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (10).webp",
+      "alt": {
+        "en": "Child Room View 10",
+        "ar": "منظر غرفة الأطفال 10"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (11).webp",
+      "alt": {
+        "en": "Child Room View 11",
+        "ar": "منظر غرفة الأطفال 11"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (12).webp",
+      "alt": {
+        "en": "Child Room View 12",
+        "ar": "منظر غرفة الأطفال 12"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (13).webp",
+      "alt": {
+        "en": "Child Room View 13",
+        "ar": "منظر غرفة الأطفال 13"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (14).webp",
+      "alt": {
+        "en": "Child Room View 14",
+        "ar": "منظر غرفة الأطفال 14"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (15).webp",
+      "alt": {
+        "en": "Child Room View 15",
+        "ar": "منظر غرفة الأطفال 15"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (16).webp",
+      "alt": {
+        "en": "Child Room View 16",
+        "ar": "منظر غرفة الأطفال 16"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (17).webp",
+      "alt": {
+        "en": "Child Room View 17",
+        "ar": "منظر غرفة الأطفال 17"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (18).webp",
+      "alt": {
+        "en": "Child Room View 18",
+        "ar": "منظر غرفة الأطفال 18"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (19).webp",
+      "alt": {
+        "en": "Child Room View 19",
+        "ar": "منظر غرفة الأطفال 19"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (20).webp",
+      "alt": {
+        "en": "Child Room View 20",
+        "ar": "منظر غرفة الأطفال 20"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (21).webp",
+      "alt": {
+        "en": "Child Room View 21",
+        "ar": "منظر غرفة الأطفال 21"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (22).webp",
+      "alt": {
+        "en": "Child Room View 22",
+        "ar": "منظر غرفة الأطفال 22"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (23).webp",
+      "alt": {
+        "en": "Child Room View 23",
+        "ar": "منظر غرفة الأطفال 23"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (24).webp",
+      "alt": {
+        "en": "Child Room View 24",
+        "ar": "منظر غرفة الأطفال 24"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (25).webp",
+      "alt": {
+        "en": "Child Room View 25",
+        "ar": "منظر غرفة الأطفال 25"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (26).webp",
+      "alt": {
+        "en": "Child Room View 26",
+        "ar": "منظر غرفة الأطفال 26"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (27).webp",
+      "alt": {
+        "en": "Child Room View 27",
+        "ar": "منظر غرفة الأطفال 27"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (28).webp",
+      "alt": {
+        "en": "Child Room View 28",
+        "ar": "منظر غرفة الأطفال 28"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (29).webp",
+      "alt": {
+        "en": "Child Room View 29",
+        "ar": "منظر غرفة الأطفال 29"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (30).webp",
+      "alt": {
+        "en": "Child Room View 30",
+        "ar": "منظر غرفة الأطفال 30"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (31).webp",
+      "alt": {
+        "en": "Child Room View 31",
+        "ar": "منظر غرفة الأطفال 31"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (32).webp",
+      "alt": {
+        "en": "Child Room View 32",
+        "ar": "منظر غرفة الأطفال 32"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (33).webp",
+      "alt": {
+        "en": "Child Room View 33",
+        "ar": "منظر غرفة الأطفال 33"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (34).webp",
+      "alt": {
+        "en": "Child Room View 34",
+        "ar": "منظر غرفة الأطفال 34"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (35).webp",
+      "alt": {
+        "en": "Child Room View 35",
+        "ar": "منظر غرفة الأطفال 35"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (36).webp",
+      "alt": {
+        "en": "Child Room View 36",
+        "ar": "منظر غرفة الأطفال 36"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (37).webp",
+      "alt": {
+        "en": "Child Room View 37",
+        "ar": "منظر غرفة الأطفال 37"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (38).webp",
+      "alt": {
+        "en": "Child Room View 38",
+        "ar": "منظر غرفة الأطفال 38"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (39).webp",
+      "alt": {
+        "en": "Child Room View 39",
+        "ar": "منظر غرفة الأطفال 39"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (40).webp",
+      "alt": {
+        "en": "Child Room View 40",
+        "ar": "منظر غرفة الأطفال 40"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (41).webp",
+      "alt": {
+        "en": "Child Room View 41",
+        "ar": "منظر غرفة الأطفال 41"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (42).webp",
+      "alt": {
+        "en": "Child Room View 42",
+        "ar": "منظر غرفة الأطفال 42"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (43).webp",
+      "alt": {
+        "en": "Child Room View 43",
+        "ar": "منظر غرفة الأطفال 43"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Child Room/06.Child Room (44).webp",
+      "alt": {
+        "en": "Child Room View 44",
+        "ar": "منظر غرفة الأطفال 44"
+      }
+    }
   ]
 }
