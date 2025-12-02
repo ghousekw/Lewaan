@@ -143,7 +143,7 @@ collections:
     create: true
     slug: "{{slug}}"
     identifier_field: "slug"
-    summary: "{{en.title}} (Order: {{order}})"
+    summary: "{{en.title}} (Order: {{order}}) - {{gallery.length}} items"
     format: "json"
     extension: "json"
     preview_path: "portfolio/{{slug}}"
