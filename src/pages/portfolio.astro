@@ -4,23 +4,26 @@ import { portfolioItems } from '../data/portfolio';
 import fs from 'fs';
 import path from 'path';
 
-// Read child-room from JSON
+// Read child-room from CMS JSON
 const childRoomPath = path.join(process.cwd(), 'src/content/portfolio/child-room.json');
-const childRoomData = JSON.parse(fs.readFileSync(childRoomPath, 'utf-8'));
+let items = portfolioItems;
 
-// Replace child-room in portfolioItems with JSON data
-const items = portfolioItems.map(item => {
-  if (item.slug === 'child-room') {
-    return {
+// Check if child-room JSON exists in CMS
+if (fs.existsSync(childRoomPath)) {
+  const childRoomData = JSON.parse(fs.readFileSync(childRoomPath, 'utf-8'));
+  
+  // Add child-room from CMS if it doesn't exist in hardcoded data
+  const childRoomExists = items.some(item => item.slug === 'child-room');
+  if (!childRoomExists) {
+    items.push({
       slug: childRoomData.slug,
       title: childRoomData.en.title,
       description: childRoomData.en.description,
       thumbnail: childRoomData.thumbnail,
       gallery: childRoomData.gallery
-    };
+    });
   }
-  return item;
-});
+}
 ---
 
 <MainLayout>
