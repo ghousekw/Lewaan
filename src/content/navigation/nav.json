@@ -1,0 +1,16 @@
+{
+  "en": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "contact": "Contact"
+  },
+  "ar": {
+    "home": "الرئيسية",
+    "about": "من نحن",
+    "services": "الخدمات",
+    "portfolio": "المشاريع",
+    "contact": "اتصل بنا"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "en": {
+    "label": "Let's Work Together",
+    "title": "Ready to Start Your Project?",
+    "description": "Let's create a space that is uniquely yours and reflects your personal style.",
+    "getInTouch": "Get In Touch",
+    "learnMore": "Learn More About Us"
+  },
+  "ar": {
+    "label": "دعنا نعمل معاً",
+    "title": "هل أنت مستعد لبدء مشروعك؟",
+    "description": "دعنا نصنع مساحة فريدة من نوعها تعكس أسلوبك الشخصي.",
+    "getInTouch": "تواصل معنا",
+    "learnMore": "تعرف علينا أكثر"
+  }
+}

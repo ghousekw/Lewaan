@@ -1,0 +1,33 @@
+{
+  "en": {
+    "label": "About Us",
+    "title": "Crafting Spaces That Tell Your Story",
+    "description1": "Lewan Interior Design is a top architecture, 3D visualization, illustration and 3D animation firm in Kuwait with a computational approach to architecture and spatial experience. We create interactive solutions for our clients.",
+    "description2": "Founded in 2015 by Engr. Ebtehal Al Ameer, we specialize in Engineering, Architecture and Interior Designing. We provide extraordinary and unique solutions with designs consisting of Modern, Minimalist, Industrial, Mid-century, Scandinavian, Traditional, Coastal, Islamic, Moroccan & Contemporary Styles.",
+    "stats": {
+      "projects": "Projects Done",
+      "clients": "Happy Clients",
+      "experience": "Years Experience",
+      "awards": "Award Winnings"
+    }
+  },
+  "ar": {
+    "label": "من نحن",
+    "title": "صياغة مساحات تحكي قصتك",
+    "description1": "ليوان للتصميم الداخلي هي شركة رائدة في الهندسة المعمارية والتصور ثلاثي الأبعاد والرسوم التوضيحية والرسوم المتحركة ثلاثية الأبعاد في الكويت مع نهج حسابي للهندسة المعمارية وتجربة المكان. نصنع حلولاً تفاعلية لعملائنا.",
+    "description2": "تأسست في عام 2015 من قبل المهندسة ابتسال الأمير، نتخصص في الهندسة والهندسة المعمارية والتصميم الداخلي. نقدم حلولاً استثنائية وفريدة مع تصاميم تتكون من الأنماط الحديثة والحد الأدنى والصناعية ومنتصف القرن والإسكندنافية والتقليدية والساحلية والإسلامية والمغربية والمعاصرة.",
+    "stats": {
+      "projects": "مشروع مكتمل",
+      "clients": "عميل سعيد",
+      "experience": "سنة خبرة",
+      "awards": "جائزة فوز"
+    }
+  },
+  "statsNumbers": {
+    "projectsCount": 300,
+    "clientsCount": 200,
+    "experienceCount": 10,
+    "awardsCount": 15
+  },
+  "image": "/About.webp"
+}

@@ -1,0 +1,19 @@
+{
+  "en": {
+    "tagline": "Interior Design Excellence Since 2015",
+    "title1": "Timeless &",
+    "title2": "Elegant Interiors",
+    "description": "Creating beautiful, functional spaces that inspire and transform your living experience.",
+    "exploreWork": "Explore Our Work",
+    "getInTouch": "Get In Touch"
+  },
+  "ar": {
+    "tagline": "التميز في التصميم الداخلي منذ عام 2015",
+    "title1": "ديكورات داخلية",
+    "title2": "خالدة وأنيقة",
+    "description": "نصنع مساحات جميلة وعملية تلهم وتحول تجربة معيشتك.",
+    "exploreWork": "استكشف أعمالنا",
+    "getInTouch": "تواصل معنا"
+  },
+  "heroImage": "/heroimage.webp"
+}

@@ -67,6 +67,9 @@ const seoData = {
     {isRTL && (
       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Tajawal:wght@400;500;600;700&display=swap" rel="stylesheet">
     )}
+    
+    <!-- Netlify Identity Widget (for CMS authentication redirect) -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body class={isRTL ? 'rtl' : 'ltr'}>
     <Header currentLang={language} />
@@ -74,5 +77,18 @@ const seoData = {
         <slot />
     </main>
     <Footer />
+    
+    <!-- Netlify Identity redirect script -->
+    <script is:inline>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on('init', user => {
+          if (!user) {
+            window.netlifyIdentity.on('login', () => {
+              document.location.href = '/admin/';
+            });
+          }
+        });
+      }
+    </script>
 </body>
 </html>

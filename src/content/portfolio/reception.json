@@ -1,0 +1,20 @@
+{
+  "slug": "reception",
+  "order": 1,
+  "thumbnail": "/Reception/reception & living (2).webp",
+  "en": {
+    "title": "Reception",
+    "description": "A welcoming and elegant reception area designed to make a lasting first impression."
+  },
+  "ar": {
+    "title": "الاستقبال",
+    "description": "منطقة استقبال مرحبة وأنيقة مصممة لترك انطباع أول دائم."
+  },
+  "gallery": [
+    { "type": "image", "src": "/Reception/reception & living (2).webp", "alt": { "en": "Reception Area View 1", "ar": "منظر الاستقبال 1" } },
+    { "type": "image", "src": "/Reception/reception & living (3).webp", "alt": { "en": "Reception Area View 2", "ar": "منظر الاستقبال 2" } },
+    { "type": "image", "src": "/Reception/reception & living (4).webp", "alt": { "en": "Reception Area View 3", "ar": "منظر الاستقبال 3" } },
+    { "type": "image", "src": "/Reception/reception & living (5).webp", "alt": { "en": "Reception Area View 4", "ar": "منظر الاستقبال 4" } },
+    { "type": "image", "src": "/Reception/reception & living (6).webp", "alt": { "en": "Reception Area View 5", "ar": "منظر الاستقبال 5" } }
+  ]
+}

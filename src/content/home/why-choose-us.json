@@ -1,0 +1,76 @@
+{
+  "en": {
+    "label": "Why Choose Us",
+    "title": "5 Reasons Why Choose Us",
+    "description": "Know why You need Lewan Interior Design, Because we design space rather than just making lines.",
+    "reasons": [
+      {
+        "icon": "creative",
+        "title": "Creative Solutions",
+        "description": "We strongly believe in creativity and provide extraordinary unique solutions with innovative designs."
+      },
+      {
+        "icon": "availability",
+        "title": "24/7 Availability",
+        "description": "We are anywhere you are. An accessible creative design service available seven days a week, 24 hours all the time."
+      },
+      {
+        "icon": "expert",
+        "title": "Expert Team",
+        "description": "Our team of experienced engineers and designers understand customer requirements and translate them into reality."
+      },
+      {
+        "icon": "quality",
+        "title": "Quality & Excellence",
+        "description": "Our commitment to quality and excellence is second to none, consistently exceeding customer expectations."
+      },
+      {
+        "icon": "complete",
+        "title": "Complete Services",
+        "description": "From 2D planning to 3D visualization and complete turnkey execution, we handle everything."
+      },
+      {
+        "icon": "satisfaction",
+        "title": "Client Satisfaction",
+        "description": "Achieving outstanding results and client satisfaction in every step with integrity, honesty, fairness and sustainability."
+      }
+    ]
+  },
+  "ar": {
+    "label": "لماذا تختارنا",
+    "title": "5 أسباب لاختيارنا",
+    "description": "اعرف لماذا تحتاج ليوان للتصميم الداخلي، لأننا نصمم المساحة بدلاً من مجرد رسم الخطوط.",
+    "reasons": [
+      {
+        "icon": "creative",
+        "title": "حلول إبداعية",
+        "description": "نؤمن بشدة بالإبداع ونقدم حلولاً فريدة استثنائية مع تصاميم مبتكرة."
+      },
+      {
+        "icon": "availability",
+        "title": "متاح 24/7",
+        "description": "نحن في أي مكان تكون فيه. خدمة تصميم إبداعية متاحة سبعة أيام في الأسبوع، 24 ساعة طوال الوقت."
+      },
+      {
+        "icon": "expert",
+        "title": "فريق خبير",
+        "description": "فريقنا من المهندسين والمصممين ذوي الخبرة يفهم متطلبات العملاء ويترجمها إلى واقع."
+      },
+      {
+        "icon": "quality",
+        "title": "الجودة والتميز",
+        "description": "التزامنا بالجودة والتميز لا مثيل له، ونفوق باستمرار توقعات العملاء."
+      },
+      {
+        "icon": "complete",
+        "title": "خدمات كاملة",
+        "description": "من التخطيط ثنائي الأبعاد إلى التصور ثلاثي الأبعاد والتنفيذ الكامل، نحن نتعامل مع كل شيء."
+      },
+      {
+        "icon": "satisfaction",
+        "title": "رضا العملاء",
+        "description": "تحقيق نتائج استثنائية ورضا العملاء في كل خطوة مع النزاهة والصدق والعدالة والاستدامة."
+      }
+    ]
+  }
+}

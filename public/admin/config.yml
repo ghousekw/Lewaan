@@ -1,0 +1,291 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Enables the editorial workflow for content drafts
+publish_mode: editorial_workflow
+
+# Media files will be stored in the public folder
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+# Site URL
+site_url: https://lewaninterior.com
+display_url: https://lewaninterior.com
+
+# Logo for the CMS
+logo_url: /logo.webp
+
+# Locale
+locale: 'en'
+
+# i18n configuration
+i18n:
+  structure: single_file
+  locales: [en, ar]
+  default_locale: en
+
+collections:
+  # ============================================
+  # SITE SETTINGS
+  # ============================================
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "general"
+        label: "General Settings"
+        file: "src/content/settings/general.json"
+        fields:
+          - { label: "Site Name", name: "siteName", widget: "string", default: "Lewan Interior Design" }
+          - { label: "Phone", name: "phone", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Instagram URL", name: "instagram", widget: "string" }
+          - { label: "Address", name: "address", widget: "text" }
+
+  # ============================================
+  # HOME PAGE CONTENT
+  # ============================================
+  - name: "home"
+    label: "Home Page"
+    i18n: true
+    files:
+      - name: "hero"
+        label: "Hero Section"
+        file: "src/content/home/hero.json"
+        i18n: true
+        fields:
+          - { label: "Tagline", name: "tagline", widget: "string", i18n: true }
+          - { label: "Title Line 1", name: "title1", widget: "string", i18n: true }
+          - { label: "Title Line 2", name: "title2", widget: "string", i18n: true }
+          - { label: "Description", name: "description", widget: "text", i18n: true }
+          - { label: "Button 1 Text", name: "exploreWork", widget: "string", i18n: true }
+          - { label: "Button 2 Text", name: "getInTouch", widget: "string", i18n: true }
+          - { label: "Hero Image", name: "heroImage", widget: "image", required: false }
+
+      - name: "about_section"
+        label: "About Section"
+        file: "src/content/home/about.json"
+        i18n: true
+        fields:
+          - { label: "Section Label", name: "label", widget: "string", i18n: true }
+          - { label: "Title", name: "title", widget: "string", i18n: true }
+          - { label: "Description 1", name: "description1", widget: "text", i18n: true }
+          - { label: "Description 2", name: "description2", widget: "text", i18n: true }
+          - { label: "About Image", name: "image", widget: "image", required: false }
+          - label: "Statistics"
+            name: "stats"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Projects Label", name: "projects", widget: "string", i18n: true }
+              - { label: "Projects Count", name: "projectsCount", widget: "number", i18n: duplicate }
+              - { label: "Clients Label", name: "clients", widget: "string", i18n: true }
+              - { label: "Clients Count", name: "clientsCount", widget: "number", i18n: duplicate }
+              - { label: "Experience Label", name: "experience", widget: "string", i18n: true }
+              - { label: "Experience Count", name: "experienceCount", widget: "number", i18n: duplicate }
+              - { label: "Awards Label", name: "awards", widget: "string", i18n: true }
+              - { label: "Awards Count", name: "awardsCount", widget: "number", i18n: duplicate }
+
+      - name: "why_choose_us"
+        label: "Why Choose Us Section"
+        file: "src/content/home/why-choose-us.json"
+        i18n: true
+        fields:
+          - { label: "Section Label", name: "label", widget: "string", i18n: true }
+          - { label: "Title", name: "title", widget: "string", i18n: true }
+          - { label: "Description", name: "description", widget: "text", i18n: true }
+          - label: "Reasons"
+            name: "reasons"
+            widget: "list"
+            i18n: true
+            fields:
+              - { label: "Title", name: "title", widget: "string", i18n: true }
+              - { label: "Description", name: "description", widget: "text", i18n: true }
+              - { label: "Icon", name: "icon", widget: "string", required: false, hint: "Icon name (e.g., creative, availability, expert, quality, complete, satisfaction)" }
+
+      - name: "cta"
+        label: "Call to Action Section"
+        file: "src/content/home/cta.json"
+        i18n: true
+        fields:
+          - { label: "Label", name: "label", widget: "string", i18n: true }
+          - { label: "Title", name: "title", widget: "string", i18n: true }
+          - { label: "Description", name: "description", widget: "text", i18n: true }
+          - { label: "Button 1 Text", name: "getInTouch", widget: "string", i18n: true }
+          - { label: "Button 2 Text", name: "learnMore", widget: "string", i18n: true }
+
+  # ============================================
+  # NAVIGATION
+  # ============================================
+  - name: "navigation"
+    label: "Navigation"
+    i18n: true
+    files:
+      - name: "nav"
+        label: "Navigation Menu"
+        file: "src/content/navigation/nav.json"
+        i18n: true
+        fields:
+          - { label: "Home", name: "home", widget: "string", i18n: true }
+          - { label: "About", name: "about", widget: "string", i18n: true }
+          - { label: "Services", name: "services", widget: "string", i18n: true }
+          - { label: "Portfolio", name: "portfolio", widget: "string", i18n: true }
+          - { label: "Contact", name: "contact", widget: "string", i18n: true }
+
+  # ============================================
+  # PORTFOLIO
+  # ============================================
+  - name: "portfolio"
+    label: "Portfolio Projects"
+    label_singular: "Project"
+    folder: "src/content/portfolio"
+    create: true
+    slug: "{{slug}}"
+    i18n: true
+    fields:
+      - { label: "Title", name: "title", widget: "string", i18n: true }
+      - { label: "Slug", name: "slug", widget: "string", i18n: duplicate }
+      - { label: "Description", name: "description", widget: "text", i18n: true }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image" }
+      - { label: "Order", name: "order", widget: "number", default: 0, hint: "Lower numbers appear first" }
+      - label: "Gallery"
+        name: "gallery"
+        widget: "list"
+        fields:
+          - label: "Type"
+            name: "type"
+            widget: "select"
+            options: ["image", "video"]
+            default: "image"
+          - { label: "Image/Video", name: "src", widget: "image" }
+          - { label: "Alt Text", name: "alt", widget: "string", i18n: true }
+
+  # ============================================
+  # ABOUT PAGE
+  # ============================================
+  - name: "about_page"
+    label: "About Page"
+    i18n: true
+    files:
+      - name: "about_hero"
+        label: "Hero Section"
+        file: "src/content/about/hero.json"
+        i18n: true
+        fields:
+          - { label: "Label", name: "label", widget: "string", i18n: true }
+          - { label: "Title", name: "title", widget: "string", i18n: true }
+          - { label: "Hero Image", name: "image", widget: "image", required: false }
+
+      - name: "about_overview"
+        label: "Overview Section"
+        file: "src/content/about/overview.json"
+        i18n: true
+        fields:
+          - { label: "Description 1", name: "description1", widget: "text", i18n: true }
+          - { label: "Description 2", name: "description2", widget: "text", i18n: true }
+          - { label: "Description 3", name: "description3", widget: "text", i18n: true }
+
+      - name: "about_story"
+        label: "Our Story Section"
+        file: "src/content/about/story.json"
+        i18n: true
+        fields:
+          - { label: "Title", name: "title", widget: "string", i18n: true }
+          - { label: "Description 1", name: "description1", widget: "text", i18n: true }
+          - { label: "Description 2", name: "description2", widget: "text", i18n: true }
+          - { label: "Description 3", name: "description3", widget: "text", i18n: true }
+          - { label: "Image", name: "image", widget: "image", required: false }
+
+      - name: "about_vision"
+        label: "Vision Section"
+        file: "src/content/about/vision.json"
+        i18n: true
+        fields:
+          - { label: "Title", name: "title", widget: "string", i18n: true }
+          - { label: "Description 1", name: "description1", widget: "text", i18n: true }
+          - { label: "Description 2", name: "description2", widget: "text", i18n: true }
+
+      - name: "about_mission"
+        label: "Mission Section"
+        file: "src/content/about/mission.json"
+        i18n: true
+        fields:
+          - { label: "Title", name: "title", widget: "string", i18n: true }
+          - { label: "Description 1", name: "description1", widget: "text", i18n: true }
+          - { label: "Description 2", name: "description2", widget: "text", i18n: true }
+          - label: "Criteria"
+            name: "criteria"
+            widget: "list"
+            i18n: true
+            field: { label: "Item", name: "item", widget: "string" }
+
+  # ============================================
+  # SERVICES PAGE
+  # ============================================
+  - name: "services_page"
+    label: "Services Page"
+    i18n: true
+    files:
+      - name: "services_hero"
+        label: "Hero Section"
+        file: "src/content/services/hero.json"
+        i18n: true
+        fields:
+          - { label: "Label", name: "label", widget: "string", i18n: true }
+          - { label: "Title", name: "title", widget: "string", i18n: true }
+          - { label: "Description", name: "description", widget: "text", i18n: true }
+
+      - name: "services_overview"
+        label: "Overview Section"
+        file: "src/content/services/overview.json"
+        i18n: true
+        fields:
+          - { label: "Description 1", name: "description1", widget: "text", i18n: true }
+          - { label: "Description 2", name: "description2", widget: "text", i18n: true }
+
+  # ============================================
+  # CONTACT PAGE
+  # ============================================
+  - name: "contact_page"
+    label: "Contact Page"
+    i18n: true
+    files:
+      - name: "contact_hero"
+        label: "Hero Section"
+        file: "src/content/contact/hero.json"
+        i18n: true
+        fields:
+          - { label: "Label", name: "label", widget: "string", i18n: true }
+          - { label: "Title", name: "title", widget: "string", i18n: true }
+          - { label: "Description", name: "description", widget: "text", i18n: true }
+
+      - name: "contact_form"
+        label: "Form Labels"
+        file: "src/content/contact/form.json"
+        i18n: true
+        fields:
+          - { label: "Form Title", name: "title", widget: "string", i18n: true }
+          - { label: "Form Description", name: "description", widget: "text", i18n: true }
+          - { label: "Name Label", name: "name", widget: "string", i18n: true }
+          - { label: "Name Placeholder", name: "namePlaceholder", widget: "string", i18n: true }
+          - { label: "Email Label", name: "email", widget: "string", i18n: true }
+          - { label: "Email Placeholder", name: "emailPlaceholder", widget: "string", i18n: true }
+          - { label: "Phone Label", name: "phone", widget: "string", i18n: true }
+          - { label: "Phone Placeholder", name: "phonePlaceholder", widget: "string", i18n: true }
+          - { label: "Message Label", name: "message", widget: "string", i18n: true }
+          - { label: "Message Placeholder", name: "messagePlaceholder", widget: "string", i18n: true }
+          - { label: "Submit Button Text", name: "submit", widget: "string", i18n: true }
+
+  # ============================================
+  # FOOTER
+  # ============================================
+  - name: "footer"
+    label: "Footer"
+    i18n: true
+    files:
+      - name: "footer_content"
+        label: "Footer Content"
+        file: "src/content/footer/content.json"
+        i18n: true
+        fields:
+          - { label: "Copyright Text", name: "copyright", widget: "string", i18n: true }
