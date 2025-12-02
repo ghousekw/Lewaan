@@ -2,9 +2,29 @@
 import MainLayout from '../../layouts/MainLayout.astro';
 import Gallery from '../../components/Gallery.astro';
 import { portfolioItems } from '../../data/portfolio';
+import fs from 'fs';
+import path from 'path';
 
 export async function getStaticPaths() {
-  return portfolioItems.map((item) => ({
+  // Read child-room from JSON
+  const childRoomPath = path.join(process.cwd(), 'src/content/portfolio/child-room.json');
+  const childRoomData = JSON.parse(fs.readFileSync(childRoomPath, 'utf-8'));
+  
+  // Replace child-room in portfolioItems with JSON data
+  const items = portfolioItems.map(item => {
+    if (item.slug === 'child-room') {
+      return {
+        slug: childRoomData.slug,
+        title: childRoomData.en.title,
+        description: childRoomData.en.description,
+        thumbnail: childRoomData.thumbnail,
+        gallery: childRoomData.gallery
+      };
+    }
+    return item;
+  });
+  
+  return items.map((item) => ({
     params: { slug: item.slug },
     props: { item },
   }));
