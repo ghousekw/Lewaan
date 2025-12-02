@@ -142,6 +142,9 @@ collections:
     folder: "src/content/portfolio"
     create: true
     slug: "{{slug}}"
+    identifier_field: "slug"
+    format: "json"
+    extension: "json"
     i18n: true
     fields:
       - { label: "Slug", name: "slug", widget: "string", i18n: duplicate }
