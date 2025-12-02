@@ -1,5 +1,5 @@
 ---
-// Redirect to English by default using meta refresh (fastest, no visible redirect message)
+// Redirect to English by default, preserving hash for Netlify Identity tokens
 ---
 
 <!DOCTYPE html>
@@ -8,10 +8,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
-    <meta http-equiv="refresh" content="0; url=/en/">
     <link rel="canonical" href="/en/">
+    <!-- Netlify Identity Widget for token handling -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-    <script>window.location.href = '/en/';</script>
+    <script>
+      // Check for Netlify Identity tokens in hash
+      const hash = window.location.hash;
+      if (hash && (hash.includes('invite_token') || hash.includes('confirmation_token') || hash.includes('recovery_token') || hash.includes('access_token'))) {
+        // Stay on this page and let the widget handle the token
+        if (window.netlifyIdentity) {
+          window.netlifyIdentity.on('init', user => {
+            window.netlifyIdentity.open();
+          });
+          window.netlifyIdentity.on('login', () => {
+            window.location.href = '/admin/';
+          });
+        }
+      } else {
+        // No token, redirect to /en/
+        window.location.href = '/en/';
+      }
+    </script>
+    <noscript>
+      <meta http-equiv="refresh" content="0; url=/en/">
+    </noscript>
 </body>
 </html>
