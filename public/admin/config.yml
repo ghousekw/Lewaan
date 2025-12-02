@@ -143,38 +143,43 @@ collections:
     create: true
     slug: "{{slug}}"
     identifier_field: "slug"
+    summary: "{{en.title}} (Order: {{order}})"
     format: "json"
     extension: "json"
-    i18n: true
+    preview_path: "portfolio/{{slug}}"
     fields:
-      - { label: "Slug", name: "slug", widget: "string", i18n: duplicate }
+      - { label: "Slug", name: "slug", widget: "string", required: true }
       - { label: "Order", name: "order", widget: "number", default: 0, hint: "Lower numbers appear first" }
-      - { label: "Thumbnail", name: "thumbnail", widget: "image" }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image", required: true }
       - label: "English (EN)"
         name: "en"
         widget: "object"
+        collapsed: false
         fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Title", name: "title", widget: "string", required: true }
+          - { label: "Description", name: "description", widget: "text", required: true }
       - label: "Arabic (AR)"
         name: "ar"
         widget: "object"
+        collapsed: false
         fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Title", name: "title", widget: "string", required: true }
+          - { label: "Description", name: "description", widget: "text", required: true }
       - label: "Gallery"
         name: "gallery"
         widget: "list"
+        collapsed: true
         fields:
           - label: "Type"
             name: "type"
             widget: "select"
             options: ["image", "video"]
             default: "image"
-          - { label: "Image/Video", name: "src", widget: "image" }
+          - { label: "Image/Video", name: "src", widget: "image", required: true }
           - label: "Alt Text"
             name: "alt"
             widget: "object"
+            collapsed: true
             fields:
               - { label: "English", name: "en", widget: "string" }
               - { label: "Arabic", name: "ar", widget: "string" }
