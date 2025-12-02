@@ -42,21 +42,27 @@
         // Wait for Netlify Identity widget to load
         function initIdentity() {
           if (window.netlifyIdentity) {
-            window.netlifyIdentity.on('init', function(user) {
-              window.netlifyIdentity.open();
-            });
+            // Set up event handlers
             window.netlifyIdentity.on('login', function() {
               window.location.href = '/admin/';
             });
             window.netlifyIdentity.on('close', function() {
               window.location.href = '/en/';
             });
+            // Initialize and open the widget
+            window.netlifyIdentity.init();
+            window.netlifyIdentity.open();
           } else {
             // Widget not ready, try again
             setTimeout(initIdentity, 100);
           }
         }
-        initIdentity();
+        // Wait for DOM to be ready
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initIdentity);
+        } else {
+          setTimeout(initIdentity, 500);
+        }
       } else {
         // No token, redirect to /en/
         window.location.href = '/en/';
