@@ -1,15 +1,28 @@
 ---
+interface AltText {
+  en?: string;
+  ar?: string;
+}
+
 interface Props {
   items: Array<{
     type: 'image' | 'video';
     src: string;
-    alt?: string;
+    alt?: string | AltText;
     thumbnail?: string;
   }>;
   title?: string;
 }
 
 const { items, title } = Astro.props;
+
+// Helper function to get alt text
+function getAltText(alt: string | AltText | undefined, fallback: string): string {
+  if (!alt) return fallback;
+  if (typeof alt === 'string') return alt;
+  if (typeof alt === 'object' && alt.en) return alt.en;
+  return fallback;
+}
 ---
 
 <div class="gallery-container">
@@ -25,7 +38,7 @@ const { items, title } = Astro.props;
         {item.type === 'image' ? (
           <img 
             src={item.src} 
-            alt={item.alt || `Gallery image ${index + 1}`}
+            alt={getAltText(item.alt, `Gallery image ${index + 1}`)}
             class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
             loading="lazy"
           />
@@ -34,7 +47,7 @@ const { items, title } = Astro.props;
             {item.thumbnail ? (
               <img 
                 src={item.thumbnail} 
-                alt={item.alt || `Video thumbnail ${index + 1}`}
+                alt={getAltText(item.alt, `Video thumbnail ${index + 1}`)}
                 class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                 loading="lazy"
               />
@@ -55,7 +68,7 @@ const { items, title } = Astro.props;
           </div>
         )}
         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-          <p class="text-white text-sm font-semibold">{item.alt || (item.type === 'video' ? 'Video' : 'Image')}</p>
+          <p class="text-white text-sm font-semibold">{getAltText(item.alt, (item.type === 'video' ? 'Video' : 'Image'))}</p>
         </div>
       </div>
     ))}
