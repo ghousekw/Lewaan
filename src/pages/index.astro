@@ -7,30 +7,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
+    <title>Lewan Interior Design</title>
     <link rel="canonical" href="/en/">
-    <!-- Netlify Identity Widget for token handling -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background: #1a1a1a;
+        color: white;
+      }
+      .loading {
+        text-align: center;
+      }
+    </style>
 </head>
 <body>
+    <div class="loading">
+      <p>Loading...</p>
+    </div>
+    
+    <!-- Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    
     <script>
       // Check for Netlify Identity tokens in hash
       const hash = window.location.hash;
-      if (hash && (hash.includes('invite_token') || hash.includes('confirmation_token') || hash.includes('recovery_token') || hash.includes('access_token'))) {
-        // Stay on this page and let the widget handle the token
-        if (window.netlifyIdentity) {
-          window.netlifyIdentity.on('init', user => {
-            window.netlifyIdentity.open();
-          });
-          window.netlifyIdentity.on('login', () => {
-            window.location.href = '/admin/';
-          });
+      const hasToken = hash && (hash.includes('invite_token') || hash.includes('confirmation_token') || hash.includes('recovery_token') || hash.includes('access_token'));
+      
+      if (hasToken) {
+        // Wait for Netlify Identity widget to load
+        function initIdentity() {
+          if (window.netlifyIdentity) {
+            window.netlifyIdentity.on('init', function(user) {
+              window.netlifyIdentity.open();
+            });
+            window.netlifyIdentity.on('login', function() {
+              window.location.href = '/admin/';
+            });
+            window.netlifyIdentity.on('close', function() {
+              window.location.href = '/en/';
+            });
+          } else {
+            // Widget not ready, try again
+            setTimeout(initIdentity, 100);
+          }
         }
+        initIdentity();
       } else {
         // No token, redirect to /en/
         window.location.href = '/en/';
       }
     </script>
+    
     <noscript>
       <meta http-equiv="refresh" content="0; url=/en/">
     </noscript>
