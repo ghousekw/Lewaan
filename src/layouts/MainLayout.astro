@@ -81,6 +81,13 @@ const seoData = {
     <!-- Netlify Identity redirect script -->
     <script is:inline>
       if (window.netlifyIdentity) {
+        // Handle invite/recovery/confirmation tokens in URL
+        const hash = window.location.hash;
+        if (hash && (hash.includes('invite_token') || hash.includes('confirmation_token') || hash.includes('recovery_token'))) {
+          // Open the identity widget to handle the token
+          window.netlifyIdentity.open();
+        }
+        
         window.netlifyIdentity.on('init', user => {
           if (!user) {
             window.netlifyIdentity.on('login', () => {
