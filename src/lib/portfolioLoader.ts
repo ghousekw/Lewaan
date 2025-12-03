@@ -46,22 +46,27 @@ export function loadPortfolioItems(): PortfolioItem[] {
           const filePath = path.join(portfolioPath, file);
           const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
           
+          if (!data.slug || !data.thumbnail) {
+            console.warn(`Skipping ${file}: missing slug or thumbnail`);
+            return null;
+          }
+          
           return {
             slug: data.slug,
             title: data.en?.title || data.title || '',
             description: data.en?.description || data.description || '',
             thumbnail: data.thumbnail,
             gallery: data.gallery || [],
-            order: data.order || 0
+            order: data.order || 999
           };
         } catch (err) {
           console.warn(`Failed to parse ${file}:`, err);
           return null;
         }
       })
-      .filter((item): item is { slug: string; title: string; description: string; thumbnail: string; gallery: any[]; order: number } => item !== null)
-      .sort((a, b) => a.order - b.order)
-      .map(({ order, ...item }) => item as PortfolioItem)
+      .filter((item): item is any => item !== null)
+      .sort((a, b) => (a.order || 999) - (b.order || 999))
+      .map(({ order, ...item }) => item as PortfolioItem);
 
     return cmsItems.length > 0 ? cmsItems : hardcodedItems;
   } catch (err) {
