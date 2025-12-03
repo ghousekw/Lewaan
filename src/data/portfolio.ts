@@ -167,6 +167,26 @@ export const portfolioItems: PortfolioItem[] = [
     ]
   },
   {
+    slug: 'child-room',
+    title: 'Child Room',
+    description: 'Playful and imaginative spaces designed to inspire creativity and fun.',
+    thumbnail: '/Child Room/06.Child Room (1).webp',
+    gallery: [
+      { type: 'image', src: '/Child Room/06.Child Room (1).webp', alt: 'Child Room View 1' },
+      { type: 'image', src: '/Child Room/06.Child Room (2).webp', alt: 'Child Room View 2' },
+      { type: 'image', src: '/Child Room/06.Child Room (3).webp', alt: 'Child Room View 3' },
+      { type: 'image', src: '/Child Room/06.Child Room (4).webp', alt: 'Child Room View 4' },
+      { type: 'image', src: '/Child Room/06.Child Room (5).webp', alt: 'Child Room View 5' },
+      { type: 'image', src: '/Child Room/06.Child Room (6).webp', alt: 'Child Room View 6' },
+      { type: 'image', src: '/Child Room/06.Child Room (7).webp', alt: 'Child Room View 7' },
+      { type: 'image', src: '/Child Room/06.Child Room (8).webp', alt: 'Child Room View 8' },
+      { type: 'image', src: '/Child Room/06.Child Room (9).webp', alt: 'Child Room View 9' },
+      { type: 'image', src: '/Child Room/06.Child Room (10).webp', alt: 'Child Room View 10' },
+      { type: 'image', src: '/Child Room/06.Child Room (11).webp', alt: 'Child Room View 11' },
+      { type: 'image', src: '/Child Room/06.Child Room (12).webp', alt: 'Child Room View 12' },
+    ]
+  },
+  {
     slug: 'wash-bathroom',
     title: 'Wash & Bathroom',
     description: 'Spa-like bathrooms combining luxury, functionality, and modern design.',
