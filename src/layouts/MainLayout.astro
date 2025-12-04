@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SEO from '../components/SEO.astro';
+import WhatsAppSticky from '../components/WhatsAppSticky.astro';
 import type { Language } from '../i18n';
 import '../styles/global.css';
 
@@ -77,6 +78,7 @@ const seoData = {
         <slot />
     </main>
     <Footer />
+    <WhatsAppSticky />
     
     <!-- Netlify Identity redirect script -->
     <script is:inline>
