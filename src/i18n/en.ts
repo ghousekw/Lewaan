@@ -71,6 +71,52 @@ export const en = {
       getInTouch: "Get In Touch",
       learnMore: "Learn More About Us",
     },
+    services: {
+      label: "Our Services",
+      title: "What We Offer - Lewan Interior Design Services",
+      description: "Comprehensive interior design solutions from planning to execution",
+      items: [
+        {
+          title: "Modern Interior Design",
+          description: "Contemporary luxury interiors with clean lines and minimalist aesthetics. Perfect for villas, apartments, and commercial spaces."
+        },
+        {
+          title: "2D Floor Plans & Layouts",
+          description: "Detailed 2D space planning, floor plans, electrical layouts, and ceiling designs. Professional CAD drawings for your Lewan interior project."
+        },
+        {
+          title: "3D Visualization & Rendering",
+          description: "Realistic 3D renderings that bring your interior design vision to life before construction begins. See exactly how your Lewan interior will look."
+        },
+        {
+          title: "Luxury Residential Design",
+          description: "Exquisite interior design for villas, master bedrooms, living rooms, and dining halls. Tailored luxury designs for discerning homeowners."
+        },
+        {
+          title: "Commercial Interior Design",
+          description: "Professional commercial spaces, offices, reception areas, and retail interiors designed to impress. Corporate interior design solutions."
+        },
+        {
+          title: "Complete Turnkey Execution",
+          description: "From concept to completion. Lewan handles gypsum, painting, flooring, lighting, joinery, and landscaping. Full-service interior construction."
+        }
+      ]
+    },
+    styles: {
+      label: "Design Styles",
+      title: "Lewan Interior Design Styles",
+      description: "Explore the variety of design styles we specialize in",
+      items: [
+        { name: "Modern" },
+        { name: "Minimalist" },
+        { name: "Islamic" },
+        { name: "Moroccan" },
+        { name: "Contemporary" },
+        { name: "Classic" },
+        { name: "Industrial" },
+        { name: "Scandinavian" }
+      ]
+    },
   },
   about: {
     hero: {

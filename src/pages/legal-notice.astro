@@ -1,0 +1,93 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+const language = 'en';
+const seo = {
+  title: 'Legal Notice | Lewan Interior Design',
+  description: 'Legal information and disclaimers for Lewan Interior Design.',
+  canonicalPath: '/legal-notice',
+};
+---
+
+<MainLayout language={language} seo={seo}>
+  <section class="py-20 md:py-32 bg-brand-background">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-bold text-brand-text-secondary mb-12">Legal Notice</h1>
+        
+        <div class="space-y-8 text-brand-text-primary leading-relaxed">
+          <div>
+            <h2 class="text-2xl font-bold text-brand-secondary mb-4">1. Website Operator</h2>
+            <p>
+              This website is operated by Lewan Interior Design, a company registered in Kuwait. All rights reserved.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-bold text-brand-secondary mb-4">2. Intellectual Property Rights</h2>
+            <p>
+              All content on this website, including but not limited to text, graphics, logos, images, audio clips, digital downloads, and data compilations, is the property of Lewan Interior Design or its content suppliers and protected by international copyright laws.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-bold text-brand-secondary mb-4">3. Trademarks</h2>
+            <p>
+              "Lewan Interior Design" and all related logos and product names are trademarks or registered trademarks of Lewan Interior Design. All other trademarks and logos on the website are the property of their respective owners.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-bold text-brand-secondary mb-4">4. Limitation of Liability</h2>
+            <p>
+              In no case shall Lewan Interior Design, its suppliers or any third parties mentioned on this site be liable for any damages or losses caused by the use or inability to use the materials on this site, including but not limited to direct, indirect, incidental, punitive, and consequential damages, even if Lewan Interior Design has been advised of the possibility of such damages.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-bold text-brand-secondary mb-4">5. Indemnification</h2>
+            <p>
+              You agree to indemnify and hold harmless Lewan Interior Design and its officers, directors, employees, agents, and successors from any claim, demand, or damage, including reasonable attorney's fees, asserted by any third party due to or arising out of your use of this website or violation of this legal notice.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-bold text-brand-secondary mb-4">6. External Links</h2>
+            <p>
+              Lewan Interior Design is not responsible for the content of external internet sites linked to this website. The inclusion of any link does not imply an endorsement or recommendation of the linked site.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-bold text-brand-secondary mb-4">7. Modifications</h2>
+            <p>
+              Lewan Interior Design may modify this legal notice at any time without notice. Your continued use of the website following any such modification constitutes your acceptance of the modified terms.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-bold text-brand-secondary mb-4">8. Governing Law and Jurisdiction</h2>
+            <p>
+              This website and all information contained herein is governed by the laws of Kuwait. Any dispute arising from or relating to this website shall be subject to the exclusive jurisdiction of the courts located in Kuwait.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-bold text-brand-secondary mb-4">9. Contact Information</h2>
+            <p>
+              For any inquiries regarding this legal notice, please contact:
+              <br />
+              <strong>Email:</strong> info@lewaninterior.com
+              <br />
+              <strong>Phone:</strong> +965 50527750
+            </p>
+          </div>
+
+          <div class="text-sm text-brand-text-primary/70 pt-8 border-t border-brand-secondary/20">
+            <p>Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

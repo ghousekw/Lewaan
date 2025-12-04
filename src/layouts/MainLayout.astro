@@ -21,14 +21,14 @@ interface Props {
 const { language = 'en', seo } = Astro.props;
 const isRTL = language === 'ar';
 
-// Default SEO values
+// Default SEO values - Optimized for "lewan interior" searches
 const defaultSEO = {
   title: language === 'ar' 
-    ? 'ليوان للتصميم الداخلي | الكويت' 
-    : 'Lewan Interior Design | Kuwait',
+    ? 'ليوان - تصميم داخلي فاخر | الكويت' 
+    : 'Lewan Interior - Best Interior Design in Kuwait',
   description: language === 'ar'
-    ? 'شركة التصميم الداخلي الرائدة في الكويت منذ 2015. متخصصون في التصميم الداخلي الفاخر للمنازل والمشاريع التجارية.'
-    : 'Leading interior design company in Kuwait since 2015. Specializing in luxury residential and commercial interiors.',
+    ? 'ليوان تصميم داخلي - أفضل شركة تصميم ديكور داخلي في الكويت. خدمات تصميم حديثة، فاخرة وبسيطة للمنازل والشركات. رسومات تنفيذية وتصور ثلاثي الأبعاد.'
+    : 'Lewan Interior - Top interior design company in Kuwait. Professional interior design, modern luxury decor, 3D design & complete renovation services.',
 };
 
 const seoData = {

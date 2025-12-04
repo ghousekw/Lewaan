@@ -17,14 +17,14 @@ function langUrl(path: string, lang: Language): string {
   return `/${lang}${path}`;
 }
 
-// SEO metadata
+// SEO metadata - Optimized for "lewan interior" search term
 const seo = {
   title: language === 'ar' 
-    ? 'ليوان للتصميم الداخلي | خدمات التصميم الداخلي الفاخرة في الكويت'
-    : 'Lewan Interior Design | Premium Interior Design Services in Kuwait',
+    ? 'ليوان - تصميم داخلي فاخر في الكويت | مصمم ديكور حديث'
+    : 'Lewan Interior | Best Interior Design Services in Kuwait',
   description: language === 'ar'
-    ? 'حوّل مساحتك مع ليوان - شركة التصميم الداخلي الرائدة في الكويت منذ 2015. متخصصون في التصميم الداخلي الفاخر للمنازل والمشاريع التجارية.'
-    : "Transform your space with Lewan - Kuwait's leading interior design firm since 2015. Specializing in luxury residential and commercial interiors.",
+    ? 'ليوان تصميم داخلي - شركة التصميم الداخلي الرائدة في الكويت منذ 2015. تصميم ديكور فاخر، تصاميم حديثة وبسيطة، رسومات تنفيذية، تصور ثلاثي الأبعاد و تنفيذ شامل للمنازل والمشاريع التجارية.'
+    : "Lewan Interior - Kuwait's #1 interior design company. Professional interior design services, modern luxury designs, 3D visualization & complete turnkey execution since 2015.",
   canonicalPath: '/',
 };
 
@@ -334,6 +334,169 @@ export function getStaticPaths() {
             <h3 class="text-xl font-bold text-brand-text-secondary mb-3">{t.home.whyChooseUs.reasons.satisfaction.title}</h3>
             <p class="text-brand-text-primary">{t.home.whyChooseUs.reasons.satisfaction.description}</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Overview Section - Keyword Rich Content -->
+  <section class="py-24 md:py-32 bg-brand-background relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-brand-primary/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-brand-secondary/5 rounded-full blur-3xl"></div>
+    
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <p class="text-brand-secondary text-sm uppercase tracking-widest mb-4 font-semibold">{t.home.services.label}</p>
+          <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-brand-text-secondary">
+            {t.home.services.title}
+          </h2>
+          <p class="text-lg md:text-xl text-brand-text-primary max-w-3xl mx-auto">
+            {t.home.services.description}
+          </p>
+          <div class="w-24 h-1 bg-brand-secondary mx-auto mt-6"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {t.home.services.items.map((service, index) => (
+            <div key={index} class="group bg-white/5 backdrop-blur p-8 rounded-2xl border border-brand-secondary/20 hover:border-brand-secondary/50 hover:bg-white/10 transition-all duration-300">
+              <div class="w-12 h-12 bg-brand-secondary/20 rounded-lg flex items-center justify-center mb-4 group-hover:bg-brand-secondary/30 transition-colors">
+                <svg class="w-6 h-6 text-brand-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-brand-text-secondary mb-3">{service.title}</h3>
+              <p class="text-brand-text-primary leading-relaxed">{service.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Design Styles Section - SEO Keywords -->
+  <section class="py-24 md:py-32 bg-brand-background">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <p class="text-brand-secondary text-sm uppercase tracking-widest mb-4 font-semibold">{t.home.styles.label}</p>
+          <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-brand-text-secondary">
+            {t.home.styles.title}
+          </h2>
+          <p class="text-lg md:text-xl text-brand-text-primary max-w-3xl mx-auto">
+            {t.home.styles.description}
+          </p>
+          <div class="w-24 h-1 bg-brand-secondary mx-auto mt-6"></div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          {t.home.styles.items.map((style, index) => (
+            <div key={index} class="group bg-white/5 hover:bg-brand-secondary/10 border border-brand-secondary/10 hover:border-brand-secondary/50 rounded-xl p-6 text-center transition-all duration-300 cursor-pointer">
+              <p class="text-lg font-semibold text-brand-text-secondary group-hover:text-brand-secondary transition-colors">
+                {style.name}
+              </p>
+              <p class="text-sm text-brand-text-primary/70 mt-2 group-hover:text-brand-text-primary transition-colors">
+                {language === 'ar' ? 'تصميم داخلي' : 'Interior Design'}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-12 text-center">
+          <p class="text-lg text-brand-text-primary max-w-2xl mx-auto mb-6">
+            {language === 'ar' 
+              ? 'ليوان تصميم داخلي متخصصة في جميع أنماط الديكور الفاخرة والحديثة. اختر النمط المفضل لديك أو دع فريقنا يقترح عليك.'
+              : 'Lewan Interior specializes in all luxury interior design styles. Choose your preferred design style or let our team recommend the perfect look for your space.'}
+          </p>
+          <a 
+            href={langUrl('/portfolio', language)} 
+            class="inline-flex items-center gap-2 bg-brand-secondary text-white font-semibold py-3 px-8 rounded-full hover:bg-brand-primary transition-colors duration-300 group"
+          >
+            <span>{language === 'ar' ? 'شاهد مشاريعنا' : 'View Our Projects'}</span>
+            <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO-Optimized Text Section -->
+  <section class="py-20 md:py-24 bg-brand-background relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-brand-primary/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-brand-secondary/5 rounded-full blur-3xl"></div>
+    
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="max-w-4xl mx-auto">
+        <div class="space-y-6 text-brand-text-primary leading-relaxed">
+          {language === 'ar' ? (
+            <>
+              <p class="text-lg text-center mb-8">
+                <strong class="text-brand-text-secondary">ليوان - تصميم داخلي متخصص في الكويت</strong>
+              </p>
+              <p>
+                إذا كنت تبحث عن <strong class="text-brand-secondary">تصميم داخلي فاخر في الكويت</strong>، فإن <strong class="text-brand-secondary">ليوان للتصميم الداخلي</strong> هي الخيار الأمثل. منذ عام 2015، قدمنا خدمات <strong class="text-brand-secondary">تصميم ديكور داخلي</strong> عالية الجودة لآلاف العملاء الراضين.
+              </p>
+              <p>
+                نحن متخصصون في <strong class="text-brand-secondary">التصميم الداخلي الحديث</strong> و<strong class="text-brand-secondary">الديكور الفاخر</strong> للمنازل والمشاريع التجارية. فريقنا المتخصص في <strong class="text-brand-secondary">تصميم داخلي</strong> يوفر:
+              </p>
+              <ul class="list-disc list-inside space-y-2">
+                <li><strong class="text-brand-secondary">مخططات 2D احترافية</strong> - تخطيط دقيق لمشاريع التصميم الداخلي</li>
+                <li><strong class="text-brand-secondary">تصور 3D واقعي</strong> - شاهد ديكورك الداخلي الفاخر قبل التنفيذ</li>
+                <li><strong class="text-brand-secondary">تصاميم ديكور حديثة</strong> - أنماط معاصرة وبسيطة وإسلامية</li>
+                <li><strong class="text-brand-secondary">تنفيذ كامل</strong> - من البناء إلى التأثيث، نحن نتولى كل شيء</li>
+              </ul>
+              <p>
+                عند اختيار <strong class="text-brand-secondary">ليوان تصميم داخلي</strong>، تختار:
+              </p>
+              <ul class="list-disc list-inside space-y-2">
+                <li>أفضل شركة تصميم ديكور داخلي في الكويت</li>
+                <li>فريق متخصص بخبرة 9+ سنوات</li>
+                <li>1,238+ مشروع تصميم داخلي ناجح</li>
+                <li>خدمة عملاء 24/7</li>
+              </ul>
+              <p>
+                سواء كنت تبحث عن <strong class="text-brand-secondary">تصميم داخلي للفلل</strong> أو <strong class="text-brand-secondary">ديكور شقق فاخرة</strong> أو <strong class="text-brand-secondary">تصميم داخلي تجاري</strong>، فريق ليوان للتصميم الداخلي جاهز لتحويل مساحتك إلى واحة أنيقة وعملية.
+              </p>
+              <p class="text-center pt-4 border-t border-brand-secondary/20">
+                <strong class="text-brand-secondary">تواصل مع ليوان - افضل شركة تصميم ديكور داخلي في الكويت - واحصل على استشارة مجانية اليوم!</strong>
+              </p>
+            </>
+          ) : (
+            <>
+              <p class="text-lg text-center mb-8">
+                <strong class="text-brand-text-secondary">Lewan Interior - Professional Interior Design in Kuwait</strong>
+              </p>
+              <p>
+                Looking for <strong class="text-brand-secondary">luxury interior design in Kuwait</strong>? <strong class="text-brand-secondary">Lewan Interior Design</strong> is your premier choice. Since 2015, we've delivered exceptional <strong class="text-brand-secondary">interior design services</strong> to thousands of satisfied clients across Kuwait.
+              </p>
+              <p>
+                We specialize in <strong class="text-brand-secondary">modern interior design</strong> and <strong class="text-brand-secondary">luxury decor</strong> for residential and commercial projects. Our <strong class="text-brand-secondary">interior design</strong> team provides:
+              </p>
+              <ul class="list-disc list-inside space-y-2">
+                <li><strong class="text-brand-secondary">Professional 2D Floor Plans</strong> - Precise layouts for your interior design projects</li>
+                <li><strong class="text-brand-secondary">Realistic 3D Visualization</strong> - See your luxury interior design before execution</li>
+                <li><strong class="text-brand-secondary">Modern Interior Designs</strong> - Contemporary, minimalist, and Islamic styles</li>
+                <li><strong class="text-brand-secondary">Complete Turnkey Execution</strong> - From construction to furnishing, we handle everything</li>
+              </ul>
+              <p>
+                When you choose <strong class="text-brand-secondary">Lewan Interior Design</strong>, you're choosing:
+              </p>
+              <ul class="list-disc list-inside space-y-2">
+                <li>Kuwait's top interior design and decor company</li>
+                <li>Expert team with 9+ years experience</li>
+                <li>1,238+ successful interior design projects</li>
+                <li>24/7 customer support</li>
+              </ul>
+              <p>
+                Whether you need <strong class="text-brand-secondary">luxury villa interior design</strong>, <strong class="text-brand-secondary">modern apartment interiors</strong>, or <strong class="text-brand-secondary">commercial interior design solutions</strong>, Lewan's expert team is ready to transform your space into an elegant, functional masterpiece.
+              </p>
+              <p class="text-center pt-4 border-t border-brand-secondary/20">
+                <strong class="text-brand-secondary">Contact Lewan Interior Design - Kuwait's best interior design company - and get your free consultation today!</strong>
+              </p>
+            </>
+          )}
         </div>
       </div>
     </div>
