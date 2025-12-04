@@ -1,10 +1,20 @@
 ---
 import { getSiteSettings } from '../lib/content';
+import type { Language } from '../i18n';
+
+// Get current language from URL or default to 'en'
+const urlLang = Astro.url.searchParams.get('lang') as Language | null;
+const currentLang: Language = (urlLang === 'ar' || urlLang === 'en') ? urlLang : 'en';
 
 // Get WhatsApp settings
-const settings = getSiteSettings();
-const whatsappPhone = settings.whatsappPhone?.replace(/\D/g, '') || '965505277550';
-const whatsappMessage = encodeURIComponent(settings.whatsappMessage || 'Hello, I am interested in your services.');
+const settings = getSiteSettings() as any;
+const whatsappPhone = settings.whatsappPhone?.replace(/\D/g, '') || '965505277750';
+
+// Get message based on current language
+const messages = settings.whatsappMessage || { en: 'Hello, I am interested in your services.', ar: 'السلام عليكم، أنا مهتم بخدماتكم.' };
+const message = typeof messages === 'object' ? messages[currentLang] : messages;
+const whatsappMessage = encodeURIComponent(message);
+
 const whatsappLink = `https://wa.me/${whatsappPhone}?text=${whatsappMessage}`;
 ---
 

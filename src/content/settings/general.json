@@ -5,5 +5,8 @@
   "instagram": "https://www.instagram.com/lewaninterior/",
   "address": "Kuwait City, Kuwait",
   "whatsappPhone": "+965 50527750",
-  "whatsappMessage": "Hello, I'm interested in learning more about Lewan Interior Design services."
+  "whatsappMessage": {
+    "en": "Hello, I'm interested in learning more about Lewan Interior Design services.",
+    "ar": "السلام عليكم، أنا مهتم بمعرفة المزيد عن خدمات ليوان للتصميم الداخلي."
+  }
 }
