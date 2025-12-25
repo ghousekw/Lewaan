@@ -34,77 +34,147 @@
     })();
   </script>
   <script>
-    // Custom Portfolio Grid View - Simple CSS-only solution
-    window.addEventListener('load', function() {
-      const checkCMS = setInterval(function() {
-        if (window.CMS) {
-          clearInterval(checkCMS);
-          console.log('🎨 Lewan CMS: Applying custom grid layout...');
+    // Custom Portfolio Grid View - Dynamic DOM Manipulation
+    (function() {
+      let styleInjected = false;
+      
+      function injectStyles() {
+        if (styleInjected) return;
+        styleInjected = true;
+        
+        const style = document.createElement('style');
+        style.id = 'lewan-portfolio-grid';
+        style.textContent = `
+          /* Force grid on any container with portfolio links - Very broad selectors */
+          .lewan-portfolio-grid,
+          div:has(a[href*="portfolio"][href*="entries"]) {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+            gap: 20px !important;
+            padding: 20px !important;
+          }
           
-          // Inject custom grid styles
-          const style = document.createElement('style');
-          style.textContent = `
-            /* Portfolio Collection Grid Layout */
-            div[class*="CollectionTop"] ~ div > div,
-            div[class*="CollectionContainer"] > div > div {
-              display: grid !important;
-              grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
-              gap: 24px !important;
-              padding: 24px !important;
-            }
-            
-            /* Portfolio Card Styling */
-            a[href*="/collections/portfolio/entries/"] {
-              border: 1px solid #e2e8f0 !important;
-              border-radius: 12px !important;
-              overflow: hidden !important;
-              transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-              background: white !important;
-              box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04) !important;
-              display: block !important;
-              text-decoration: none !important;
-            }
-            
-            a[href*="/collections/portfolio/entries/"]:hover {
-              transform: translateY(-6px) !important;
-              box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04) !important;
-              border-color: #cbd5e0 !important;
-            }
-            
-            /* Card Content Padding */
-            a[href*="/collections/portfolio/entries/"] > div {
-              padding: 20px !important;
-            }
-            
-            /* Card Title */
-            a[href*="/collections/portfolio/entries/"] h2 {
-              font-size: 19px !important;
-              font-weight: 600 !important;
-              color: #1a202c !important;
-              margin-bottom: 8px !important;
-              line-height: 1.4 !important;
-            }
-            
-            /* Card Description / Meta */
-            a[href*="/collections/portfolio/entries/"] p {
-              font-size: 14px !important;
-              color: #718096 !important;
-              line-height: 1.6 !important;
-              margin: 0 !important;
-            }
-            
-            /* Order badge styling */
-            a[href*="/collections/portfolio/entries/"] span {
-              color: #4299e1 !important;
-              font-weight: 500 !important;
-            }
-          `;
-          document.head.appendChild(style);
+          /* Style portfolio cards - Multiple selector strategies */
+          .lewan-portfolio-card,
+          a[href*="portfolio"][href*="entries"] {
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 12px !important;
+            padding: 20px !important;
+            background: white !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08) !important;
+            transition: all 0.3s ease !important;
+            text-decoration: none !important;
+            display: block !important;
+            margin-bottom: 0 !important;
+          }
           
-          console.log('✨ Lewan CMS: Grid layout applied!');
+          .lewan-portfolio-card:hover,
+          a[href*="portfolio"][href*="entries"]:hover {
+            transform: translateY(-4px) !important;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.12) !important;
+            border-color: #cbd5e0 !important;
+          }
+        `;
+        document.head.appendChild(style);
+      }
+      
+      function findAndStylePortfolio() {
+        // Find all portfolio entry links - multiple strategies
+        const portfolioLinks = Array.from(document.querySelectorAll('a')).filter(a => {
+          const href = (a.getAttribute('href') || '').toLowerCase();
+          return href.includes('portfolio') && (href.includes('entries') || href.includes('entry'));
+        });
+        
+        if (portfolioLinks.length === 0) {
+          // Try alternative: look for any links in portfolio collection
+          const altLinks = Array.from(document.querySelectorAll('a[href*="portfolio"]'));
+          if (altLinks.length > 2) {
+            console.log(`Found ${altLinks.length} portfolio-related links`);
+          }
+          return false;
         }
-      }, 100);
-    });
+        
+        console.log(`Found ${portfolioLinks.length} portfolio entry links`);
+        
+        // Strategy 1: Find common parent and apply grid
+        let container = portfolioLinks[0];
+        for (let i = 0; i < 15; i++) {
+          container = container.parentElement;
+          if (!container) break;
+          
+          const linksInContainer = Array.from(container.querySelectorAll('a')).filter(a => {
+            const href = (a.getAttribute('href') || '').toLowerCase();
+            return href.includes('portfolio') && (href.includes('entries') || href.includes('entry'));
+          });
+          
+          if (linksInContainer.length >= portfolioLinks.length * 0.8) {
+            // Found likely container
+            container.classList.add('lewan-portfolio-grid');
+            container.style.display = 'grid';
+            container.style.gridTemplateColumns = 'repeat(auto-fill, minmax(300px, 1fr))';
+            container.style.gap = '20px';
+            container.style.padding = '20px';
+            
+            // Style each link
+            linksInContainer.forEach(link => {
+              link.classList.add('lewan-portfolio-card');
+              link.style.border = '1px solid #e2e8f0';
+              link.style.borderRadius = '12px';
+              link.style.padding = '20px';
+              link.style.background = 'white';
+              link.style.boxShadow = '0 2px 4px rgba(0,0,0,0.08)';
+            });
+            
+            console.log(`✅ Applied grid to container with ${linksInContainer.length} items`);
+            return true;
+          }
+        }
+        
+        // Strategy 2: Apply styles directly to links if container search failed
+        portfolioLinks.forEach(link => {
+          link.classList.add('lewan-portfolio-card');
+          link.style.border = '1px solid #e2e8f0';
+          link.style.borderRadius = '12px';
+          link.style.padding = '20px';
+          link.style.background = 'white';
+          link.style.boxShadow = '0 2px 4px rgba(0,0,0,0.08)';
+          link.style.display = 'block';
+          link.style.marginBottom = '20px';
+        });
+        
+        console.log(`✅ Applied card styles to ${portfolioLinks.length} items`);
+        return true;
+      }
+      
+      // Wait for CMS
+      window.addEventListener('load', function() {
+        const checkCMS = setInterval(function() {
+          if (window.CMS) {
+            clearInterval(checkCMS);
+            console.log('🎨 Lewan CMS: Initializing...');
+            
+            injectStyles();
+            
+            // Watch for DOM changes
+            const observer = new MutationObserver(function() {
+              findAndStylePortfolio();
+            });
+            
+            observer.observe(document.body, {
+              childList: true,
+              subtree: true
+            });
+            
+            // Try immediately and after delays
+            setTimeout(findAndStylePortfolio, 500);
+            setTimeout(findAndStylePortfolio, 1500);
+            setTimeout(findAndStylePortfolio, 3000);
+            
+            console.log('✨ Lewan CMS: Ready!');
+          }
+        }, 100);
+      });
+    })();
   </script>
 </body>
 </html>
