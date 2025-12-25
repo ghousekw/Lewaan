@@ -136,52 +136,232 @@ collections:
   # PORTFOLIO
   # ============================================
   - name: "portfolio"
-    label: "Portfolio Projects"
+    label: "📁 Portfolio Projects"
     label_singular: "Project"
     folder: "src/content/portfolio"
     create: true
+    delete: true
     slug: "{{slug}}"
     identifier_field: "slug"
-    summary: "{{en.title}} (Order: {{order}})"
+    summary: "{{en.title}} | Order: {{order}} | {{gallery.length}} images"
+    sortable_fields: ['order', 'en.title', 'commit_date']
     format: "json"
     extension: "json"
     preview_path: "portfolio/{{slug}}"
+    editor:
+      preview: true
     fields:
-      - { label: "Slug", name: "slug", widget: "string", required: true }
-      - { label: "Order", name: "order", widget: "number", default: 0, hint: "Lower numbers appear first" }
-      - { label: "Thumbnail", name: "thumbnail", widget: "image", required: true }
-      - label: "English (EN)"
+      - label: "Project Slug"
+        name: "slug"
+        widget: "string"
+        required: true
+        pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be lowercase with hyphens (e.g., master-bedroom)"]
+        hint: "URL-friendly identifier (e.g., master-bedroom, living-hall). Use lowercase and hyphens only."
+      
+      - label: "Display Order"
+        name: "order"
+        widget: "number"
+        default: 0
+        value_type: "int"
+        min: 0
+        max: 100
+        step: 1
+        hint: "⬆️ Lower numbers appear first (0 = top, 100 = bottom)"
+      
+      - label: "Featured"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        required: false
+        hint: "⭐ Mark as featured project (appears prominently on homepage)"
+      
+      - label: "Project Status"
+        name: "status"
+        widget: "select"
+        options: 
+          - { label: "✅ Published", value: "published" }
+          - { label: "📝 Draft", value: "draft" }
+          - { label: "🔒 Private", value: "private" }
+        default: "published"
+        hint: "Control project visibility"
+      
+      - label: "Project Category"
+        name: "category"
+        widget: "select"
+        multiple: true
+        required: false
+        options:
+          - { label: "🛏️ Bedroom", value: "bedroom" }
+          - { label: "🛋️ Living Room", value: "living-room" }
+          - { label: "🍽️ Dining", value: "dining" }
+          - { label: "👨‍🍳 Kitchen", value: "kitchen" }
+          - { label: "🚿 Bathroom", value: "bathroom" }
+          - { label: "🎬 Entertainment", value: "entertainment" }
+          - { label: "💼 Office", value: "office" }
+          - { label: "🎮 Kids & Play", value: "kids" }
+          - { label: "🚪 Entrance & Corridors", value: "entrance" }
+          - { label: "🪜 Staircase", value: "staircase" }
+          - { label: "🏠 Other", value: "other" }
+        hint: "Select one or more categories (helps with filtering)"
+      
+      - label: "📸 Thumbnail Image"
+        name: "thumbnail"
+        widget: "image"
+        required: true
+        media_folder: "/public/uploads/thumbnails"
+        hint: "Main preview image (recommended: 800x600px, .webp format)"
+        media_library:
+          config:
+            max_file_size: 2048000
+      
+      - label: "🇬🇧 English Content"
         name: "en"
         widget: "object"
         collapsed: false
         fields:
-          - { label: "Title", name: "title", widget: "string", required: true }
-          - { label: "Description", name: "description", widget: "text", required: true }
-      - label: "Arabic (AR)"
+          - label: "Project Title"
+            name: "title"
+            widget: "string"
+            required: true
+            hint: "Project name in English"
+          
+          - label: "Short Description"
+            name: "description"
+            widget: "text"
+            required: true
+            hint: "Brief description (2-3 sentences)"
+          
+          - label: "Full Description"
+            name: "fullDescription"
+            widget: "markdown"
+            required: false
+            hint: "Detailed project description (optional, supports formatting)"
+          
+          - label: "Project Details"
+            name: "details"
+            widget: "object"
+            required: false
+            collapsed: true
+            fields:
+              - { label: "Location", name: "location", widget: "string", required: false }
+              - { label: "Year", name: "year", widget: "string", required: false }
+              - { label: "Area (sq ft)", name: "area", widget: "string", required: false }
+              - { label: "Style", name: "style", widget: "string", required: false, hint: "e.g., Modern, Classic, Contemporary" }
+      
+      - label: "🇸🇦 Arabic Content"
         name: "ar"
         widget: "object"
         collapsed: false
         fields:
-          - { label: "Title", name: "title", widget: "string", required: true }
-          - { label: "Description", name: "description", widget: "text", required: true }
-      - label: "Gallery"
+          - label: "Project Title"
+            name: "title"
+            widget: "string"
+            required: true
+            hint: "اسم المشروع بالعربية"
+          
+          - label: "Short Description"
+            name: "description"
+            widget: "text"
+            required: true
+            hint: "وصف مختصر (2-3 جمل)"
+          
+          - label: "Full Description"
+            name: "fullDescription"
+            widget: "markdown"
+            required: false
+            hint: "وصف تفصيلي للمشروع (اختياري)"
+          
+          - label: "Project Details"
+            name: "details"
+            widget: "object"
+            required: false
+            collapsed: true
+            fields:
+              - { label: "الموقع", name: "location", widget: "string", required: false }
+              - { label: "السنة", name: "year", widget: "string", required: false }
+              - { label: "المساحة (قدم مربع)", name: "area", widget: "string", required: false }
+              - { label: "النمط", name: "style", widget: "string", required: false }
+      
+      - label: "🖼️ Project Gallery"
         name: "gallery"
         widget: "list"
-        collapsed: true
+        collapsed: false
+        summary: "{{fields.type}} | {{fields.alt.en}}"
+        min: 1
+        hint: "Add project images/videos (drag to reorder)"
         fields:
-          - label: "Type"
+          - label: "Media Type"
             name: "type"
             widget: "select"
-            options: ["image", "video"]
+            options: 
+              - { label: "📷 Image", value: "image" }
+              - { label: "🎥 Video", value: "video" }
             default: "image"
-          - { label: "Image/Video", name: "src", widget: "image", required: true }
-          - label: "Alt Text"
+          
+          - label: "Image/Video File"
+            name: "src"
+            widget: "image"
+            required: true
+            media_folder: "/public/uploads/gallery"
+            hint: "Upload image or video file"
+            media_library:
+              config:
+                max_file_size: 5120000
+          
+          - label: "Alt Text (Accessibility)"
             name: "alt"
             widget: "object"
             collapsed: true
+            hint: "Describe the image for accessibility"
             fields:
-              - { label: "English", name: "en", widget: "string" }
-              - { label: "Arabic", name: "ar", widget: "string" }
+              - { label: "English", name: "en", widget: "string", default: "Project image" }
+              - { label: "Arabic", name: "ar", widget: "string", default: "صورة المشروع" }
+          
+          - label: "Caption"
+            name: "caption"
+            widget: "object"
+            required: false
+            collapsed: true
+            hint: "Optional caption to display with image"
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Arabic", name: "ar", widget: "string", required: false }
+      
+      - label: "🏷️ Tags"
+        name: "tags"
+        widget: "list"
+        required: false
+        collapsed: true
+        hint: "Add searchable tags (e.g., luxury, modern, minimalist)"
+        field: { label: "Tag", name: "tag", widget: "string" }
+      
+      - label: "🔗 SEO & Metadata"
+        name: "seo"
+        widget: "object"
+        required: false
+        collapsed: true
+        fields:
+          - label: "Meta Title (EN)"
+            name: "metaTitleEn"
+            widget: "string"
+            required: false
+            hint: "Custom page title for search engines (leave empty to use project title)"
+          
+          - label: "Meta Title (AR)"
+            name: "metaTitleAr"
+            widget: "string"
+            required: false
+          
+          - label: "Meta Description (EN)"
+            name: "metaDescriptionEn"
+            widget: "text"
+            required: false
+            hint: "Brief description for search results (150-160 characters)"
+          
+          - label: "Meta Description (AR)"
+            name: "metaDescriptionAr"
+            widget: "text"
+            required: false
 
   # ============================================
   # ABOUT PAGE
