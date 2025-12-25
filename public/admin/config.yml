@@ -142,20 +142,10 @@ collections:
     create: true
     slug: "{{slug}}"
     identifier_field: "slug"
-    summary: "{{en.title}} | Order: {{order}}"
+    summary: "{{en.title}} (Order: {{order}})"
     format: "json"
     extension: "json"
     preview_path: "portfolio/{{slug}}"
-    # Display configuration for grid view with thumbnails
-    view_filters:
-      - label: "Order"
-        field: order
-        pattern: ''
-    view_groups:
-      - label: "Order"
-        field: order
-    # Sort by order by default
-    sortable_fields: ['order', 'en.title']
     fields:
       - { label: "Slug", name: "slug", widget: "string", required: true }
       - { label: "Order", name: "order", widget: "number", default: 0, hint: "Lower numbers appear first" }
