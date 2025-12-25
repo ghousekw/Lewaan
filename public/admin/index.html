@@ -34,145 +34,74 @@
     })();
   </script>
   <script>
-    // Custom Portfolio Grid View with Thumbnails and Dynamic Gallery Count
+    // Custom Portfolio Grid View - Simple CSS-only solution
     window.addEventListener('load', function() {
       const checkCMS = setInterval(function() {
         if (window.CMS) {
           clearInterval(checkCMS);
-          console.log('🎨 Lewan CMS: Initializing custom portfolio view...');
+          console.log('🎨 Lewan CMS: Applying custom grid layout...');
           
-          // Inject custom styles dynamically
+          // Inject custom grid styles
           const style = document.createElement('style');
           style.textContent = `
-            /* Portfolio Grid Layout */
-            div[class*="CollectionTop"] ~ div > div {
+            /* Portfolio Collection Grid Layout */
+            div[class*="CollectionTop"] ~ div > div,
+            div[class*="CollectionContainer"] > div > div {
               display: grid !important;
-              grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
-              gap: 20px !important;
-              padding: 20px !important;
+              grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+              gap: 24px !important;
+              padding: 24px !important;
             }
             
-            /* Portfolio Cards */
-            div[class*="CollectionTop"] ~ div > div > a {
+            /* Portfolio Card Styling */
+            a[href*="/collections/portfolio/entries/"] {
               border: 1px solid #e2e8f0 !important;
               border-radius: 12px !important;
               overflow: hidden !important;
               transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
               background: white !important;
-              box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
-              display: flex !important;
-              flex-direction: column !important;
+              box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04) !important;
+              display: block !important;
+              text-decoration: none !important;
             }
             
-            div[class*="CollectionTop"] ~ div > div > a:hover {
-              transform: translateY(-4px) !important;
-              box-shadow: 0 12px 24px rgba(0,0,0,0.15) !important;
+            a[href*="/collections/portfolio/entries/"]:hover {
+              transform: translateY(-6px) !important;
+              box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04) !important;
               border-color: #cbd5e0 !important;
             }
             
-            /* Card Content */
-            div[class*="CollectionTop"] ~ div > div > a > div {
-              padding: 16px !important;
+            /* Card Content Padding */
+            a[href*="/collections/portfolio/entries/"] > div {
+              padding: 20px !important;
             }
             
             /* Card Title */
-            div[class*="CollectionTop"] ~ div > div > a h2 {
-              font-size: 18px !important;
+            a[href*="/collections/portfolio/entries/"] h2 {
+              font-size: 19px !important;
               font-weight: 600 !important;
               color: #1a202c !important;
               margin-bottom: 8px !important;
+              line-height: 1.4 !important;
             }
             
-            /* Card Description */
-            div[class*="CollectionTop"] ~ div > div > a p {
+            /* Card Description / Meta */
+            a[href*="/collections/portfolio/entries/"] p {
               font-size: 14px !important;
               color: #718096 !important;
-              line-height: 1.5 !important;
+              line-height: 1.6 !important;
+              margin: 0 !important;
             }
             
-            /* Thumbnail Badge */
-            .portfolio-thumbnail {
-              width: 100%;
-              height: 200px;
-              object-fit: cover;
-              background: #f7fafc;
-            }
-            
-            /* Gallery Count Badge */
-            .gallery-count-badge {
-              display: inline-block;
-              background: #4299e1;
-              color: white;
-              padding: 4px 12px;
-              border-radius: 12px;
-              font-size: 12px;
-              font-weight: 600;
-              margin-bottom: 8px;
+            /* Order badge styling */
+            a[href*="/collections/portfolio/entries/"] span {
+              color: #4299e1 !important;
+              font-weight: 500 !important;
             }
           `;
           document.head.appendChild(style);
           
-          // Monitor DOM changes and enhance portfolio cards
-          const observer = new MutationObserver(function(mutations) {
-            // Find all portfolio collection links
-            const portfolioLinks = document.querySelectorAll('a[href*="/collections/portfolio/entries/"]');
-            
-            portfolioLinks.forEach(link => {
-              if (!link.dataset.enhanced) {
-                enhancePortfolioCard(link);
-                link.dataset.enhanced = 'true';
-              }
-            });
-          });
-          
-          observer.observe(document.body, {
-            childList: true,
-            subtree: true
-          });
-          
-          // Function to enhance portfolio card with thumbnail and count
-          async function enhancePortfolioCard(link) {
-            try {
-              const href = link.getAttribute('href');
-              const slug = href.split('/').pop();
-              
-              // Fetch the portfolio item data
-              const response = await fetch(`/src/content/portfolio/${slug}.json`);
-              if (!response.ok) return;
-              
-              const data = await response.json();
-              const galleryCount = data.gallery ? data.gallery.length : 0;
-              
-              // Find or create thumbnail container
-              let thumbnailContainer = link.querySelector('.portfolio-thumbnail');
-              if (!thumbnailContainer && data.thumbnail) {
-                thumbnailContainer = document.createElement('img');
-                thumbnailContainer.className = 'portfolio-thumbnail';
-                thumbnailContainer.src = data.thumbnail;
-                thumbnailContainer.alt = data.en?.title || 'Portfolio thumbnail';
-                thumbnailContainer.loading = 'lazy';
-                link.insertBefore(thumbnailContainer, link.firstChild);
-              }
-              
-              // Add gallery count badge
-              const cardContent = link.querySelector('div');
-              if (cardContent && galleryCount > 0) {
-                let badge = cardContent.querySelector('.gallery-count-badge');
-                if (!badge) {
-                  badge = document.createElement('span');
-                  badge.className = 'gallery-count-badge';
-                  badge.textContent = `📷 ${galleryCount} image${galleryCount !== 1 ? 's' : ''}`;
-                  cardContent.insertBefore(badge, cardContent.firstChild);
-                }
-              }
-              
-              console.log(`✅ Enhanced: ${data.en?.title} (${galleryCount} images)`);
-            } catch (err) {
-              console.log('Note: Could not load portfolio data for', link.href, '-', err.message);
-            }
-          }
-          
-          console.log('✨ Lewan CMS: Custom portfolio view ready!');
+          console.log('✨ Lewan CMS: Grid layout applied!');
         }
       }, 100);
     });
