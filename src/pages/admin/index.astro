@@ -3,8 +3,12 @@
 // On Netlify, the _redirects file handles this
 ---
 <script>
-  // Redirect to the admin index.html
-  window.location.href = '/admin/index.html';
+  // Preserve hash tokens (invite/confirm/recovery) and avoid redirect loops.
+  const isIndexHtml = window.location.pathname.endsWith('/admin/index.html');
+  const hash = window.location.hash || '';
+  if (!isIndexHtml) {
+    window.location.replace(`/admin/index.html${hash}`);
+  }
 </script>
 <noscript>
   <meta http-equiv="refresh" content="0; url=/admin/index.html">
