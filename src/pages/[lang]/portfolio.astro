@@ -1,12 +1,13 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
-import { portfolioItems } from '../../data/portfolio';
+import { getPortfolioItems } from '../../lib/content';
 import { getTranslations, type Language } from '../../i18n';
 
 // Get language from route params
 const { lang } = Astro.params;
 const language: Language = (lang === 'ar' || lang === 'en') ? lang : 'en';
 const t = getTranslations(language);
+const items = await getPortfolioItems(language);
 
 // Helper function to add lang to URLs
 function langUrl(path: string, lang: Language): string {
@@ -61,111 +62,47 @@ export function getStaticPaths() {
         <section class="py-12 md:py-16 relative">
             <div class="container mx-auto px-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-                    {portfolioItems.map((item, index) => {
-                    // Translation mapping for project titles and descriptions
-                    const projectTranslations = {
-                      'reception': {
-                        en: { title: 'Reception', description: 'A welcoming and elegant reception area designed to make a lasting first impression.' },
-                        ar: { title: 'الاستقبال', description: 'منطقة استقبال ترحيبية وأنيقة مصممة لترك انطباع أول دائم.' }
-                      },
-                      'deewaniya-mughallath': {
-                        en: { title: 'Deewaniya & Mughallath', description: 'Traditional Arabic gathering spaces with modern elegance and cultural authenticity.' },
-                        ar: { title: 'الديوانية والمقلث', description: 'مساحات تجمع عربية تقليدية بأناقة عصرية وأصالة ثقافية.' }
-                      },
-                      'living-hall': {
-                        en: { title: 'Living Hall', description: 'A spacious and comfortable living area designed for family gatherings and relaxation.' },
-                        ar: { title: 'صالة المعيشة', description: 'منطقة معيشة واسعة ومريحة مصممة لتجمعات الأسرة والاسترخاء.' }
-                      },
-                      'dining-hall': {
-                        en: { title: 'Dining Hall', description: 'An elegant dining space perfect for hosting family meals and special occasions.' },
-                        ar: { title: 'قاعة الطعام', description: 'مساحة طعام أنيقة مثالية لاستضافة وجبات الأسرة والمناسبات الخاصة.' }
-                      },
-                      'master-bedrooms': {
-                        en: { title: 'Master Bedrooms', description: 'Luxurious master bedrooms designed for ultimate comfort and relaxation.' },
-                        ar: { title: 'غرف النوم الرئيسية', description: 'غرف نوم رئيسية فاخرة مصممة للراحة والاسترخاء القصوى.' }
-                      },
-                      'child-room': {
-                        en: { title: 'Child Room', description: 'Playful and imaginative spaces designed to inspire creativity and fun.' },
-                        ar: { title: 'غرفة الطفل', description: 'مساحات مرحة وخيالية مصممة لإلهام الإبداع والمرح.' }
-                      },
-                      'wash-bathroom': {
-                        en: { title: 'Wash Bathroom', description: 'Modern and sophisticated bathroom spaces for daily comfort.' },
-                        ar: { title: 'دورة المياه', description: 'مساحات حمام حديثة وأنيقة للراحة اليومية.' }
-                      },
-                      'dressing-room': {
-                        en: { title: 'Dressing Room', description: 'Elegant dressing spaces designed for style and functionality.' },
-                        ar: { title: 'غرفة الملابس', description: 'مساحات ملابس أنيقة مصممة للأسلوب والوظائف.' }
-                      },
-                      'cinema-hall': {
-                        en: { title: 'Cinema Hall', description: 'Entertainment spaces designed for premium viewing experience.' },
-                        ar: { title: 'قاعة السينما', description: 'مساحات ترفيهية مصممة لتجربة مشاهدة فاخرة.' }
-                      },
-                      'corridors': {
-                        en: { title: 'Corridors', description: 'Thoughtfully designed circulation spaces with elegant aesthetics.' },
-                        ar: { title: 'الممرات', description: 'مساحات تدوير مصممة بعناية بجماليات أنيقة.' }
-                      },
-                      'kitchen': {
-                        en: { title: 'Kitchen', description: 'Modern culinary spaces designed for functionality and style.' },
-                        ar: { title: 'المطبخ', description: 'مساحات طهي حديثة مصممة للوظائف والأسلوب.' }
-                      },
-                      'office': {
-                        en: { title: 'Office', description: 'Professional workspaces designed for productivity and comfort.' },
-                        ar: { title: 'المكتب', description: 'مساحات عمل احترافية مصممة للإنتاجية والراحة.' }
-                      },
-                      'playroom': {
-                        en: { title: 'Playroom', description: 'Creative and fun spaces designed for play and imagination.' },
-                        ar: { title: 'غرفة اللعب', description: 'مساحات إبداعية وممتعة مصممة للعب والخيال.' }
-                      },
-                      'staircase': {
-                        en: { title: 'Staircase', description: 'Architecturally stunning staircases as design focal points.' },
-                        ar: { title: 'السلالم', description: 'سلالم معمارية مذهلة كنقاط محورية للتصميم.' }
-                      }
-                    };
-                    
-                    const translation = projectTranslations[item.slug]?.[language] || { title: item.title, description: item.description };
-                    
-                    return (
-                    <a 
-                        href={langUrl(`/portfolio/${item.slug}`, language)}
-                        class="group relative overflow-hidden rounded-2xl shadow-2xl hover:shadow-2xl transition-all duration-500 ease-out transform hover:-translate-y-2 bg-[#112240] border border-transparent hover:border-brand-secondary/50 portfolio-card"
-                        style={`animation-delay: ${index * 50}ms`}
-                    >
-                        <!-- Image Container -->
-                        <div class="relative overflow-hidden h-72">
-                            <img 
-                                src={item.thumbnail} 
-                                alt={translation.title} 
-                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                                loading="lazy"
-                            />
-                            <!-- Gradient Overlay -->
-                            <div class="absolute inset-0 bg-gradient-to-t from-brand-background/90 via-brand-background/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        </div>
-                        
-                        <!-- Content -->
-                        <div class="p-6 md:p-8">
-                            <h3 class="text-2xl md:text-3xl font-bold text-brand-text-secondary mb-3 group-hover:text-brand-secondary transition-colors duration-300">
-                                {translation.title}
-                            </h3>
-                            <p class="text-brand-text-primary group-hover:text-brand-text-secondary transition-colors duration-300 leading-relaxed text-sm md:text-base line-clamp-2">
-                                {translation.description}
-                            </p>
-                            
-                            <!-- Stats and CTA -->
-                            <div class="mt-6 flex items-center justify-between">
-                                <span class="text-xs md:text-sm text-brand-secondary font-semibold">
-                                    {item.gallery.length} {item.gallery.length === 1 ? t.portfolio.itemsInGallery.singular : t.portfolio.itemsInGallery.plural}
-                                </span>
-                                <span class="inline-flex items-center gap-2 text-brand-secondary text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-x-1">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                                    </svg>
-                                </span>
-                            </div>
-                        </div>
-                    </a>
-                    );
-                    })}
+                    {items.map((item, index) => (
+                      <a 
+                          href={langUrl(`/portfolio/${item.slug}`, language)}
+                          class="group relative overflow-hidden rounded-2xl shadow-2xl hover:shadow-2xl transition-all duration-500 ease-out transform hover:-translate-y-2 bg-[#112240] border border-transparent hover:border-brand-secondary/50 portfolio-card"
+                          style={`animation-delay: ${index * 50}ms`}
+                      >
+                          <!-- Image Container -->
+                          <div class="relative overflow-hidden h-72">
+                              <img 
+                                  src={item.thumbnail} 
+                                  alt={item.title} 
+                                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                                  loading="lazy"
+                              />
+                              <!-- Gradient Overlay -->
+                              <div class="absolute inset-0 bg-gradient-to-t from-brand-background/90 via-brand-background/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                          </div>
+                          
+                          <!-- Content -->
+                          <div class="p-6 md:p-8">
+                              <h3 class="text-2xl md:text-3xl font-bold text-brand-text-secondary mb-3 group-hover:text-brand-secondary transition-colors duration-300">
+                                  {item.title}
+                              </h3>
+                              <p class="text-brand-text-primary group-hover:text-brand-text-secondary transition-colors duration-300 leading-relaxed text-sm md:text-base line-clamp-2">
+                                  {item.description}
+                              </p>
+                              
+                              <!-- Stats and CTA -->
+                              <div class="mt-6 flex items-center justify-between">
+                                  <span class="text-xs md:text-sm text-brand-secondary font-semibold">
+                                      {item.gallery.length} {item.gallery.length === 1 ? t.portfolio.itemsInGallery.singular : t.portfolio.itemsInGallery.plural}
+                                  </span>
+                                  <span class="inline-flex items-center gap-2 text-brand-secondary text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-x-1">
+                                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                      </svg>
+                                  </span>
+                              </div>
+                          </div>
+                      </a>
+                    ))}
                 </div>
             </div>
         </section>

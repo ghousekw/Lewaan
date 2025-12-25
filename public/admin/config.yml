@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: ghousekw/Lewaan
+  name: git-gateway
   branch: main
 
 # Enables the editorial workflow for content drafts

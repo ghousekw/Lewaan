@@ -1,102 +1,46 @@
 ---
 import MainLayout from '../../../layouts/MainLayout.astro';
 import Gallery from '../../../components/Gallery.astro';
-import { portfolioItems } from '../../../data/portfolio';
+import { getPortfolioItems, getPortfolioItem } from '../../../lib/content';
 import type { Language } from '../../../i18n';
 
-export function getStaticPaths() {
+export async function getStaticPaths() {
   const languages: Language[] = ['en', 'ar'];
-  
+
+  const items = await getPortfolioItems('en');
   const paths = [];
+
   for (const lang of languages) {
-    for (const item of portfolioItems) {
+    for (const item of items) {
       paths.push({
         params: { lang, slug: item.slug },
-        props: { item },
       });
     }
   }
-  
+
   return paths;
 }
 
-const { lang } = Astro.params;
-const { item } = Astro.props;
+const { lang, slug } = Astro.params;
 const language: Language = (lang === 'ar' || lang === 'en') ? lang : 'en';
+const item = await getPortfolioItem(slug, language);
+const allItems = await getPortfolioItems(language);
+
+if (!item) {
+  throw new Error(`Portfolio item not found: ${slug}`);
+}
 
 // Helper function to add lang to URLs
 function langUrl(path: string, lang: Language): string {
   return `/${lang}${path}`;
 }
 
-// Translation mapping for project titles and descriptions
-const projectTranslations: Record<string, Record<Language, { title: string; description: string }>> = {
-  'reception': {
-    en: { title: 'Reception', description: 'A welcoming and elegant reception area designed to make a lasting first impression.' },
-    ar: { title: 'الاستقبال', description: 'منطقة استقبال ترحيبية وأنيقة مصممة لترك انطباع أول دائم.' }
-  },
-  'deewaniya-mughallath': {
-    en: { title: 'Deewaniya & Mughallath', description: 'Traditional Arabic gathering spaces with modern elegance and cultural authenticity.' },
-    ar: { title: 'الديوانية والمقلث', description: 'مساحات تجمع عربية تقليدية بأناقة عصرية وأصالة ثقافية.' }
-  },
-  'living-hall': {
-    en: { title: 'Living Hall', description: 'A spacious and comfortable living area designed for family gatherings and relaxation.' },
-    ar: { title: 'صالة المعيشة', description: 'منطقة معيشة واسعة ومريحة مصممة لتجمعات الأسرة والاسترخاء.' }
-  },
-  'dining-hall': {
-    en: { title: 'Dining Hall', description: 'An elegant dining space perfect for hosting family meals and special occasions.' },
-    ar: { title: 'قاعة الطعام', description: 'مساحة طعام أنيقة مثالية لاستضافة وجبات الأسرة والمناسبات الخاصة.' }
-  },
-  'master-bedrooms': {
-    en: { title: 'Master Bedrooms', description: 'Luxurious master bedrooms designed for ultimate comfort and relaxation.' },
-    ar: { title: 'غرف النوم الرئيسية', description: 'غرف نوم رئيسية فاخرة مصممة للراحة والاسترخاء القصوى.' }
-  },
-  'child-room': {
-    en: { title: 'Child Room', description: 'Playful and imaginative spaces designed to inspire creativity and fun.' },
-    ar: { title: 'غرفة الطفل', description: 'مساحات مرحة وخيالية مصممة لإلهام الإبداع والمرح.' }
-  },
-  'wash-bathroom': {
-    en: { title: 'Wash Bathroom', description: 'Modern and sophisticated bathroom spaces for daily comfort.' },
-    ar: { title: 'دورة المياه', description: 'مساحات حمام حديثة وأنيقة للراحة اليومية.' }
-  },
-  'dressing-room': {
-    en: { title: 'Dressing Room', description: 'Elegant dressing spaces designed for style and functionality.' },
-    ar: { title: 'غرفة الملابس', description: 'مساحات ملابس أنيقة مصممة للأسلوب والوظائف.' }
-  },
-  'cinema-hall': {
-    en: { title: 'Cinema Hall', description: 'Entertainment spaces designed for premium viewing experience.' },
-    ar: { title: 'قاعة السينما', description: 'مساحات ترفيهية مصممة لتجربة مشاهدة فاخرة.' }
-  },
-  'corridors': {
-    en: { title: 'Corridors', description: 'Thoughtfully designed circulation spaces with elegant aesthetics.' },
-    ar: { title: 'الممرات', description: 'مساحات تدوير مصممة بعناية بجماليات أنيقة.' }
-  },
-  'kitchen': {
-    en: { title: 'Kitchen', description: 'Modern culinary spaces designed for functionality and style.' },
-    ar: { title: 'المطبخ', description: 'مساحات طهي حديثة مصممة للوظائف والأسلوب.' }
-  },
-  'office': {
-    en: { title: 'Office', description: 'Professional workspaces designed for productivity and comfort.' },
-    ar: { title: 'المكتب', description: 'مساحات عمل احترافية مصممة للإنتاجية والراحة.' }
-  },
-  'playroom': {
-    en: { title: 'Playroom', description: 'Creative and fun spaces designed for play and imagination.' },
-    ar: { title: 'غرفة اللعب', description: 'مساحات إبداعية وممتعة مصممة للعب والخيال.' }
-  },
-  'staircase': {
-    en: { title: 'Staircase', description: 'Architecturally stunning staircases as design focal points.' },
-    ar: { title: 'السلالم', description: 'سلالم معمارية مذهلة كنقاط محورية للتصميم.' }
-  }
-};
-
-const translation = projectTranslations[item.slug]?.[language] || { title: item.title, description: item.description };
-
 // SEO metadata
 const seo = {
   title: language === 'ar'
-    ? `${translation.title} | معرض أعمال ليوان للتصميم الداخلي`
-    : `${translation.title} | Lewan Interior Design Portfolio`,
-  description: translation.description,
+    ? `${item.title} | معرض أعمال ليوان للتصميم الداخلي`
+    : `${item.title} | Lewan Interior Design Portfolio`,
+  description: item.description,
   image: item.thumbnail,
   canonicalPath: `/portfolio/${item.slug}`,
 };
@@ -171,29 +115,10 @@ const seo = {
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-        {portfolioItems
+        {allItems
           .filter(p => p.slug !== item.slug)
           .slice(0, 3)
           .map((relatedItem) => {
-            const projectTranslations = {
-              'reception': { en: 'Reception', ar: 'الاستقبال' },
-              'deewaniya-mughallath': { en: 'Deewaniya & Mughallath', ar: 'الديوانية والمقلث' },
-              'living-hall': { en: 'Living Hall', ar: 'صالة المعيشة' },
-              'dining-hall': { en: 'Dining Hall', ar: 'قاعة الطعام' },
-              'master-bedrooms': { en: 'Master Bedrooms', ar: 'غرف النوم الرئيسية' },
-              'child-room': { en: 'Child Room', ar: 'غرفة الطفل' },
-              'wash-bathroom': { en: 'Wash Bathroom', ar: 'دورة المياه' },
-              'dressing-room': { en: 'Dressing Room', ar: 'غرفة الملابس' },
-              'cinema-hall': { en: 'Cinema Hall', ar: 'قاعة السينما' },
-              'corridors': { en: 'Corridors', ar: 'الممرات' },
-              'kitchen': { en: 'Kitchen', ar: 'المطبخ' },
-              'office': { en: 'Office', ar: 'المكتب' },
-              'playroom': { en: 'Playroom', ar: 'غرفة اللعب' },
-              'staircase': { en: 'Staircase', ar: 'السلالم' }
-            };
-            
-            const title = projectTranslations[relatedItem.slug]?.[language] || relatedItem.title;
-            
             return (
               <a
                 href={langUrl(`/portfolio/${relatedItem.slug}`, language)}
@@ -202,7 +127,7 @@ const seo = {
                 <div class="relative overflow-hidden h-64">
                   <img
                     src={relatedItem.thumbnail}
-                    alt={title}
+                    alt={relatedItem.title}
                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                     loading="lazy"
                   />
@@ -210,7 +135,7 @@ const seo = {
                 </div>
                 <div class="p-6">
                   <h3 class="text-xl md:text-2xl font-bold text-brand-text-secondary group-hover:text-brand-secondary transition-colors duration-300">
-                    {title}
+                    {relatedItem.title}
                   </h3>
                 </div>
               </a>

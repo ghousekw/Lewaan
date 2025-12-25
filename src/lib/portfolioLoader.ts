@@ -26,6 +26,21 @@ export interface PortfolioItem {
   }>;
 }
 
+function mapHardcoded(limit = 5): PortfolioItem[] {
+  return hardcodedItems.map((item) => ({
+    slug: item.slug,
+    title: item.title,
+    description: item.description,
+    thumbnail: item.thumbnail,
+    gallery: (item.gallery || []).slice(0, limit).map((g) => ({
+      type: g.type,
+      src: g.src,
+      alt: typeof g.alt === 'string' ? g.alt : (g.alt || `${item.title} image`),
+      thumbnail: g.thumbnail,
+    })),
+  }));
+}
+
 export function loadPortfolioItems(): PortfolioItem[] {
   const portfolioPath = path.join(projectRoot, 'src/content/portfolio');
 
@@ -33,7 +48,7 @@ export function loadPortfolioItems(): PortfolioItem[] {
     // Check if portfolio directory exists
     if (!fs.existsSync(portfolioPath)) {
       console.log(`[Portfolio Loader] Directory not found at ${portfolioPath}, using hardcoded data`);
-      return hardcodedItems;
+      return mapHardcoded();
     }
 
     // Read all JSON files from portfolio directory
@@ -76,7 +91,7 @@ export function loadPortfolioItems(): PortfolioItem[] {
 
     if (cmsItems.length === 0) {
       console.log('[Portfolio Loader] No valid CMS items found, using hardcoded data');
-      return hardcodedItems;
+      return mapHardcoded();
     }
 
     // Sort by order and remove order field
@@ -88,6 +103,6 @@ export function loadPortfolioItems(): PortfolioItem[] {
     return sortedItems;
   } catch (err) {
     console.error('[Portfolio Loader] Fatal error:', err instanceof Error ? err.message : String(err));
-    return hardcodedItems;
+    return mapHardcoded();
   }
 }
