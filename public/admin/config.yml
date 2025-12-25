@@ -143,8 +143,23 @@ collections:
     delete: true
     slug: "{{slug}}"
     identifier_field: "slug"
-    summary: "{{en.title}} | Order: {{order}} | {{gallery.length}} images"
+    summary: "{{en.title}} | Order: {{order}} | 📸 {{gallery.length}} images"
     sortable_fields: ['order', 'en.title', 'commit_date']
+    view_filters:
+      - label: "Featured Projects"
+        field: featured
+        pattern: true
+      - label: "Published"
+        field: status
+        pattern: 'published'
+      - label: "Drafts"
+        field: status
+        pattern: 'draft'
+    view_groups:
+      - label: "Status"
+        field: status
+      - label: "Category"
+        field: category
     format: "json"
     extension: "json"
     preview_path: "portfolio/{{slug}}"
@@ -166,7 +181,7 @@ collections:
         min: 0
         max: 100
         step: 1
-        hint: "⬆️ Lower numbers appear first (0 = top, 100 = bottom)"
+        hint: "⬆️ Lower numbers appear first (0 = top, 100 = bottom). TIP: Sort by 'order' in list view, then drag projects to reorder!"
       
       - label: "Featured"
         name: "featured"
@@ -288,7 +303,9 @@ collections:
         collapsed: false
         summary: "{{fields.type}} | {{fields.alt.en}}"
         min: 1
-        hint: "Add project images/videos (drag to reorder)"
+        hint: "📸 Add project images/videos. DRAG items to reorder them! First image appears as main."
+        label_singular: "Image/Video"
+        add_to_top: false
         fields:
           - label: "Media Type"
             name: "type"
