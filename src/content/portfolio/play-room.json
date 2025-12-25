@@ -11,9 +11,37 @@
     "description": "مساحة لعب ممتعة وجذابة مصممة للأطفال مع الأخذ بعين الاعتبار السلامة والإبداع."
   },
   "gallery": [
-    { "type": "image", "src": "/Play Room/Play Room (1).webp", "alt": { "en": "Play Room View 1", "ar": "منظر غرفة اللعب 1" } },
-    { "type": "image", "src": "/Play Room/Play Room (2).webp", "alt": { "en": "Play Room View 2", "ar": "منظر غرفة اللعب 2" } },
-    { "type": "image", "src": "/Play Room/Play Room (3).webp", "alt": { "en": "Play Room View 3", "ar": "منظر غرفة اللعب 3" } },
-    { "type": "image", "src": "/Play Room/Play Room (4).webp", "alt": { "en": "Play Room View 4", "ar": "منظر غرفة اللعب 4" } }
+    {
+      "type": "image",
+      "src": "/Play Room/Play Room (1).webp",
+      "alt": {
+        "en": "Play Room View 1",
+        "ar": "منظر غرفة اللعب 1"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Play Room/Play Room (2).webp",
+      "alt": {
+        "en": "Play Room View 2",
+        "ar": "منظر غرفة اللعب 2"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Play Room/Play Room (3).webp",
+      "alt": {
+        "en": "Play Room View 3",
+        "ar": "منظر غرفة اللعب 3"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Play Room/Play Room (4).webp",
+      "alt": {
+        "en": "Play Room View 4",
+        "ar": "منظر غرفة اللعب 4"
+      }
+    }
   ]
 }

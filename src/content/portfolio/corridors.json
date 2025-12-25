@@ -11,13 +11,69 @@
     "description": "ممرات مصممة بشكل جميل تربط المساحات في جميع أنحاء المنزل."
   },
   "gallery": [
-    { "type": "image", "src": "/Corridors/Corridors (17).webp", "alt": { "en": "Corridors View 1", "ar": "منظر الممرات 1" } },
-    { "type": "image", "src": "/Corridors/Corridors (18).webp", "alt": { "en": "Corridors View 2", "ar": "منظر الممرات 2" } },
-    { "type": "image", "src": "/Corridors/Corridors (19).webp", "alt": { "en": "Corridors View 3", "ar": "منظر الممرات 3" } },
-    { "type": "image", "src": "/Corridors/Corridors (20).webp", "alt": { "en": "Corridors View 4", "ar": "منظر الممرات 4" } },
-    { "type": "image", "src": "/Corridors/Corridors (21).webp", "alt": { "en": "Corridors View 5", "ar": "منظر الممرات 5" } },
-    { "type": "image", "src": "/Corridors/Corridors (22).webp", "alt": { "en": "Corridors View 6", "ar": "منظر الممرات 6" } },
-    { "type": "image", "src": "/Corridors/Corridors (23).webp", "alt": { "en": "Corridors View 7", "ar": "منظر الممرات 7" } },
-    { "type": "image", "src": "/Corridors/Corridors (24).webp", "alt": { "en": "Corridors View 8", "ar": "منظر الممرات 8" } }
+    {
+      "type": "image",
+      "src": "/Corridors/Corridors (17).webp",
+      "alt": {
+        "en": "Corridors View 1",
+        "ar": "منظر الممرات 1"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Corridors/Corridors (18).webp",
+      "alt": {
+        "en": "Corridors View 2",
+        "ar": "منظر الممرات 2"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Corridors/Corridors (19).webp",
+      "alt": {
+        "en": "Corridors View 3",
+        "ar": "منظر الممرات 3"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Corridors/Corridors (20).webp",
+      "alt": {
+        "en": "Corridors View 4",
+        "ar": "منظر الممرات 4"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Corridors/Corridors (21).webp",
+      "alt": {
+        "en": "Corridors View 5",
+        "ar": "منظر الممرات 5"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Corridors/Corridors (22).webp",
+      "alt": {
+        "en": "Corridors View 6",
+        "ar": "منظر الممرات 6"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Corridors/Corridors (23).webp",
+      "alt": {
+        "en": "Corridors View 7",
+        "ar": "منظر الممرات 7"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Corridors/Corridors (24).webp",
+      "alt": {
+        "en": "Corridors View 8",
+        "ar": "منظر الممرات 8"
+      }
+    }
   ]
 }

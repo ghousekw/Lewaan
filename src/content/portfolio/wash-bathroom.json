@@ -11,15 +11,85 @@
     "description": "حمامات فاخرة تجمع بين الرفاهية والوظائف والتصميم الحديث."
   },
   "gallery": [
-    { "type": "image", "src": "/Wash & Bathrooms/07.Wash & Bathrooms (270).webp", "alt": { "en": "Bathroom View 1", "ar": "منظر الحمام 1" } },
-    { "type": "image", "src": "/Wash & Bathrooms/07.Wash & Bathrooms (271).webp", "alt": { "en": "Bathroom View 2", "ar": "منظر الحمام 2" } },
-    { "type": "image", "src": "/Wash & Bathrooms/07.Wash & Bathrooms (272).webp", "alt": { "en": "Bathroom View 3", "ar": "منظر الحمام 3" } },
-    { "type": "image", "src": "/Wash & Bathrooms/07.Wash & Bathrooms (273).webp", "alt": { "en": "Bathroom View 4", "ar": "منظر الحمام 4" } },
-    { "type": "image", "src": "/Wash & Bathrooms/07.Wash & Bathrooms (274).webp", "alt": { "en": "Bathroom View 5", "ar": "منظر الحمام 5" } },
-    { "type": "image", "src": "/Wash & Bathrooms/07.Wash & Bathrooms (275).webp", "alt": { "en": "Bathroom View 6", "ar": "منظر الحمام 6" } },
-    { "type": "image", "src": "/Wash & Bathrooms/07.Wash & Bathrooms (276).webp", "alt": { "en": "Bathroom View 7", "ar": "منظر الحمام 7" } },
-    { "type": "image", "src": "/Wash & Bathrooms/07.Wash & Bathrooms (277).webp", "alt": { "en": "Bathroom View 8", "ar": "منظر الحمام 8" } },
-    { "type": "image", "src": "/Wash & Bathrooms/07.Wash & Bathrooms (278).webp", "alt": { "en": "Bathroom View 9", "ar": "منظر الحمام 9" } },
-    { "type": "image", "src": "/Wash & Bathrooms/07.Wash & Bathrooms (279).webp", "alt": { "en": "Bathroom View 10", "ar": "منظر الحمام 10" } }
+    {
+      "type": "image",
+      "src": "/Wash & Bathrooms/07.Wash & Bathrooms (270).webp",
+      "alt": {
+        "en": "Bathroom View 1",
+        "ar": "منظر الحمام 1"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Wash & Bathrooms/07.Wash & Bathrooms (271).webp",
+      "alt": {
+        "en": "Bathroom View 2",
+        "ar": "منظر الحمام 2"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Wash & Bathrooms/07.Wash & Bathrooms (272).webp",
+      "alt": {
+        "en": "Bathroom View 3",
+        "ar": "منظر الحمام 3"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Wash & Bathrooms/07.Wash & Bathrooms (273).webp",
+      "alt": {
+        "en": "Bathroom View 4",
+        "ar": "منظر الحمام 4"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Wash & Bathrooms/07.Wash & Bathrooms (274).webp",
+      "alt": {
+        "en": "Bathroom View 5",
+        "ar": "منظر الحمام 5"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Wash & Bathrooms/07.Wash & Bathrooms (275).webp",
+      "alt": {
+        "en": "Bathroom View 6",
+        "ar": "منظر الحمام 6"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Wash & Bathrooms/07.Wash & Bathrooms (276).webp",
+      "alt": {
+        "en": "Bathroom View 7",
+        "ar": "منظر الحمام 7"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Wash & Bathrooms/07.Wash & Bathrooms (277).webp",
+      "alt": {
+        "en": "Bathroom View 8",
+        "ar": "منظر الحمام 8"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Wash & Bathrooms/07.Wash & Bathrooms (278).webp",
+      "alt": {
+        "en": "Bathroom View 9",
+        "ar": "منظر الحمام 9"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Wash & Bathrooms/07.Wash & Bathrooms (279).webp",
+      "alt": {
+        "en": "Bathroom View 10",
+        "ar": "منظر الحمام 10"
+      }
+    }
   ]
 }

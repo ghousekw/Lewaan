@@ -28,7 +28,58 @@
         });
         window.netlifyIdentity.init();
       }
+
+      // Wait for CMS to load and enhance portfolio display
+      if (window.CMS) {
+        CMS.registerEventListener({
+          name: 'postPublish',
+          handler: () => {
+            setTimeout(addImageCountsToPortfolio, 500);
+          }
+        });
+      }
+
+      // Add image counts dynamically to portfolio list view
+      function addImageCountsToPortfolio() {
+        const observer = new MutationObserver(() => {
+          const portfolioCards = document.querySelectorAll('[data-collection="portfolio"] .nc-entryListing-card');
+          portfolioCards.forEach(card => {
+            const cardBody = card.querySelector('.nc-entryListing-cardBody');
+            if (cardBody && !cardBody.querySelector('.image-count-badge')) {
+              // This will be enhanced when viewing the list
+              const badge = document.createElement('span');
+              badge.className = 'image-count-badge';
+              badge.style.cssText = 'display: inline-block; margin-left: 8px; padding: 2px 8px; background: #3b82f6; color: white; border-radius: 12px; font-size: 11px; font-weight: 600;';
+              badge.textContent = '📸 Gallery';
+              cardBody.appendChild(badge);
+            }
+          });
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+      }
+
+      // Initialize on load
+      window.addEventListener('load', () => {
+        setTimeout(addImageCountsToPortfolio, 1000);
+      });
     })();
   </script>
+  <style>
+    /* Enhanced styling for portfolio collection */
+    [data-collection="portfolio"] .nc-entryListing-cardBody {
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    [data-collection="portfolio"] .nc-entryListing-cardHeading {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .image-count-badge {
+      flex-shrink: 0;
+    }
+  </style>
 </body>
 </html>

@@ -11,15 +11,85 @@
     "description": "مساحات مكتبية احترافية مصممة للإنتاجية والراحة بجماليات حديثة."
   },
   "gallery": [
-    { "type": "image", "src": "/Office/Office (1).webp", "alt": { "en": "Office View 1", "ar": "منظر المكتب 1" } },
-    { "type": "image", "src": "/Office/Office (2).webp", "alt": { "en": "Office View 2", "ar": "منظر المكتب 2" } },
-    { "type": "image", "src": "/Office/Office (3).webp", "alt": { "en": "Office View 3", "ar": "منظر المكتب 3" } },
-    { "type": "image", "src": "/Office/Office (4).webp", "alt": { "en": "Office View 4", "ar": "منظر المكتب 4" } },
-    { "type": "image", "src": "/Office/Office (5).webp", "alt": { "en": "Office View 5", "ar": "منظر المكتب 5" } },
-    { "type": "image", "src": "/Office/Office (6).webp", "alt": { "en": "Office View 6", "ar": "منظر المكتب 6" } },
-    { "type": "image", "src": "/Office/Office (7).webp", "alt": { "en": "Office View 7", "ar": "منظر المكتب 7" } },
-    { "type": "image", "src": "/Office/Office (8).webp", "alt": { "en": "Office View 8", "ar": "منظر المكتب 8" } },
-    { "type": "image", "src": "/Office/Office (9).webp", "alt": { "en": "Office View 9", "ar": "منظر المكتب 9" } },
-    { "type": "image", "src": "/Office/Office (10).webp", "alt": { "en": "Office View 10", "ar": "منظر المكتب 10" } }
+    {
+      "type": "image",
+      "src": "/Office/Office (1).webp",
+      "alt": {
+        "en": "Office View 1",
+        "ar": "منظر المكتب 1"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Office/Office (2).webp",
+      "alt": {
+        "en": "Office View 2",
+        "ar": "منظر المكتب 2"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Office/Office (3).webp",
+      "alt": {
+        "en": "Office View 3",
+        "ar": "منظر المكتب 3"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Office/Office (4).webp",
+      "alt": {
+        "en": "Office View 4",
+        "ar": "منظر المكتب 4"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Office/Office (5).webp",
+      "alt": {
+        "en": "Office View 5",
+        "ar": "منظر المكتب 5"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Office/Office (6).webp",
+      "alt": {
+        "en": "Office View 6",
+        "ar": "منظر المكتب 6"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Office/Office (7).webp",
+      "alt": {
+        "en": "Office View 7",
+        "ar": "منظر المكتب 7"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Office/Office (8).webp",
+      "alt": {
+        "en": "Office View 8",
+        "ar": "منظر المكتب 8"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Office/Office (9).webp",
+      "alt": {
+        "en": "Office View 9",
+        "ar": "منظر المكتب 9"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Office/Office (10).webp",
+      "alt": {
+        "en": "Office View 10",
+        "ar": "منظر المكتب 10"
+      }
+    }
   ]
 }

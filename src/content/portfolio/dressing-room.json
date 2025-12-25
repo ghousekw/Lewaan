@@ -11,13 +11,69 @@
     "description": "غرف ملابس أنيقة ومنظمة مع حلول تخزين مخصصة."
   },
   "gallery": [
-    { "type": "image", "src": "/Dressing Room/08.Dressing Room (33).webp", "alt": { "en": "Dressing Room View 1", "ar": "منظر غرفة الملابس 1" } },
-    { "type": "image", "src": "/Dressing Room/08.Dressing Room (34).webp", "alt": { "en": "Dressing Room View 2", "ar": "منظر غرفة الملابس 2" } },
-    { "type": "image", "src": "/Dressing Room/08.Dressing Room (35).webp", "alt": { "en": "Dressing Room View 3", "ar": "منظر غرفة الملابس 3" } },
-    { "type": "image", "src": "/Dressing Room/08.Dressing Room (36).webp", "alt": { "en": "Dressing Room View 4", "ar": "منظر غرفة الملابس 4" } },
-    { "type": "image", "src": "/Dressing Room/08.Dressing Room (37).webp", "alt": { "en": "Dressing Room View 5", "ar": "منظر غرفة الملابس 5" } },
-    { "type": "image", "src": "/Dressing Room/08.Dressing Room (38).webp", "alt": { "en": "Dressing Room View 6", "ar": "منظر غرفة الملابس 6" } },
-    { "type": "image", "src": "/Dressing Room/08.Dressing Room (39).webp", "alt": { "en": "Dressing Room View 7", "ar": "منظر غرفة الملابس 7" } },
-    { "type": "image", "src": "/Dressing Room/08.Dressing Room (40).webp", "alt": { "en": "Dressing Room View 8", "ar": "منظر غرفة الملابس 8" } }
+    {
+      "type": "image",
+      "src": "/Dressing Room/08.Dressing Room (33).webp",
+      "alt": {
+        "en": "Dressing Room View 1",
+        "ar": "منظر غرفة الملابس 1"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Dressing Room/08.Dressing Room (34).webp",
+      "alt": {
+        "en": "Dressing Room View 2",
+        "ar": "منظر غرفة الملابس 2"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Dressing Room/08.Dressing Room (35).webp",
+      "alt": {
+        "en": "Dressing Room View 3",
+        "ar": "منظر غرفة الملابس 3"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Dressing Room/08.Dressing Room (36).webp",
+      "alt": {
+        "en": "Dressing Room View 4",
+        "ar": "منظر غرفة الملابس 4"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Dressing Room/08.Dressing Room (37).webp",
+      "alt": {
+        "en": "Dressing Room View 5",
+        "ar": "منظر غرفة الملابس 5"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Dressing Room/08.Dressing Room (38).webp",
+      "alt": {
+        "en": "Dressing Room View 6",
+        "ar": "منظر غرفة الملابس 6"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Dressing Room/08.Dressing Room (39).webp",
+      "alt": {
+        "en": "Dressing Room View 7",
+        "ar": "منظر غرفة الملابس 7"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/Dressing Room/08.Dressing Room (40).webp",
+      "alt": {
+        "en": "Dressing Room View 8",
+        "ar": "منظر غرفة الملابس 8"
+      }
+    }
   ]
 }
