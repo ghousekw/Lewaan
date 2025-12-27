@@ -2,9 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Filament handles all routes at / (login, admin, dashboard)
+// No need to define root route as Filament panel path is '/'
 
 // Debug route to check configuration (remove after setup)
 Route::get('/debug-config', function () {
