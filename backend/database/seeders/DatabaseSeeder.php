@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             ['email' => 'info@lewaninterior.com'],
             [
                 'name' => 'Admin',
-                'password' => bcrypt('admin123'), // Change this password after first login!
+                'password' => 'admin123', // Laravel auto-hashes via 'hashed' cast - Change after first login!
             ]
         );
     }

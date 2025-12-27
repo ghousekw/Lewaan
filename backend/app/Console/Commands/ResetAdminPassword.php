@@ -20,7 +20,7 @@ class ResetAdminPassword extends Command
         }
 
         $password = $this->argument('password');
-        $user->password = bcrypt($password);
+        $user->password = $password; // Laravel auto-hashes via 'hashed' cast
         $user->save();
 
         $this->info('Password reset successfully!');

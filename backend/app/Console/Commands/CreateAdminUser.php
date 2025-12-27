@@ -16,7 +16,7 @@ class CreateAdminUser extends Command
             ['email' => 'info@lewaninterior.com'],
             [
                 'name' => 'Admin',
-                'password' => bcrypt('admin123'),
+                'password' => 'admin123', // Laravel auto-hashes via 'hashed' cast
             ]
         );
 
