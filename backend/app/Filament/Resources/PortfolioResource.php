@@ -90,20 +90,24 @@ class PortfolioResource extends Resource
                 SpatieMediaLibraryFileUpload::make('thumbnail')
                     ->collection('thumbnail')
                     ->image()
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/gif'])
                     ->maxSize(5120)
                     ->deletable()
                     ->downloadable()
-                    ->label('Thumbnail Image'),
+                    ->label('Thumbnail Image')
+                    ->helperText('Accepts: JPG, PNG, WebP, GIF (Max: 5MB)'),
                 
                 SpatieMediaLibraryFileUpload::make('gallery')
                     ->collection('gallery')
                     ->multiple()
                     ->reorderable()
                     ->image()
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/gif'])
                     ->maxSize(10240)
                     ->deletable()
                     ->downloadable()
-                    ->label('Gallery Images'),
+                    ->label('Gallery Images')
+                    ->helperText('Accepts: JPG, PNG, WebP, GIF (Max: 10MB each)'),
                 
                 Forms\Components\TagsInput::make('tags')
                     ->label('Tags'),
