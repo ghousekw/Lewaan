@@ -1,7 +1,12 @@
 node_modules/
 .git/
 .env
+.env.*
 tests/
+*.md
+.github/
+.vscode/
+.idea/
 storage/logs/*
 !storage/logs/.gitignore
 storage/framework/cache/*
@@ -10,3 +15,10 @@ storage/framework/sessions/*
 !storage/framework/sessions/.gitignore
 storage/framework/views/*
 !storage/framework/views/.gitignore
+storage/app/public/*
+!storage/app/public/.gitignore
+public/storage
+vendor/*/tests/
+vendor/*/test/
+vendor/*/*/tests/
+*.log
