@@ -48,6 +48,7 @@ class Portfolio extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('thumbnail')
+            ->useDisk(config('media-library.disk_name', 'public'))
             ->singleFile()
             ->registerMediaConversions(function (Media $media) {
                 $this->addMediaConversion('thumb')
@@ -62,6 +63,7 @@ class Portfolio extends Model implements HasMedia
             });
 
         $this->addMediaCollection('gallery')
+            ->useDisk(config('media-library.disk_name', 'public'))
             ->registerMediaConversions(function (Media $media) {
                 $this->addMediaConversion('thumb')
                     ->width(400)
