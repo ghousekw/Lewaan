@@ -6,7 +6,12 @@ cmds = ['composer install --no-dev --optimize-autoloader --no-interaction --pref
 
 [phases.build]
 cmds = [
-    'php artisan view:cache'
+    'php artisan view:cache',
+    'echo "upload_max_filesize = 20M" > public/.user.ini',
+    'echo "post_max_size = 25M" >> public/.user.ini',
+    'echo "memory_limit = 256M" >> public/.user.ini',
+    'echo "max_execution_time = 60" >> public/.user.ini',
+    'echo "max_input_time = 60" >> public/.user.ini'
 ]
 
 [start]
