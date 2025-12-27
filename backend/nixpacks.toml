@@ -6,8 +6,14 @@ cmds = ['composer install --no-dev --optimize-autoloader --no-interaction --pref
 
 [phases.build]
 cmds = [
-    'php artisan view:cache'
+    'php artisan view:cache',
+    'mkdir -p /app/conf.d',
+    'echo "upload_max_filesize = 20M" > /app/conf.d/uploads.ini',
+    'echo "post_max_size = 25M" >> /app/conf.d/uploads.ini',
+    'echo "memory_limit = 256M" >> /app/conf.d/uploads.ini',
+    'echo "max_execution_time = 60" >> /app/conf.d/uploads.ini',
+    'echo "max_input_time = 60" >> /app/conf.d/uploads.ini'
 ]
 
 [start]
-cmd = 'php -d upload_max_filesize=20M -d post_max_size=25M -d memory_limit=256M -d max_execution_time=60 artisan config:clear && php -d upload_max_filesize=20M -d post_max_size=25M -d memory_limit=256M -d max_execution_time=60 artisan cache:clear && php -d upload_max_filesize=20M -d post_max_size=25M -d memory_limit=256M -d max_execution_time=60 artisan route:clear && php -d upload_max_filesize=20M -d post_max_size=25M -d memory_limit=256M -d max_execution_time=60 artisan view:clear && php -d upload_max_filesize=20M -d post_max_size=25M -d memory_limit=256M -d max_execution_time=60 artisan migrate --force && php -d upload_max_filesize=20M -d post_max_size=25M -d memory_limit=256M -d max_execution_time=60 artisan serve --host=0.0.0.0 --port=$PORT'
+cmd = 'export PHP_INI_SCAN_DIR=/app/conf.d:$PHP_INI_SCAN_DIR && php artisan config:clear && php artisan cache:clear && php artisan route:clear && php artisan view:clear && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT'
