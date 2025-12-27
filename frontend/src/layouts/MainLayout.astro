@@ -1,0 +1,101 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SEO from '../components/SEO.astro';
+import WhatsAppSticky from '../components/WhatsAppSticky.astro';
+import type { Language } from '../i18n';
+import '../styles/global.css';
+
+interface SEOProps {
+  title: string;
+  description: string;
+  image?: string;
+  canonicalPath?: string;
+  noindex?: boolean;
+}
+
+interface Props {
+  language?: Language;
+  seo?: SEOProps;
+}
+
+const { language = 'en', seo } = Astro.props;
+const isRTL = language === 'ar';
+
+// Default SEO values - Optimized for "lewan interior" searches
+const defaultSEO = {
+  title: language === 'ar' 
+    ? 'ليوان - تصميم داخلي فاخر | الكويت' 
+    : 'Lewan Interior - Best Interior Design in Kuwait',
+  description: language === 'ar'
+    ? 'ليوان تصميم داخلي - أفضل شركة تصميم ديكور داخلي في الكويت. خدمات تصميم حديثة، فاخرة وبسيطة للمنازل والشركات. رسومات تنفيذية وتصور ثلاثي الأبعاد.'
+    : 'Lewan Interior - Top interior design company in Kuwait. Professional interior design, modern luxury decor, 3D design & complete renovation services.',
+};
+
+const seoData = {
+  ...defaultSEO,
+  ...seo,
+};
+---
+
+<!DOCTYPE html>
+<html lang={language} dir={isRTL ? 'rtl' : 'ltr'}>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Component -->
+    <SEO 
+      title={seoData.title}
+      description={seoData.description}
+      image={seoData.image}
+      language={language}
+      canonicalPath={seoData.canonicalPath}
+      noindex={seoData.noindex}
+    />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    {isRTL && (
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Tajawal:wght@400;500;600;700&display=swap" rel="stylesheet">
+    )}
+
+</head>
+<body class={isRTL ? 'rtl' : 'ltr'}>
+    <Header currentLang={language} />
+    <main>
+        <slot />
+    </main>
+    <Footer />
+    <WhatsAppSticky />
+    
+    <!-- Netlify Identity redirect script -->
+    <script is:inline>
+      if (window.netlifyIdentity) {
+        // Handle invite/recovery/confirmation tokens in URL
+        const hash = window.location.hash;
+        if (hash && (hash.includes('invite_token') || hash.includes('confirmation_token') || hash.includes('recovery_token'))) {
+          // Open the identity widget to handle the token
+          window.netlifyIdentity.open();
+        }
+        
+        window.netlifyIdentity.on('init', user => {
+          if (!user) {
+            window.netlifyIdentity.on('login', () => {
+              document.location.href = '/admin/';
+            });
+          }
+        });
+      }
+    </script>
+</body>
+</html>
