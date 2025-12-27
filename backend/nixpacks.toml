@@ -6,13 +6,8 @@ cmds = ['composer install --no-dev --optimize-autoloader --no-interaction --pref
 
 [phases.build]
 cmds = [
-    'php artisan view:cache',
-    'echo "upload_max_filesize = 20M" > public/.user.ini',
-    'echo "post_max_size = 25M" >> public/.user.ini',
-    'echo "memory_limit = 256M" >> public/.user.ini',
-    'echo "max_execution_time = 60" >> public/.user.ini',
-    'echo "max_input_time = 60" >> public/.user.ini'
+    'php artisan view:cache'
 ]
 
 [start]
-cmd = 'php artisan config:clear && php artisan cache:clear && php artisan route:clear && php artisan view:clear && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT'
+cmd = 'php -d upload_max_filesize=20M -d post_max_size=25M -d memory_limit=256M -d max_execution_time=60 artisan config:clear && php -d upload_max_filesize=20M -d post_max_size=25M -d memory_limit=256M -d max_execution_time=60 artisan cache:clear && php -d upload_max_filesize=20M -d post_max_size=25M -d memory_limit=256M -d max_execution_time=60 artisan route:clear && php -d upload_max_filesize=20M -d post_max_size=25M -d memory_limit=256M -d max_execution_time=60 artisan view:clear && php -d upload_max_filesize=20M -d post_max_size=25M -d memory_limit=256M -d max_execution_time=60 artisan migrate --force && php -d upload_max_filesize=20M -d post_max_size=25M -d memory_limit=256M -d max_execution_time=60 artisan serve --host=0.0.0.0 --port=$PORT'
