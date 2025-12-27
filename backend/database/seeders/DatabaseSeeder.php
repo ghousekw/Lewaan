@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         // Create admin user for production
         User::firstOrCreate(
-            ['email' => 'admin@lewaninterior.com'],
+            ['email' => 'info@lewaninterior.com'],
             [
                 'name' => 'Admin',
                 'password' => bcrypt('admin123'), // Change this password after first login!
