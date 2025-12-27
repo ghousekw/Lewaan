@@ -3,7 +3,12 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect('/admin');
+    return response()->json([
+        'message' => 'Lewan CMS API',
+        'version' => '1.0',
+        'admin' => url('/admin'),
+        'api' => url('/api/v1'),
+    ]);
 });
 
 // Debug route to check configuration (remove after setup)
