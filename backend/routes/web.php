@@ -1,28 +1,26 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 
-// Filament admin panel is now at the root path '/'
-// No need for a welcome route
+Route::get('/', function () {
+    return redirect('/admin');
+});
 
-// Test route to verify authentication
-Route::get('/test-auth', function (Request $request) {
-    $email = 'gmshaik.kw@gmail.com';
-    $password = 'Lewan2025!';
-    
-    $attempt = Auth::attempt(['email' => $email, 'password' => $password]);
+// Debug route to check configuration (remove after setup)
+Route::get('/debug-config', function () {
+    if (app()->environment('production')) {
+        abort(404);
+    }
     
     return response()->json([
-        'auth_attempt' => $attempt ? 'SUCCESS' : 'FAILED',
-        'authenticated' => Auth::check(),
-        'user' => Auth::user(),
-        'session_driver' => config('session.driver'),
-        'session_secure' => config('session.secure'),
-        'app_env' => config('app.env'),
-        'app_url' => config('app.url'),
-        'request_secure' => $request->secure(),
-        'request_scheme' => $request->getScheme(),
+        'filesystem_disk' => config('filesystems.default'),
+        'media_disk' => config('media-library.disk_name'),
+        'cloudinary_configured' => !empty(config('cloudinary.cloud_name')),
+        'cloudinary_cloud_name' => config('cloudinary.cloud_name') ? 'Set' : 'Not Set',
+        'upload_max_filesize' => ini_get('upload_max_filesize'),
+        'post_max_size' => ini_get('post_max_size'),
+        'memory_limit' => ini_get('memory_limit'),
+        'gd_installed' => extension_loaded('gd'),
+        'imagick_installed' => extension_loaded('imagick'),
     ]);
 });
