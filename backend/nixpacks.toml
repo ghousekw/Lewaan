@@ -1,19 +1,11 @@
 [phases.setup]
-nixPkgs = ['php84', 'php84Packages.composer', 'php84Extensions.pdo', 'php84Extensions.pdo_pgsql', 'php84Extensions.mbstring', 'php84Extensions.iconv', 'php84Extensions.xml', 'php84Extensions.curl', 'php84Extensions.zip', 'php84Extensions.gd', 'php84Extensions.intl', 'php84Extensions.bcmath']
+nixPkgs = ['php83', 'php83Packages.composer']
 
 [phases.install]
 cmds = ['composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist']
 
 [phases.build]
-cmds = [
-    'php artisan view:cache',
-    'mkdir -p /app/conf.d',
-    'echo "upload_max_filesize = 20M" > /app/conf.d/uploads.ini',
-    'echo "post_max_size = 25M" >> /app/conf.d/uploads.ini',
-    'echo "memory_limit = 256M" >> /app/conf.d/uploads.ini',
-    'echo "max_execution_time = 60" >> /app/conf.d/uploads.ini',
-    'echo "max_input_time = 60" >> /app/conf.d/uploads.ini'
-]
+cmds = ['php artisan view:cache']
 
 [start]
-cmd = 'export PHP_INI_SCAN_DIR=/app/conf.d:$PHP_INI_SCAN_DIR && php artisan config:clear && php artisan cache:clear && php artisan route:clear && php artisan view:clear && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT'
+cmd = 'php artisan config:clear && php artisan cache:clear && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT'
