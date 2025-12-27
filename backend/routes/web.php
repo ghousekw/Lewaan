@@ -5,6 +5,22 @@ use Illuminate\Support\Facades\Route;
 // Filament handles all routes at / (login, admin, dashboard)
 // No need to define root route as Filament panel path is '/'
 
+// Clear cache route (for deployment troubleshooting)
+Route::get('/clear-cache', function () {
+    \Artisan::call('config:clear');
+    \Artisan::call('cache:clear');
+    \Artisan::call('route:clear');
+    \Artisan::call('view:clear');
+    
+    return response()->json([
+        'message' => 'Cache cleared successfully',
+        'config_cleared' => true,
+        'cache_cleared' => true,
+        'routes_cleared' => true,
+        'views_cleared' => true,
+    ]);
+});
+
 // Debug route to check configuration (remove after setup)
 Route::get('/debug-config', function () {
     if (app()->environment('production')) {
