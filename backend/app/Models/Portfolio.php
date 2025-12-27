@@ -49,32 +49,34 @@ class Portfolio extends Model implements HasMedia
     {
         $this->addMediaCollection('thumbnail')
             ->useDisk(config('media-library.disk_name', 'public'))
-            ->singleFile()
-            ->registerMediaConversions(function (Media $media) {
-                $this->addMediaConversion('thumb')
-                    ->width(400)
-                    ->height(300)
-                    ->sharpen(10);
-                
-                $this->addMediaConversion('large')
-                    ->width(1200)
-                    ->height(900)
-                    ->sharpen(10);
-            });
+            ->singleFile();
+            // Temporarily disabled conversions to test upload
+            // ->registerMediaConversions(function (Media $media) {
+            //     $this->addMediaConversion('thumb')
+            //         ->width(400)
+            //         ->height(300)
+            //         ->sharpen(10);
+            //     
+            //     $this->addMediaConversion('large')
+            //         ->width(1200)
+            //         ->height(900)
+            //         ->sharpen(10);
+            // });
 
         $this->addMediaCollection('gallery')
-            ->useDisk(config('media-library.disk_name', 'public'))
-            ->registerMediaConversions(function (Media $media) {
-                $this->addMediaConversion('thumb')
-                    ->width(400)
-                    ->height(300)
-                    ->sharpen(10);
-                
-                $this->addMediaConversion('large')
-                    ->width(1920)
-                    ->height(1080)
-                    ->sharpen(10);
-            });
+            ->useDisk(config('media-library.disk_name', 'public'));
+            // Temporarily disabled conversions to test upload
+            // ->registerMediaConversions(function (Media $media) {
+            //     $this->addMediaConversion('thumb')
+            //         ->width(400)
+            //         ->height(300)
+            //         ->sharpen(10);
+            //     
+            //     $this->addMediaConversion('large')
+            //         ->width(1920)
+            //         ->height(1080)
+            //         ->sharpen(10);
+            // });
     }
 
     /**

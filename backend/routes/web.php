@@ -21,6 +21,22 @@ Route::get('/clear-cache', function () {
     ]);
 });
 
+// Check PHP and server configuration
+Route::get('/check-server', function () {
+    return response()->json([
+        'php_version' => PHP_VERSION,
+        'memory_limit' => ini_get('memory_limit'),
+        'upload_max_filesize' => ini_get('upload_max_filesize'),
+        'post_max_size' => ini_get('post_max_size'),
+        'max_execution_time' => ini_get('max_execution_time'),
+        'gd_info' => function_exists('gd_info') ? gd_info() : 'GD not available',
+        'imagick_version' => extension_loaded('imagick') ? \Imagick::getVersion() : 'Imagick not available',
+        'cloudinary_disk' => config('filesystems.disks.cloudinary'),
+        'media_disk' => config('media-library.disk_name'),
+        'queue_conversions' => config('media-library.queue_conversions_by_default'),
+    ]);
+});
+
 // Debug route to check configuration (remove after setup)
 Route::get('/debug-config', function () {
     if (app()->environment('production')) {
