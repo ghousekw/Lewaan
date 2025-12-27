@@ -13,7 +13,9 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
-    libwebp-dev
+    libwebp-dev \
+    libicu-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp
