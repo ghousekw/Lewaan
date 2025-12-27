@@ -10,13 +10,19 @@ use Illuminate\Support\Facades\DB;
 
 class DebugAuth extends Command
 {
-    protected $signature = 'debug:auth';
+    protected $signature = 'debug:auth {--create : Create a new test user}';
     protected $description = 'Debug authentication issues';
 
     public function handle()
     {
-        $email = 'info@lewaninterior.com';
         $password = 'Lewan2025!';
+
+        // Create new user if --create flag is passed
+        if ($this->option('create')) {
+            return $this->createNewUser();
+        }
+
+        $email = 'info@lewaninterior.com';
 
         $this->info('=== DATABASE CONNECTION ===');
         try {
@@ -93,6 +99,55 @@ class DebugAuth extends Command
             $this->info("\n✓ Authentication should now work!");
         } else {
             $this->error("\n✗ Still failing - there may be another issue");
+        }
+
+        return 0;
+    }
+
+    private function createNewUser()
+    {
+        $email = 'gmshaik.kw@gmail.com';
+        $password = 'Lewan2025!';
+
+        $this->info('=== CREATING NEW USER ===');
+
+        // Check if user already exists
+        $existing = User::where('email', $email)->first();
+        if ($existing) {
+            $this->warn("User already exists with email: $email");
+            $this->info("Deleting existing user...");
+            $existing->delete();
+        }
+
+        // Create user directly via DB to bypass model cast
+        $hash = Hash::make($password);
+        
+        DB::table('users')->insert([
+            'name' => 'Admin',
+            'email' => $email,
+            'password' => $hash,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        $this->info("User created!");
+        $this->info("Email: $email");
+        $this->info("Password: $password");
+        $this->info("Hash: " . substr($hash, 0, 20) . "...");
+
+        // Verify
+        $user = User::where('email', $email)->first();
+        $hashCheck = Hash::check($password, $user->password);
+        $authCheck = Auth::attempt(['email' => $email, 'password' => $password]);
+
+        $this->info("\n=== VERIFICATION ===");
+        $this->line("Hash::check: " . ($hashCheck ? 'TRUE ✓' : 'FALSE ✗'));
+        $this->line("Auth::attempt: " . ($authCheck ? 'TRUE ✓' : 'FALSE ✗'));
+
+        if ($hashCheck && $authCheck) {
+            $this->info("\n✓ New user ready! You can now login.");
+        } else {
+            $this->error("\n✗ Something is still wrong.");
         }
 
         return 0;
