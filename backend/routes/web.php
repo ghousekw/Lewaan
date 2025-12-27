@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 // Test route to verify authentication
 Route::get('/test-auth', function (Request $request) {
-    $email = 'info@lewaninterior.com';
+    $email = 'gmshaik.kw@gmail.com';
     $password = 'Lewan2025!';
     
     $attempt = Auth::attempt(['email' => $email, 'password' => $password]);
@@ -19,7 +19,10 @@ Route::get('/test-auth', function (Request $request) {
         'authenticated' => Auth::check(),
         'user' => Auth::user(),
         'session_driver' => config('session.driver'),
+        'session_secure' => config('session.secure'),
         'app_env' => config('app.env'),
         'app_url' => config('app.url'),
+        'request_secure' => $request->secure(),
+        'request_scheme' => $request->getScheme(),
     ]);
 });
