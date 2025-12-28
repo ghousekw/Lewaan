@@ -18,7 +18,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy application files
+# Copy application files (build context is backend directory)
 COPY . .
 
 # Install PHP dependencies
@@ -28,9 +28,17 @@ RUN composer install --optimize-autoloader --no-interaction --prefer-dist --no-d
 # Set permissions
 RUN chmod -R 755 storage bootstrap/cache
 
+# Create startup script
+RUN echo '#!/bin/sh' > /start.sh && \
+    echo 'set -e' >> /start.sh && \
+    echo 'php artisan migrate --force' >> /start.sh && \
+    echo 'PORT=${PORT:-8000}' >> /start.sh && \
+    echo 'exec php artisan serve --host=0.0.0.0 --port="$PORT"' >> /start.sh && \
+    chmod +x /start.sh
+
 # Expose port
 EXPOSE 8000
 
-# Start command - use shell form to support && and environment variables
-CMD ["sh", "-c", "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT:-8000}"]
+# Start command
+CMD ["/start.sh"]
 
