@@ -24,10 +24,19 @@ Your Laravel application has been successfully migrated from Nixpacks to Railpac
   - `ext-gd` - Image processing
   - `ext-intl` - Internationalization
   - `ext-bcmath` - Arbitrary precision mathematics
+  - `ext-exif` - Image metadata (required by Spatie packages)
 
 Railpack will automatically install these extensions based on your `composer.json` requirements.
 
-### 3. Archived `nixpacks.toml`
+### 3. Updated `composer.lock`
+- Regenerated lock file to ensure compatibility with PHP 8.2
+- Resolved dependency conflicts with packages requiring PHP 8.4
+
+### 4. Removed `Procfile`
+- Deleted `backend/Procfile` which was using `php artisan serve`
+- Railpack now uses its default Laravel startup with FrankenPHP automatically
+
+### 5. Archived `nixpacks.toml`
 - Renamed to `nixpacks.toml.backup` for reference
 - No longer needed as Railpack handles all configuration automatically
 
@@ -98,7 +107,22 @@ Custom startup script (overrides default Laravel startup)
 
 ## Troubleshooting
 
-If you encounter issues:
+### Build Failures
+
+If you encounter build failures:
+
+1. **Missing Extensions** - Ensure all required extensions are listed in `composer.json` as `ext-*` requirements
+2. **Lock File Out of Date** - Run `composer update` locally to regenerate `composer.lock`
+3. **PHP Version Conflicts** - Ensure `composer.json` specifies `^8.2` and run `composer update` to resolve conflicts
+4. **Procfile Conflicts** - Remove any `Procfile` that uses `php artisan serve` - Railpack handles startup automatically
+
+### Common Issues
+
+- **Extension not found**: Add it to `composer.json` as `ext-{name}: *` and update the lock file
+- **Composer lock file errors**: Run `composer update` to regenerate the lock file
+- **Wrong startup command**: Remove `Procfile` and let Railpack use its default Laravel startup
+
+### Verification
 
 1. **Check build logs** - Railpack will show which extensions are being installed
 2. **Verify PHP version** - Your `composer.json` specifies `^8.2` which is compatible

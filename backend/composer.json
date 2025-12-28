@@ -16,6 +16,7 @@
         "ext-gd": "*",
         "ext-intl": "*",
         "ext-bcmath": "*",
+        "ext-exif": "*",
         "cloudinary-labs/cloudinary-laravel": "^3.0",
         "filament/filament": "^4.3",
         "filament/spatie-laravel-media-library-plugin": "^4.3",
