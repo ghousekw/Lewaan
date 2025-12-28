@@ -16,7 +16,6 @@ nixPkgs = [
     'php82Extensions.dom',
     'php82Extensions.fileinfo',
     'php82Extensions.filter',
-    'php82Extensions.hash',
     'php82Extensions.openssl',
     'php82Extensions.pcre',
     'php82Extensions.session',
