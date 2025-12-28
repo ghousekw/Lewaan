@@ -10,10 +10,11 @@ RUN apt-get update && apt-get install -y \
     libicu-dev \
     libpq-dev \
     postgresql-client \
-    && docker-php-ext-install pdo pdo_pgsql mbstring zip gd intl bcmath exif \
-    && docker-php-ext-enable pdo_pgsql \
+    && docker-php-ext-install pdo \
+    && docker-php-ext-install pdo_pgsql \
+    && docker-php-ext-install mbstring zip gd intl bcmath exif \
     && apt-get clean && rm -rf /var/lib/apt/lists/* \
-    && php -m | grep -i pdo
+    && php -m | grep pdo_pgsql || (echo "ERROR: pdo_pgsql not installed!" && php -m && exit 1)
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -34,9 +35,16 @@ RUN chmod -R 755 storage bootstrap/cache
 # Create startup script
 RUN echo '#!/bin/sh' > /start.sh && \
     echo 'set -e' >> /start.sh && \
-    echo 'echo "Checking PHP extensions..."' >> /start.sh && \
-    echo 'php -m | grep -i pdo || echo "PDO extensions not found!"' >> /start.sh && \
-    echo 'php -m | grep -i pgsql || echo "PostgreSQL extension not found!"' >> /start.sh && \
+    echo 'echo "=== Checking PHP extensions ==="' >> /start.sh && \
+    echo 'php -m | grep pdo' >> /start.sh && \
+    echo 'if php -m | grep -q pdo_pgsql; then' >> /start.sh && \
+    echo '  echo "✓ pdo_pgsql is loaded"' >> /start.sh && \
+    echo 'else' >> /start.sh && \
+    echo '  echo "✗ ERROR: pdo_pgsql is NOT loaded!"' >> /start.sh && \
+    echo '  echo "Available PDO drivers:"' >> /start.sh && \
+    echo '  php -r "print_r(PDO::getAvailableDrivers());"' >> /start.sh && \
+    echo '  exit 1' >> /start.sh && \
+    echo 'fi' >> /start.sh && \
     echo 'php artisan migrate --force' >> /start.sh && \
     echo 'PORT=${PORT:-8000}' >> /start.sh && \
     echo 'exec php artisan serve --host=0.0.0.0 --port="$PORT"' >> /start.sh && \
