@@ -2,9 +2,10 @@
 nixPkgs = [
     'php82',
     'php82Packages.composer',
+    'php82Extensions.iconv',
+    'php82Extensions.mbstring',
     'php82Extensions.pdo',
     'php82Extensions.pdo_pgsql',
-    'php82Extensions.mbstring',
     'php82Extensions.xml',
     'php82Extensions.curl',
     'php82Extensions.zip',
