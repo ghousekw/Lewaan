@@ -1,4 +1,4 @@
-FROM php:8.2-cli
+FROM php:8.3-cli
 
 # Install system dependencies and PostgreSQL client
 RUN apt-get update && apt-get install -y \
@@ -22,6 +22,7 @@ WORKDIR /var/www/html
 COPY . .
 
 # Install PHP dependencies
+ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN composer install --optimize-autoloader --no-interaction --prefer-dist --no-dev
 
 # Set permissions
