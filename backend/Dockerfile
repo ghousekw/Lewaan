@@ -9,8 +9,11 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     libicu-dev \
     libpq-dev \
+    postgresql-client \
     && docker-php-ext-install pdo pdo_pgsql mbstring zip gd intl bcmath exif \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    && docker-php-ext-enable pdo_pgsql \
+    && apt-get clean && rm -rf /var/lib/apt/lists/* \
+    && php -m | grep -i pdo
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -31,6 +34,9 @@ RUN chmod -R 755 storage bootstrap/cache
 # Create startup script
 RUN echo '#!/bin/sh' > /start.sh && \
     echo 'set -e' >> /start.sh && \
+    echo 'echo "Checking PHP extensions..."' >> /start.sh && \
+    echo 'php -m | grep -i pdo || echo "PDO extensions not found!"' >> /start.sh && \
+    echo 'php -m | grep -i pgsql || echo "PostgreSQL extension not found!"' >> /start.sh && \
     echo 'php artisan migrate --force' >> /start.sh && \
     echo 'PORT=${PORT:-8000}' >> /start.sh && \
     echo 'exec php artisan serve --host=0.0.0.0 --port="$PORT"' >> /start.sh && \
