@@ -11,10 +11,12 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     postgresql-client \
     && docker-php-ext-install pdo \
+    && docker-php-ext-install pgsql \
     && docker-php-ext-install pdo_pgsql \
     && docker-php-ext-install mbstring zip gd intl bcmath exif \
     && apt-get clean && rm -rf /var/lib/apt/lists/* \
-    && php -m | grep pdo_pgsql || (echo "ERROR: pdo_pgsql not installed!" && php -m && exit 1)
+    && php -r "if (!extension_loaded('pdo_pgsql')) { echo 'ERROR: pdo_pgsql extension not loaded!\n'; echo 'Loaded extensions:\n'; print_r(get_loaded_extensions()); exit(1); }" \
+    && echo "✓ pdo_pgsql extension verified"
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
