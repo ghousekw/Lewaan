@@ -1,6 +1,6 @@
 [phases.setup]
 nixPkgs = [
-    'php82',
+    'php82Packages.php',
     'php82Packages.composer',
     'php82Extensions.iconv',
     'php82Extensions.mbstring',
@@ -21,10 +21,16 @@ nixPkgs = [
     'php82Extensions.session',
     'php82Extensions.tokenizer'
 ]
+cmds = [
+    'php --ini',
+    'php -m | grep -E "iconv|mbstring" || echo "Extensions not found in php -m"',
+    'php -r "var_dump(extension_loaded(\"iconv\"));"',
+    'php -r "var_dump(extension_loaded(\"mbstring\"));"'
+]
 
 [phases.install]
 cmds = [
-    'composer install --optimize-autoloader --no-interaction --prefer-dist --ignore-platform-reqs'
+    'composer install --optimize-autoloader --no-interaction --prefer-dist'
 ]
 
 [phases.build]
