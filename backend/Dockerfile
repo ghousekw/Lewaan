@@ -1,5 +1,10 @@
 FROM php:8.4-cli
 
+# Cache-busting: This ARG forces rebuild when changed
+# Update this value to force a fresh build (e.g., use timestamp or version)
+ARG CACHE_BUST=1
+ARG BUILD_DATE=unknown
+
 # Install system dependencies REQUIRED for PHP extensions
 RUN apt-get update && apt-get install -y \
     git \
@@ -40,7 +45,8 @@ RUN docker-php-ext-enable pdo pgsql pdo_pgsql
 RUN php -r "if (!extension_loaded('pdo_pgsql')) { echo 'ERROR: pdo_pgsql extension not loaded!\n'; exit(1); }" \
     && php -m | grep -i pdo_pgsql \
     && php -r "echo 'PDO drivers: '; print_r(PDO::getAvailableDrivers());" \
-    && echo "✓ pdo_pgsql extension verified"
+    && echo "✓ pdo_pgsql extension verified" \
+    && echo "Build date: $BUILD_DATE"
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
