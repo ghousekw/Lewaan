@@ -33,9 +33,13 @@ RUN docker-php-ext-install \
     bcmath \
     exif
 
+# Explicitly enable PostgreSQL extensions (docker-php-ext-install doesn't always enable)
+RUN docker-php-ext-enable pdo pgsql pdo_pgsql
+
 # Verify pdo_pgsql is installed and enabled
 RUN php -r "if (!extension_loaded('pdo_pgsql')) { echo 'ERROR: pdo_pgsql extension not loaded!\n'; exit(1); }" \
     && php -m | grep -i pdo_pgsql \
+    && php -r "echo 'PDO drivers: '; print_r(PDO::getAvailableDrivers());" \
     && echo "✓ pdo_pgsql extension verified"
 
 # Install Composer
