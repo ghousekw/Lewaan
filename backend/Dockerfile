@@ -1,6 +1,6 @@
 FROM php:8.3-cli
 
-# Install system dependencies and PostgreSQL client
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
     libpng-dev \
@@ -10,12 +10,16 @@ RUN apt-get update && apt-get install -y \
     libicu-dev \
     libpq-dev \
     postgresql-client \
-    && docker-php-ext-install pdo \
-    && docker-php-ext-install pgsql \
-    && docker-php-ext-install pdo_pgsql \
-    && docker-php-ext-install mbstring zip gd intl bcmath exif \
-    && apt-get clean && rm -rf /var/lib/apt/lists/* \
-    && php -r "if (!extension_loaded('pdo_pgsql')) { echo 'ERROR: pdo_pgsql extension not loaded!\n'; echo 'Loaded extensions:\n'; print_r(get_loaded_extensions()); exit(1); }" \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install PHP extensions - install pdo_pgsql first as it depends on pdo and pgsql
+RUN docker-php-ext-install pdo pgsql pdo_pgsql \
+    && docker-php-ext-enable pdo_pgsql \
+    && docker-php-ext-install mbstring zip gd intl bcmath exif
+
+# Verify pdo_pgsql is installed and enabled
+RUN php -r "if (!extension_loaded('pdo_pgsql')) { echo 'ERROR: pdo_pgsql extension not loaded!\n'; phpinfo(INFO_MODULES); exit(1); }" \
+    && php -m | grep -i pdo_pgsql \
     && echo "✓ pdo_pgsql extension verified"
 
 # Install Composer
@@ -34,17 +38,27 @@ RUN composer install --optimize-autoloader --no-interaction --prefer-dist --no-d
 # Set permissions
 RUN chmod -R 755 storage bootstrap/cache
 
-# Create startup script
+# Create startup script with comprehensive extension check
 RUN echo '#!/bin/sh' > /start.sh && \
     echo 'set -e' >> /start.sh && \
-    echo 'echo "=== Checking PHP extensions ==="' >> /start.sh && \
-    echo 'php -m | grep pdo' >> /start.sh && \
+    echo 'echo "=== PHP Extension Check ==="' >> /start.sh && \
+    echo 'echo "PHP Version: $(php -v | head -1)"' >> /start.sh && \
+    echo 'echo "All loaded extensions:"' >> /start.sh && \
+    echo 'php -m' >> /start.sh && \
+    echo 'echo ""' >> /start.sh && \
+    echo 'echo "PDO extensions:"' >> /start.sh && \
+    echo 'php -m | grep -i pdo || echo "No PDO extensions found"' >> /start.sh && \
+    echo 'echo ""' >> /start.sh && \
+    echo 'echo "Available PDO drivers:"' >> /start.sh && \
+    echo 'php -r "print_r(PDO::getAvailableDrivers());"' >> /start.sh && \
+    echo 'echo ""' >> /start.sh && \
     echo 'if php -m | grep -q pdo_pgsql; then' >> /start.sh && \
-    echo '  echo "✓ pdo_pgsql is loaded"' >> /start.sh && \
+    echo '  echo "✓ pdo_pgsql extension is LOADED"' >> /start.sh && \
     echo 'else' >> /start.sh && \
-    echo '  echo "✗ ERROR: pdo_pgsql is NOT loaded!"' >> /start.sh && \
-    echo '  echo "Available PDO drivers:"' >> /start.sh && \
-    echo '  php -r "print_r(PDO::getAvailableDrivers());"' >> /start.sh && \
+    echo '  echo "✗ ERROR: pdo_pgsql extension is NOT loaded!"' >> /start.sh && \
+    echo '  echo "Checking extension files..."' >> /start.sh && \
+    echo '  ls -la /usr/local/lib/php/extensions/*/pdo_pgsql.so 2>/dev/null || echo "pdo_pgsql.so not found in extensions directory"' >> /start.sh && \
+    echo '  php --ini' >> /start.sh && \
     echo '  exit 1' >> /start.sh && \
     echo 'fi' >> /start.sh && \
     echo 'php artisan migrate --force' >> /start.sh && \
