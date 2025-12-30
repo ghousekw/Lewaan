@@ -8,6 +8,7 @@ RUN apk add --no-cache openssl
 # Copy package files
 COPY package*.json ./
 COPY prisma ./prisma/
+COPY prisma.config.js ./
 
 # Install dependencies
 RUN npm ci
@@ -33,6 +34,7 @@ RUN apk add --no-cache openssl
 # Copy package files
 COPY package*.json ./
 COPY prisma ./prisma/
+COPY prisma.config.js ./
 
 # Install production dependencies only
 RUN npm ci --only=production
@@ -47,8 +49,8 @@ COPY --from=builder /app/dist ./dist
 # Expose port
 EXPOSE 8000
 
-# Unset dummy DATABASE_URL so runtime uses real one
-ENV DATABASE_URL=""
+# Note: DATABASE_URL will be provided by Railway at runtime
+# The dummy DATABASE_URL is only used during build for Prisma Client generation
 
 # Start application (migrations run here with real DATABASE_URL from Railway)
 CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main"]
