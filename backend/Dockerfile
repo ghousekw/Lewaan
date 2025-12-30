@@ -2,8 +2,8 @@ FROM php:8.4-cli
 
 # Cache-busting: This ARG forces rebuild when changed
 # Update this value to force a fresh build (e.g., use timestamp or version)
-ARG CACHE_BUST=2
-ARG BUILD_DATE=2025-12-30T04:56:19Z
+ARG CACHE_BUST=3
+ARG BUILD_DATE=2025-12-30T05:02:00Z
 
 # Install system dependencies REQUIRED for PHP extensions
 RUN apt-get update && apt-get install -y \
@@ -57,7 +57,10 @@ COPY . .
 ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 
+# Make startup script executable
+RUN chmod +x railway-start.sh
+
 EXPOSE 8000
 
-# Use PORT environment variable (Railway automatically sets this)
-CMD sh -c 'php artisan serve --host=0.0.0.0 --port=$PORT'
+# Use Railway startup script
+CMD ["./railway-start.sh"]
