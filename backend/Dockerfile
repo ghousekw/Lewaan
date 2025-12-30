@@ -12,7 +12,8 @@ COPY prisma ./prisma/
 # Install dependencies
 RUN npm ci
 
-# Generate Prisma Client (doesn't need DATABASE_URL)
+# Generate Prisma Client with dummy DATABASE_URL (only for code generation)
+ENV DATABASE_URL="postgresql://dummy:dummy@dummy:5432/dummy"
 RUN npx prisma generate
 
 # Copy source code
@@ -36,7 +37,8 @@ COPY prisma ./prisma/
 # Install production dependencies only
 RUN npm ci --only=production
 
-# Generate Prisma Client in production stage
+# Generate Prisma Client with dummy DATABASE_URL (only for code generation)
+ENV DATABASE_URL="postgresql://dummy:dummy@dummy:5432/dummy"
 RUN npx prisma generate
 
 # Copy built application
@@ -45,5 +47,8 @@ COPY --from=builder /app/dist ./dist
 # Expose port
 EXPOSE 8000
 
-# Start application (migrations run here, needs DATABASE_URL at runtime)
+# Unset dummy DATABASE_URL so runtime uses real one
+ENV DATABASE_URL=""
+
+# Start application (migrations run here with real DATABASE_URL from Railway)
 CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main"]
