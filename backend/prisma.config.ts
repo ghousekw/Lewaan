@@ -8,6 +8,6 @@ import 'dotenv/config';
 // Migrations will validate the connection at runtime when they actually run
 export default {
   datasource: {
-    url: process.env.DATABASE_URL,
+    url: process.env.DATABASE_URL || 'postgresql://dummy:dummy@dummy:5432/dummy',
   },
 };
