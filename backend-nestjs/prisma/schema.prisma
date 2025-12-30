@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Portfolio {
+  id        Int      @id @default(autoincrement())
+  slug      String   @unique
+  order     Int      @default(0)
+  featured  Boolean  @default(false)
+  status    Status   @default(published)
+  
+  // English content
+  titleEn            String @map("title_en")
+  descriptionEn      String @map("description_en") @db.Text
+  fullDescriptionEn  String? @map("full_description_en") @db.Text
+  
+  // Arabic content
+  titleAr            String @map("title_ar")
+  descriptionAr      String @map("description_ar") @db.Text
+  fullDescriptionAr  String? @map("full_description_ar") @db.Text
+  
+  // Project details (JSON)
+  detailsEn Json?   @map("details_en")
+  detailsAr Json?   @map("details_ar")
+  
+  // Categories and tags (JSON arrays)
+  categories Json?
+  tags       Json?
+  
+  // SEO
+  metaTitleEn       String? @map("meta_title_en")
+  metaTitleAr       String? @map("meta_title_ar")
+  metaDescriptionEn String? @map("meta_description_en") @db.Text
+  metaDescriptionAr String? @map("meta_description_ar") @db.Text
+  
+  // Media URLs (stored as JSON)
+  thumbnail Json?  // { url, thumbUrl }
+  gallery   Json?  // [{ url, thumbUrl, alt: { en, ar } }]
+  
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+  
+  @@index([slug])
+  @@index([order])
+  @@index([status])
+  @@index([featured])
+  @@map("portfolios")
+}
+
+enum Status {
+  published
+  draft
+  private
+}
