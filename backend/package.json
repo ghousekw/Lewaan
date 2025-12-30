@@ -10,10 +10,10 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:prod": "node dist/main",
-    "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate deploy",
-    "prisma:studio": "prisma studio",
-    "prisma:seed": "ts-node prisma/seed.ts"
+    "prisma:generate": "powershell -ExecutionPolicy Bypass -File prisma-env.ps1 && prisma generate",
+    "prisma:migrate": "powershell -ExecutionPolicy Bypass -File prisma-env.ps1 && prisma migrate deploy",
+    "prisma:studio": "powershell -ExecutionPolicy Bypass -File prisma-env.ps1 && prisma studio",
+    "prisma:seed": "powershell -ExecutionPolicy Bypass -File prisma-env.ps1 && ts-node prisma/seed.ts"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
