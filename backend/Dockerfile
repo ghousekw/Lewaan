@@ -49,6 +49,22 @@ COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 # Expose port
 EXPOSE 8000
 
-# Note: DATABASE_URL MUST be provided by Railway at runtime
-# Start application (migrations run here with real DATABASE_URL from Railway)
-CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main"]
+# Create a startup script that checks DATABASE_URL
+RUN echo '#!/bin/sh' > /app/start.sh && \
+    echo 'echo "🚀 Starting application..."' >> /app/start.sh && \
+    echo 'echo "Checking DATABASE_URL..."' >> /app/start.sh && \
+    echo 'if [ -z "$DATABASE_URL" ]; then' >> /app/start.sh && \
+    echo '  echo "❌ ERROR: DATABASE_URL is not set!"' >> /app/start.sh && \
+    echo '  echo "Please set DATABASE_URL in Railway environment variables"' >> /app/start.sh && \
+    echo '  exit 1' >> /app/start.sh && \
+    echo 'fi' >> /app/start.sh && \
+    echo 'echo "✅ DATABASE_URL is set"' >> /app/start.sh && \
+    echo 'echo "Running migrations..."' >> /app/start.sh && \
+    echo 'npx prisma migrate deploy' >> /app/start.sh && \
+    echo 'echo "✅ Migrations complete"' >> /app/start.sh && \
+    echo 'echo "Starting NestJS application..."' >> /app/start.sh && \
+    echo 'node dist/main' >> /app/start.sh && \
+    chmod +x /app/start.sh
+
+# Start application
+CMD ["/app/start.sh"]

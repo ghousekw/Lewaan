@@ -1,10 +1,15 @@
 // Prisma 7 config file
 // DATABASE_URL must be provided by environment variables (Railway, Docker, etc.)
 
-import 'dotenv/config';
+// Only load dotenv in development (Railway injects env vars directly)
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv/config');
+}
 
 if (!process.env.DATABASE_URL) {
   console.error('❌ ERROR: DATABASE_URL environment variable is not set!');
+  console.error('Current NODE_ENV:', process.env.NODE_ENV);
+  console.error('Available env vars:', Object.keys(process.env).filter(k => k.includes('DATA')));
   console.error('');
   console.error('For Railway deployment:');
   console.error('1. Go to your Railway project');
