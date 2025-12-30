@@ -2,8 +2,8 @@ FROM php:8.4-cli
 
 # Cache-busting: This ARG forces rebuild when changed
 # Update this value to force a fresh build (e.g., use timestamp or version)
-ARG CACHE_BUST=1
-ARG BUILD_DATE=unknown
+ARG CACHE_BUST=2
+ARG BUILD_DATE=2025-12-30T04:56:19Z
 
 # Install system dependencies REQUIRED for PHP extensions
 RUN apt-get update && apt-get install -y \
