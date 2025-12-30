@@ -1,8 +1,10 @@
 # Railway Deployment Checklist - NestJS Backend
 
-## Environment Variables Required
+## ⚠️ CRITICAL: Environment Variables Required
 
-In Railway → Your Service → Variables, add:
+**The deployment will fail if DATABASE_URL is not set!**
+
+In Railway → Your Service → Variables tab, you MUST add:
 
 ```env
 # Database (Reference your PostgreSQL service)
@@ -21,6 +23,21 @@ NODE_ENV=production
 PORT=8000
 ```
 
+### How to Link PostgreSQL Database:
+
+1. **If you already have a PostgreSQL service:**
+   - In your backend service, go to Variables
+   - Click "New Variable" → "Add Reference"
+   - Select your PostgreSQL service
+   - Choose `DATABASE_URL`
+   - This will create: `DATABASE_URL=${{Postgres.DATABASE_URL}}`
+
+2. **If you don't have PostgreSQL yet:**
+   - In your Railway project, click "New"
+   - Select "Database" → "PostgreSQL"
+   - Railway will create a new database
+   - Then follow step 1 above to link it
+
 ## Build Settings
 
 In Railway → Settings → Build:
@@ -38,11 +55,19 @@ In Railway → Settings → Build:
 
 ## Common Issues & Solutions
 
+### Issue: "Can't reach database server at dummy:5432"
+**Cause**: DATABASE_URL environment variable is not set in Railway
+**Solution**: 
+1. Go to Railway → Your Service → Variables
+2. Add `DATABASE_URL=${{Postgres.DATABASE_URL}}`
+3. Make sure your PostgreSQL service is running
+4. Redeploy
+
 ### Issue: "Connection url is empty"
-**Solution**: Make sure `DATABASE_URL` is set in Railway variables
+**Solution**: Make sure `DATABASE_URL` is set in Railway variables (see above)
 
 ### Issue: "Prisma generate fails"
-**Solution**: The Dockerfile now uses a fallback dummy URL for build-time generation. Real URL is used at runtime.
+**Solution**: The Dockerfile uses a dummy URL for build-time generation. This is normal and expected.
 
 ### Issue: "Migrations fail"
 **Solution**: Check that your PostgreSQL service is running and DATABASE_URL is correctly referencing it
@@ -77,3 +102,16 @@ If deployment fails:
 1. Go to Deployments tab
 2. Find last working deployment
 3. Click "Redeploy"
+
+## Still Having Issues?
+
+Check the deployment logs for this specific error message:
+```
+❌ ERROR: DATABASE_URL environment variable is not set!
+```
+
+If you see this, it means Railway isn't providing the DATABASE_URL. Double-check:
+- [ ] PostgreSQL service exists in your project
+- [ ] PostgreSQL service is running (green status)
+- [ ] DATABASE_URL variable is added to your backend service
+- [ ] DATABASE_URL references the PostgreSQL service: `${{Postgres.DATABASE_URL}}`
