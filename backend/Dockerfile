@@ -12,11 +12,11 @@ COPY prisma ./prisma/
 # Install dependencies
 RUN npm ci
 
+# Generate Prisma Client (doesn't need DATABASE_URL)
+RUN npx prisma generate
+
 # Copy source code
 COPY . .
-
-# Generate Prisma Client
-RUN npm run prisma:generate
 
 # Build application
 RUN npm run build
@@ -36,12 +36,14 @@ COPY prisma ./prisma/
 # Install production dependencies only
 RUN npm ci --only=production
 
+# Generate Prisma Client in production stage
+RUN npx prisma generate
+
 # Copy built application
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 
 # Expose port
 EXPOSE 8000
 
-# Start application
-CMD ["npm", "run", "start:prod"]
+# Start application (migrations run here, needs DATABASE_URL at runtime)
+CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main"]
