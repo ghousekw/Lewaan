@@ -17,11 +17,13 @@ RUN npm ci
 ENV DATABASE_URL="postgresql://dummy:dummy@dummy:5432/dummy"
 RUN npx prisma generate
 
-# Copy source code
-COPY . .
+# Copy source code (excluding dist, node_modules)
+COPY nest-cli.json ./
+COPY tsconfig.json ./
+COPY src ./src
 
 # Build application - show errors if build fails
-RUN npm run build && ls -la dist/
+RUN npm run build && echo "Build complete, listing dist:" && ls -la dist/
 
 # Production stage
 FROM node:20-alpine
@@ -39,7 +41,7 @@ COPY prisma.config.ts ./
 # Install production dependencies only
 RUN npm ci --only=production
 
-# Copy built application
+# Copy built application from builder
 COPY --from=builder /app/dist ./dist
 
 # Copy node_modules with generated Prisma Client from builder
@@ -47,7 +49,7 @@ COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 
 # Verify dist/main.js exists
-RUN ls -la /app/dist/ && test -f /app/dist/main.js || (echo "ERROR: dist/main.js not found!" && exit 1)
+RUN echo "Checking for main.js:" && ls -la /app/dist/ && test -f /app/dist/main.js || (echo "ERROR: dist/main.js not found!" && exit 1)
 
 # Expose port
 EXPOSE 8000
