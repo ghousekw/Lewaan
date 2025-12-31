@@ -23,7 +23,10 @@ COPY tsconfig.json ./
 COPY src ./src
 
 # Build application - show errors if build fails
-RUN npm run build && echo "Build complete, listing dist:" && ls -la dist/
+RUN echo "Running build..." && npm run build || (echo "Build failed!" && exit 1)
+RUN echo "Build complete, listing dist:" && ls -la dist/ && echo "Looking for main.js:" && find dist -name "main.js" || echo "main.js not found in dist"
+RUN echo "Checking dist/src:" && ls -la dist/src/ 2>/dev/null || echo "dist/src does not exist"
+RUN if [ -f "dist/src/main.js" ]; then echo "Found main.js in dist/src/, moving to dist/" && mv dist/src/* dist/ && rmdir dist/src; fi
 
 # Production stage
 FROM node:20-alpine
