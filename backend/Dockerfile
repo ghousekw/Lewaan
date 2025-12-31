@@ -20,8 +20,8 @@ RUN npx prisma generate
 # Copy source code
 COPY . .
 
-# Build application
-RUN npm run build
+# Build application - show errors if build fails
+RUN npm run build && ls -la dist/
 
 # Production stage
 FROM node:20-alpine
@@ -46,25 +46,11 @@ COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 
+# Verify dist/main.js exists
+RUN ls -la /app/dist/ && test -f /app/dist/main.js || (echo "ERROR: dist/main.js not found!" && exit 1)
+
 # Expose port
 EXPOSE 8000
 
-# Create a startup script that checks DATABASE_URL
-RUN echo '#!/bin/sh' > /app/start.sh && \
-    echo 'echo "🚀 Starting application..."' >> /app/start.sh && \
-    echo 'echo "Checking DATABASE_URL..."' >> /app/start.sh && \
-    echo 'if [ -z "$DATABASE_URL" ]; then' >> /app/start.sh && \
-    echo '  echo "❌ ERROR: DATABASE_URL is not set!"' >> /app/start.sh && \
-    echo '  echo "Please set DATABASE_URL in Railway environment variables"' >> /app/start.sh && \
-    echo '  exit 1' >> /app/start.sh && \
-    echo 'fi' >> /app/start.sh && \
-    echo 'echo "✅ DATABASE_URL is set"' >> /app/start.sh && \
-    echo 'echo "Running migrations..."' >> /app/start.sh && \
-    echo 'npx prisma migrate deploy' >> /app/start.sh && \
-    echo 'echo "✅ Migrations complete"' >> /app/start.sh && \
-    echo 'echo "Starting NestJS application..."' >> /app/start.sh && \
-    echo 'node dist/main' >> /app/start.sh && \
-    chmod +x /app/start.sh
-
 # Start application
-CMD ["/app/start.sh"]
+CMD ["sh", "-c", "echo 'DATABASE_URL scheme:' $(echo $DATABASE_URL | cut -d: -f1) && echo 'Running migrations...' && npx prisma migrate deploy && echo 'Starting app...' && node dist/main.js"]
